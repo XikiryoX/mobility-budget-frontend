@@ -1,0 +1,89 @@
+<div class="partner-login-root">
+  <div class="partner-login-image-col">
+    <img src="assets/shutterstock-1976973020-1@2x.png" alt="Partner login visual" class="partner-login-image" />
+    <div class="image-overlay-text">
+      <p>{{ translate('partnerDashboard') }}<br>{{ translate('accessYourClientSessions') }}</p>
+    </div>
+  </div>
+  <div class="partner-login-form-col">
+    <div class="header-bar">
+      <div class="logo-container">
+        <img src="assets/Monizze_Positive.svg" alt="Monizze Logo" class="company-logo">
+      </div>
+      <div class="header-actions">
+        <div class="language-selector">
+          <select class="language-dropdown" name="selectedLanguage" [(ngModel)]="selectedLanguage" (change)="onLanguageChange()">
+            <option *ngFor="let lang of availableLanguages" [value]="lang.code">
+              {{ lang.name }}
+            </option>
+          </select>
+        </div>
+        <button class="user-login-button" (click)="goToUserLogin()">
+          <svg class="user-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M20 20C20 15.5817 15.5228 12 10 12C4.47715 12 0 15.5817 0 20" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <span>{{ translate('userLogin') }}</span>
+        </button>
+      </div>
+    </div>
+    <div class="partner-login-card">
+      <div class="partner-login-card-content">
+        <h2 class="sign-in-title">{{ translate('signInToContinue') }}</h2>
+        <h1 class="partner-dashboard-title">{{ translate('partnerDashboard') }}</h1>
+
+        <form class="partner-login-form" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="email" class="form-label">{{ translate('emailAddress') }}</label>
+            <div class="input-container" [class.valid]="email && !error">
+              <input 
+                type="email" 
+                id="email" 
+                name="email"
+                class="form-input"
+                [placeholder]="translate('enterYourPartnerEmail')"
+                [(ngModel)]="email"
+                [disabled]="isLoading"
+                required
+              >
+              <div class="validation-icon" *ngIf="email && !error">
+                <span class="checkmark">✓</span>
+              </div>
+            </div>
+            <div class="error-message" *ngIf="error">
+              {{ error }}
+            </div>
+            <div class="success-message" *ngIf="success">
+              {{ success }}
+            </div>
+          </div>
+
+          <button 
+            type="submit" 
+            class="submit-button"
+            [disabled]="!email || isLoading"
+          >
+            <span *ngIf="!isLoading">{{ translate('accessPartnerDashboard') }}</span>
+            <span *ngIf="isLoading">{{ translate('loggingIn') }}</span>
+          </button>
+          
+          <button 
+            type="button" 
+            class="user-login-button-secondary"
+            (click)="goToUserLogin()"
+          >
+            {{ translate('userLogin') }}
+          </button>
+          
+          <div class="divider-container">
+            <div class="divider-line"></div>
+          </div>
+          
+          <div class="partner-info">
+            <p>{{ translate('needHelpContactOurSupportTeam') }}</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

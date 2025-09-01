@@ -1,0 +1,94 @@
+<div class="login-root">
+  <div class="login-image-col">
+    <img src="assets/shutterstock-1976973020-1@2x.png" alt="Sign in visual" class="login-image" />
+    <div class="image-overlay-text">
+      <p [innerHTML]="translate('imageText')"></p>
+    </div>
+  </div>
+  <div class="login-form-col">
+    <div class="header-bar">
+      <div class="logo-container">
+        <img src="assets/Monizze_Positive.svg" alt="Monizze Logo" class="company-logo">
+      </div>
+      <div class="language-selector">
+        <select class="language-dropdown" name="selectedLanguage" [(ngModel)]="selectedLanguage" (change)="onLanguageChange()">
+          <option *ngFor="let lang of availableLanguages" [value]="lang.code">
+            {{ lang.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="login-card">
+      <div class="login-card-content">
+                <h2 class="sign-in-title">{{ translate('signInToContinue') }}</h2>
+        <h1 class="tco-converter-title">TCO Converter</h1>
+
+        <form class="login-form" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="email" class="form-label">{{ translate('emailAddress') }}</label>
+            <div class="input-container" [class.valid]="email && !emailError">
+              <input 
+                type="email" 
+                id="email" 
+                name="email"
+                class="form-input"
+                [placeholder]="translate('addYourEmailAddress')"
+                [(ngModel)]="email"
+                (input)="onEmailChange()"
+                required
+              >
+              <div class="validation-icon" *ngIf="email && !emailError">
+                <span class="checkmark">✓</span>
+              </div>
+            </div>
+            <div class="error-message" *ngIf="emailError">
+              {{ emailError }}
+            </div>
+          </div>
+
+          <button 
+            type="submit" 
+            class="submit-button"
+            [disabled]="!email || isSubmitting"
+          >
+            <span *ngIf="!isSubmitting">{{ translate('signIn') }}</span>
+            <span *ngIf="isSubmitting">{{ translate('sending') }}</span>
+          </button>
+          
+          <button 
+            type="button" 
+            class="signup-button"
+            (click)="goToSignup()"
+          >
+            {{ translate('signUp') }}
+          </button>
+
+                              <div class="divider-container">
+            <div class="divider-line"></div>
+          </div>
+          
+          <div class="partner-text">
+            <p>{{ translate('wantToJoinPartner') }}</p>
+          </div>
+          
+          <button 
+            type="button" 
+            class="partner-button"
+          >
+            {{ translate('becomePartner') }}
+          </button>
+
+          <button 
+            type="button" 
+            class="partner-login-link"
+            (click)="goToPartnerLogin()"
+          >
+            {{ translate('partnerLogin') }}
+          </button>
+        </form>
+
+
+      </div>
+    </div>
+  </div>
+</div> 

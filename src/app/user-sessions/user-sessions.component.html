@@ -1,0 +1,121 @@
+<div class="user-sessions-root">
+  <!-- Header Bar -->
+  <div class="header-bar">
+    <div class="logo-container">
+      <img src="assets/Monizze_Positive.svg" alt="Monizze Logo" class="company-logo">
+    </div>
+    <div class="language-selector">
+      <select class="language-dropdown" name="selectedLanguage" [(ngModel)]="selectedLanguage" (change)="onLanguageChange()">
+        <option *ngFor="let lang of availableLanguages" [value]="lang.code">
+          {{ lang.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="content-wrapper">
+      <!-- Header -->
+      <div class="page-header">
+        <h1 class="page-title">{{ translate('mySessions') }}</h1>
+        <p class="page-subtitle">{{ translate('manageYourSessions') }}</p>
+      </div>
+
+      <!-- Loading State -->
+      <div *ngIf="isLoading" class="loading-state">
+        <div class="loading-spinner"></div>
+        <p>{{ translate('loadingSessions') }}</p>
+      </div>
+
+      <!-- Error State -->
+      <div *ngIf="error && !isLoading" class="error-state">
+        <p class="error-message">{{ error }}</p>
+        <button class="retry-button" (click)="loadUserSessions()">
+          {{ translate('retry') }}
+        </button>
+      </div>
+
+      <!-- Sessions List -->
+      <div *ngIf="!isLoading && !error" class="sessions-container">
+        <!-- New Session Button -->
+        <div class="new-session-section">
+          <button class="new-session-button" (click)="onNewSession()">
+            <svg class="plus-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M10 4V16M4 10H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>{{ translate('createNewSession') }}</span>
+          </button>
+        </div>
+
+        <!-- Sessions List -->
+        <div *ngIf="userSessions.length > 0" class="sessions-list">
+          <div *ngFor="let session of userSessions" class="session-card" (click)="onSessionClick(session)">
+            <div class="session-header">
+              <div class="session-info">
+                                  <h3 class="session-title">{{ translate('session') }} #{{ session.id.slice(0, 8) }}</h3>
+                <p class="session-company" *ngIf="session.signup?.companyName">
+                  {{ session.signup?.companyName }}
+                </p>
+              </div>
+              <div class="session-status">
+                <span class="status-badge" [class]="getStatusColorClass(session.status)">
+                  {{ getStatusDisplayText(session.status) }}
+                </span>
+              </div>
+            </div>
+
+            <div class="session-details">
+              <div class="detail-item">
+                <span class="detail-label">{{ translate('currentStep') }}:</span>
+                <span class="detail-value">{{ session.currentStep }}/5</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">{{ translate('lastActivity') }}:</span>
+                                    <span class="detail-value">{{ session.lastActivityAt ? formatDate(session.lastActivityAt) : '' }}</span>
+              </div>
+              <div class="detail-item" *ngIf="session.submittedAt">
+                <span class="detail-label">{{ translate('submitted') }}:</span>
+                                    <span class="detail-value">{{ session.submittedAt ? formatDate(session.submittedAt) : '' }}</span>
+              </div>
+            </div>
+
+            <div class="session-actions">
+              <button class="continue-button">
+                {{ translate('continue') }}
+                <svg class="arrow-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div *ngIf="userSessions.length === 0" class="empty-state">
+          <div class="empty-state-icon">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+              <circle cx="32" cy="32" r="32" fill="#F5F5F5"/>
+              <path d="M32 16V32L40 40" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="empty-state-title">{{ translate('noSessionsYet') }}</h3>
+          <p class="empty-state-description">{{ translate('createYourFirstSession') }}</p>
+          <button class="create-first-session-button" (click)="onNewSession()">
+            {{ translate('createFirstSession') }}
+          </button>
+        </div>
+      </div>
+
+      <!-- Back Button -->
+      <div class="back-section">
+        <button class="back-button" (click)="onBackToTcoConverter()">
+          <svg class="arrow-icon-left" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M15.8333 10H4.16666M4.16666 10L9.16666 5M4.16666 10L9.16666 15" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>{{ translate('backToTcoConverter') }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

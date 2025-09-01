@@ -1,0 +1,1213 @@
+<div class="tco-converter-root">
+  <!-- Header Bar -->
+  <div class="header-bar">
+    <div class="logo-container">
+      <img src="assets/Monizze_Positive.svg" alt="Monizze Logo" class="company-logo">
+    </div>
+    
+    <!-- Partner Mode Indicator -->
+    <div class="partner-mode-indicator" *ngIf="isPartnerMode">
+      <div class="partner-mode-badge">
+        <svg class="partner-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M8 8A3 3 0 1 0 8 2A3 3 0 0 0 8 8ZM8 10C5.33 10 2 11.34 2 13V14H14V13C14 11.34 10.67 10 8 10Z" fill="currentColor"/>
+        </svg>
+        <span>Partner Mode: {{ partnerName }} for {{ companyName }} ({{ userName }})</span>
+      </div>
+    </div>
+    
+    <div class="header-actions">
+      <!-- Regular user actions -->
+      <div *ngIf="!isPartnerMode" class="user-actions">
+        <button class="sessions-button" (click)="goToSessions()">
+          <svg class="sessions-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M3 4H17V6H3V4ZM3 8H17V10H3V8ZM3 12H17V14H3V12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>{{ translate('mySessions') }}</span>
+        </button>
+        <div class="language-selector">
+          <select class="language-dropdown" name="selectedLanguage" [(ngModel)]="selectedLanguage" (change)="onLanguageChange()">
+            <option *ngFor="let lang of availableLanguages" [value]="lang.code">
+              {{ lang.name }}
+            </option>
+          </select>
+        </div>
+        <div class="user-menu" *ngIf="userEmail">
+          <button class="user-button" (click)="toggleUserMenu()">
+            <span class="user-name">{{ userEmail }}</span>
+            <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="user-dropdown" *ngIf="showUserMenu">
+            <button class="dropdown-item" (click)="signOut()">
+              <svg class="signout-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M7 17L3 13M3 13L7 9M3 13H13M13 7H17V17H13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>{{ translate('signOut') }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Partner actions -->
+      <div *ngIf="isPartnerMode" class="partner-actions">
+        <div class="language-selector">
+          <select class="language-dropdown" name="selectedLanguage" [(ngModel)]="selectedLanguage" (change)="onLanguageChange()">
+            <option *ngFor="let lang of availableLanguages" [value]="lang.code">
+              {{ lang.name }}
+            </option>
+          </select>
+        </div>
+        <button class="back-to-dashboard-button" (click)="goToPartnerDashboard()">
+          <svg class="dashboard-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M3 4H17V6H3V4ZM3 8H17V10H3V8ZM3 12H17V14H3V12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Back to Sessions Overview</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Spacer -->
+  <div class="spacer"></div>
+
+  <!-- Stepper -->
+  <div class="stepper-container">
+    <div class="stepper">
+      <div class="stepper-steps">
+        <div 
+          *ngFor="let step of steps; let i = index" 
+          class="step"
+          [class.active]="step.active"
+          [class.completed]="step.completed"
+        >
+          <div class="step-title desktop-only">
+            <span *ngIf="step.completed" class="step-checkmark">✓</span>
+            {{ translate(step.key) }}
+          </div>
+        </div>
+        <div class="mobile-step-indicator">
+          <div class="step-title mobile-only">Step {{ currentStep }} of 5</div>
+        </div>
+      </div>
+      <div class="stepper-progress-bar">
+        <div class="stepper-progress-segments">
+          <div 
+            *ngFor="let step of steps; let i = index" 
+            class="progress-segment"
+            [class.completed]="step.completed"
+            [class.partial]="step.active"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="content-wrapper">
+      <!-- Step 1: General Information -->
+      <div class="content-left" *ngIf="currentStep === 1">
+        <img src="assets/img_car.svg" alt="Car" class="content-image">
+      </div>
+
+      <!-- Step 1: General Information -->
+      <div class="content-right" *ngIf="currentStep === 1">
+        <div class="content-text">
+          <h1 class="content-title">{{ translate('generalInformation') }}</h1>
+          <div class="content-body">
+            <p>Lorem ipsum dolor sit amet consectetur. Mollis a adipiscing vitae vulputate. Sed hac enim eget netus eget egestas quis vitae ut. Vitae in bibendum dignissim pharetra ullamcorper fringilla molestie urna aliquam. Eu et sit tincidunt orci tellus. Sed enim vel quis est. Molestie ut tempus lobortis venenatis faucibus. Accumsan aliquet faucibus bibendum pellentesque purus. Tellus lectus aliquam varius morbi ultrices hendrerit est a. Massa hendrerit viverra orci arcu tellus pellentesque non.</p>
+            
+            <p>Eget augue in mattis volutpat venenatis adipiscing curabitur suspendisse. Id ut volutpat mattis nulla dolor at vitae. A viverra lacus eu nunc in. Mattis at ut ipsum rutrum dictumst mauris orci. Sit neque porta ornare bibendum urna magna. Aenean id in quis facilisis. Erat urna nulla lobortis tortor pulvinar at lobortis pellentesque. Mi interdum amet sit amet. Massa sed nibh enim hendrerit justo facilisis porta pulvinar.</p>
+          </div>
+        </div>
+        
+        <div class="content-actions">
+          <button class="next-button" (click)="nextStep()">
+            <span>{{ translate('next') }}</span>
+            <svg class="arrow-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M4.16666 10H15.8333M15.8333 10L10.8333 5M15.8333 10L10.8333 15" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Upload Car Policy -->
+      <div class="content-full" *ngIf="currentStep === 2">
+        <div class="content-text-white">
+          <h1 class="content-title">{{ translate('uploadCarPolicy') }}</h1>
+          <p class="content-subtitle">{{ translate('addYourExistingCarPolicy') }}</p>
+          
+          <!-- File Upload Area -->
+          <div class="file-upload-area" 
+               (dragover)="onDragOver($event)" 
+               (dragleave)="onDragLeave($event)" 
+               (drop)="onDrop($event)"
+               [class.drag-over]="isDragOver">
+            <div class="upload-content">
+              <svg class="upload-icon" width="48" height="48" viewBox="0 0 48 48" fill="none">
+                <path d="M24 32V16M16 24L24 16L32 24" stroke="#F59100" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="8" y="8" width="32" height="32" rx="4" stroke="#F59100" stroke-width="2"/>
+              </svg>
+              <p class="upload-text">{{ translate('dragAndDropFiles') }}</p>
+              <p class="upload-text-secondary">{{ translate('or') }}</p>
+              <button class="browse-button" (click)="fileInput.click()" [disabled]="isUploading">{{ translate('browseFiles') }}</button>
+              <input #fileInput type="file" (change)="onFileSelected($event)" style="display: none;" accept=".pdf,.doc,.docx">
+            </div>
+          </div>
+
+          <!-- Upload Progress -->
+          <div class="upload-progress" *ngIf="isUploading">
+            <div class="upload-item">
+              <div class="file-info">
+                <span class="file-name">Uploading...</span>
+                <span class="file-size">{{ uploadProgress }}%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" [style.width.%]="uploadProgress"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Uploaded Files List -->
+          <div class="uploaded-files-list" *ngIf="uploadedFiles.length > 0">
+            <h4>Uploaded Files</h4>
+            <div class="uploaded-file-item" *ngFor="let file of uploadedFiles">
+              <div class="file-info">
+                <span class="file-name">{{ file.originalName }}</span>
+                <span class="file-size">{{ formatFileSize(file.fileSize) }}</span>
+                <span class="file-date">{{ file.uploadedAt | date:'short' }}</span>
+              </div>
+              <div class="file-actions">
+                <button class="analyze-button" (click)="analyzeFile(file.fileName)" title="Analyze with AI">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M8 1V15M1 8H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  Analyze
+                </button>
+                <button class="delete-button" (click)="removeFile(file.fileName)" title="Delete file">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- No Policy Info - Separate from white container -->
+        <div class="no-policy-info">
+          <h3 class="no-policy-title">{{ translate('noCarPolicy') }}</h3>
+          <p class="no-policy-text">{{ translate('noCarPolicyDescription') }}</p>
+        </div>
+
+        <!-- Navigation Buttons - Outside containers, on gray background -->
+        <div class="navigation-buttons">
+          <button class="previous-button" (click)="previousStep()">
+            <svg class="arrow-icon-left" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M15.8333 10H4.16666M4.16666 10L9.16666 5M4.16666 10L9.16666 15" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>{{ translate('previous') }}</span>
+          </button>
+          <button class="next-button" (click)="nextStep()">
+            <span>{{ translate('next') }}</span>
+            <svg class="arrow-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M4.16666 10H15.8333M15.8333 10L10.8333 5M15.8333 10L10.8333 15" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3: Calculation Method -->
+      <div class="content-full" *ngIf="currentStep === 3">
+        <div class="content-text-white">
+          <h1 class="calculation-title">{{ translate('chooseCalculationMethod') }}</h1>
+          
+          <div class="calculation-description">
+            <p>{{ translate('calculationMethodDescription1') }}</p>
+            <p>{{ translate('calculationMethodDescription2') }}</p>
+          </div>
+
+          <div class="calculation-options">
+            <!-- Option 1: Legal formula -->
+            <div class="calculation-option" [class.selected]="selectedCalculationMethod === 1" (click)="selectCalculationMethod(1)">
+              <div class="option-header">
+                <h3 class="option-title">{{ translate('legalFormulaTitle') }}</h3>
+                <div class="option-radio">
+                  <div class="radio-circle" [class.selected]="selectedCalculationMethod === 1"></div>
+                </div>
+              </div>
+              <div class="option-content">
+                <div class="option-list">
+                  <div class="option-item">
+                    <div class="label-bold">{{ translate('energyCost') }}</div>
+                    <div class="option-text">{{ translate('energyCostLegal') }}</div>
+                  </div>
+                  <div class="option-item">
+                    <div class="label-bold">{{ translate('professionalTravel') }}</div>
+                    <div class="option-text" [innerHTML]="translate('professionalTravelNotIncluded')"></div>
+                  </div>
+                  <div class="option-item">
+                    <div class="label-bold">{{ translate('mobilityBudget') }}</div>
+                    <div class="option-text">{{ translate('mobilityBudgetLegal') }}</div>
+                  </div>
+                </div>
+                <p class="option-recommendation">{{ translate('recommendationLegal') }}</p>
+              </div>
+            </div>
+
+            <!-- Option 2: Fixed energy amount -->
+            <div class="calculation-option" [class.selected]="selectedCalculationMethod === 2" (click)="selectCalculationMethod(2)">
+              <div class="option-header">
+                <h3 class="option-title">{{ translate('fixedAmountTitle') }}</h3>
+                <div class="option-radio">
+                  <div class="radio-circle" [class.selected]="selectedCalculationMethod === 2"></div>
+                </div>
+              </div>
+              <div class="option-content">
+                <div class="option-list">
+                  <div class="option-item">
+                    <div class="label-bold">{{ translate('energyCost') }}</div>
+                    <div class="option-text">{{ translate('energyCostFixed') }}</div>
+                  </div>
+                  <div class="option-item">
+                    <div class="label-bold">{{ translate('professionalTravel') }}</div>
+                    <div class="option-text" [innerHTML]="translate('professionalTravelIncluded')"></div>
+                  </div>
+                  <div class="option-item">
+                    <div class="label-bold">{{ translate('mobilityBudget') }}</div>
+                    <div class="option-text">{{ translate('mobilityBudgetFixed') }}</div>
+                  </div>
+                </div>
+                <p class="option-recommendation">{{ translate('recommendationFixed') }}</p>
+              </div>
+            </div>
+
+            <!-- Option 3: Lease contract kilometers -->
+            <div class="calculation-option" [class.selected]="selectedCalculationMethod === 3" (click)="selectCalculationMethod(3)">
+              <div class="option-header">
+                <h3 class="option-title">{{ translate('leaseContractTitle') }}</h3>
+                <div class="option-radio">
+                  <div class="radio-circle" [class.selected]="selectedCalculationMethod === 3"></div>
+                </div>
+              </div>
+              <div class="option-content">
+                <div class="option-list">
+                  <div class="option-item">
+                    <div class="label-bold">{{ translate('energyCost') }}</div>
+                    <div class="option-text">{{ translate('energyCostLease') }}</div>
+                  </div>
+                  <div class="option-item">
+                    <div class="label-bold">{{ translate('professionalTravel') }}</div>
+                    <div class="option-text" [innerHTML]="translate('professionalTravelLease')"></div>
+                  </div>
+                  <div class="option-item">
+                    <div class="label-bold">{{ translate('mobilityBudget') }}</div>
+                    <div class="option-text">{{ translate('mobilityBudgetLease') }}</div>
+                  </div>
+                </div>
+                <p class="option-recommendation">{{ translate('recommendationLease') }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spacer for step 3 -->
+        <div class="spacer-step3"></div>
+
+        <!-- Navigation Buttons - Outside containers, on gray background -->
+        <div class="navigation-buttons">
+          <button class="previous-button" (click)="previousStep()">
+            <svg class="arrow-icon-left" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M15.8333 10H4.16666M4.16666 10L9.16666 5M4.16666 10L9.16666 15" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>{{ translate('previous') }}</span>
+          </button>
+          <button class="next-button" (click)="nextStep()" [disabled]="selectedCalculationMethod === 0">
+            <span>{{ translate('next') }}</span>
+            <svg class="arrow-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M4.16666 10H15.8333M15.8333 10L10.8333 5M15.8333 10L10.8333 15" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 4: Car Categories & TCO's -->
+      <div class="content-full" *ngIf="currentStep === 4">
+        <!-- Add Category Form (overlay) -->
+        <div class="add-category-overlay" *ngIf="showAddCategoryForm">
+          <div class="add-category-modal">
+            <h1 class="setup-title">{{ translate('newCarCategorySetup') }}</h1>
+            
+            <div class="setup-container">
+              <!-- Left side - Main form -->
+              <div class="setup-form">
+                <div class="form-section">
+                  <h2 class="section-title">{{ translate('carCategoryParameters') }}</h2>
+                  
+                  <!-- Category Name -->
+                  <div class="form-group">
+                    <label class="form-label">{{ translate('categoryName') }}</label>
+                    <input type="text" class="form-input" [placeholder]="translate('addYourCategoryName')" [(ngModel)]="newCategory.name">
+                  </div>
+
+                  <!-- Dropdowns row -->
+                  <div class="dropdowns-row">
+                    <div class="form-group">
+                      <label class="form-label">{{ translate('annualKilometersAllowed') }}</label>
+                      <select class="form-select" [(ngModel)]="newCategory.annualKilometers" (ngModelChange)="onTopFieldsChange()">
+                        <option value="">{{ translate('kilometers') }}</option>
+                        <option value="10000">10.000</option>
+                        <option value="15000">15.000</option>
+                        <option value="20000">20.000</option>
+                        <option value="25000">25.000</option>
+                        <option value="30000">30.000</option>
+                        <option value="35000">35.000</option>
+                        <option value="40000">40.000</option>
+                        <option value="45000">45.000</option>
+                        <option value="50000">50.000</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label">{{ translate('leasingDuration') }}</label>
+                      <select class="form-select" [(ngModel)]="newCategory.leasingDuration" (ngModelChange)="onTopFieldsChange()">
+                        <option value="">{{ translate('months') }}</option>
+                        <option value="36">36</option>
+                        <option value="48">48</option>
+                        <option value="60">60</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Toggle switches and inputs in rows -->
+                  <div class="toggle-input-rows">
+                    <!-- Row 1: Employee Contribution -->
+                    <div class="toggle-input-row">
+                      <div class="toggle-section">
+                        <div class="toggle-switch">
+                          <input type="checkbox" id="employeeContribution" [(ngModel)]="newCategory.employeeContribution.enabled" (ngModelChange)="onToggleChange('employeeContribution', $event)">
+                          <label for="employeeContribution" class="toggle-label"></label>
+                        </div>
+                        <label class="toggle-text">{{ translate('employeeContribution') }}</label>
+                      </div>
+                      <div class="input-section">
+                        <label class="form-label">{{ translate('contributionAmount') }}</label>
+                        <div class="input-with-euro">
+                          <input type="number" class="form-input" [placeholder]="translate('addAnAmount')" 
+                                 [(ngModel)]="newCategory.employeeContribution.amount"
+                                 (ngModelChange)="onInputChange('employeeContribution', $event)"
+                                 [disabled]="!newCategory.employeeContribution.enabled">
+                          <span class="euro-symbol">€</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Row 2: Cleaning Cost -->
+                    <div class="toggle-input-row">
+                      <div class="toggle-section">
+                        <div class="toggle-switch">
+                          <input type="checkbox" id="cleaningCost" [(ngModel)]="newCategory.cleaningCost.enabled" (ngModelChange)="onToggleChange('cleaningCost', $event)">
+                          <label for="cleaningCost" class="toggle-label"></label>
+                        </div>
+                        <label class="toggle-text">{{ translate('vehicleCleaningCostContribution') }}</label>
+                      </div>
+                      <div class="input-section">
+                        <label class="form-label">{{ translate('contributionValue') }}</label>
+                        <div class="input-with-euro">
+                          <input type="number" class="form-input" [placeholder]="translate('addAnAmount')" 
+                                 [(ngModel)]="newCategory.cleaningCost.amount"
+                                 (ngModelChange)="onInputChange('cleaningCost', $event)"
+                                 [disabled]="!newCategory.cleaningCost.enabled">
+                          <span class="euro-symbol">€</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Row 3: Parking Cost -->
+                    <div class="toggle-input-row">
+                      <div class="toggle-section">
+                        <div class="toggle-switch">
+                          <input type="checkbox" id="parkingCost" [(ngModel)]="newCategory.parkingCost.enabled" (ngModelChange)="onToggleChange('parkingCost', $event)">
+                          <label for="parkingCost" class="toggle-label"></label>
+                        </div>
+                        <label class="toggle-text">{{ translate('parkingStorageCostContribution') }}</label>
+                      </div>
+                      <div class="input-section">
+                        <label class="form-label">{{ translate('contributionValue') }}</label>
+                        <div class="input-with-euro">
+                          <input type="number" class="form-input" [placeholder]="translate('addAnAmount')" 
+                                 [(ngModel)]="newCategory.parkingCost.amount"
+                                 (ngModelChange)="onInputChange('parkingCost', $event)"
+                                 [disabled]="!newCategory.parkingCost.enabled">
+                          <span class="euro-symbol">€</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Row 4: Fuel Card -->
+                    <div class="toggle-input-row">
+                      <div class="toggle-section">
+                        <div class="toggle-switch">
+                          <input type="checkbox" id="fuelCard" [(ngModel)]="newCategory.fuelCard.enabled" (ngModelChange)="onToggleChange('fuelCard', $event)">
+                          <label for="fuelCard" class="toggle-label"></label>
+                        </div>
+                        <label class="toggle-text">{{ translate('limitedFuelCard') }}</label>
+                      </div>
+                      <div class="input-section">
+                        <label class="form-label">{{ translate('monthlyAmountProvision') }}</label>
+                        <div class="input-with-euro">
+                          <input type="number" class="form-input" [placeholder]="translate('addMaximumMonthlyAmountAllowed')" 
+                                 [(ngModel)]="newCategory.fuelCard.amount"
+                                 (ngModelChange)="onInputChange('fuelCard', $event)"
+                                 [disabled]="!newCategory.fuelCard.enabled">
+                          <span class="euro-symbol">€</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Reference Car Configuration -->
+                <div class="form-section" *ngIf="areTopFieldsFilled()">
+                  <h2 class="section-title">{{ translate('referenceCarConfiguration') }}</h2>
+                  
+                  <div class="tco-range">
+                    <div class="range-header">
+                      <h3 class="range-title">{{ translate('monthlyTcoRange') }}</h3>
+                      <button class="info-button">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
+                          <path d="M8 12V8M8 6H8.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                      </button>
+                    </div>
+                    
+                    <!-- TCO Distribution Chart -->
+                    <div class="chart-container">
+                      <div class="tco-chart" *ngIf="tcoDistribution.length > 0">
+                        <div class="chart-bars" [class.loading]="isLoadingTcoData">
+                          <div 
+                            *ngFor="let item of getAllTcoRanges()" 
+                            class="chart-bar"
+                            [style.height]="getBarHeight(getCountForRange(item))"
+                            [title]="'€' + item + '-' + (item + 9) + ': ' + getCountForRange(item) + ' vehicles'"
+                          >
+                          </div>
+                          <div *ngIf="isLoadingTcoData" class="loading-overlay">
+                            <div class="loading-spinner"></div>
+                          </div>
+                        </div>
+                        <div class="chart-axis">
+                          <div class="axis-label">
+                            <div class="axis-title">{{ translate('minimum') }}</div>
+                            <div class="axis-value">€{{ getMinTco() }}</div>
+                          </div>
+                          <div class="axis-label">
+                            <div class="axis-title">{{ translate('maximum') }}</div>
+                            <div class="axis-value">€{{ getMaxTco() }}</div>
+                          </div>
+                        </div>
+                        <!-- Slider sectie verborgen omdat deze niet werkt -->
+                        <!--
+                        <div class="chart-sliders">
+                          <div class="slider-container">
+                            <div class="slider-track">
+                              <div class="slider-fill" 
+                                   [style.width]="getSliderFillWidth()"
+                                   [style.left]="getMinSliderPosition() + '%'"></div>
+                              <div class="slider-handle min-handle" 
+                                   [style.left]="getMinSliderPosition() + '%'"
+                                   (mousedown)="startSliderDrag('min', $event)"
+                                   (touchstart)="startSliderDrag('min', $event)">
+                                <div class="slider-value">€{{ tcoRangeMin }}</div>
+                              </div>
+                              <div class="slider-handle max-handle" 
+                                   [style.left]="getMaxSliderPosition() + '%'"
+                                   (mousedown)="startSliderDrag('max', $event)"
+                                   (touchstart)="startSliderDrag('max', $event)">
+                                <div class="slider-value">€{{ tcoRangeMax }}</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        -->
+                      </div>
+                      <div class="chart-placeholder" *ngIf="tcoDistribution.length === 0 && !isLoadingTcoData">
+                        <p *ngIf="areTopFieldsFilled()">{{ translate('loadingTcoDistribution') }}</p>
+                        <p *ngIf="!areTopFieldsFilled()">{{ translate('pleaseFillInCarCategoryParameters') }}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Brands -->
+                  <div class="brands-section">
+                    <h3 class="subsection-title">{{ translate('brands') }}</h3>
+                    <div class="brands-grid">
+                      <div class="brand-item" *ngFor="let brand of carBrands" 
+                           [class.disabled]="!availableBrands.includes(brand)">
+                        <input 
+                          #checkbox
+                          type="checkbox" 
+                          [id]="'brand-' + brand" 
+                          [checked]="selectedBrands.includes(brand)"
+                          [disabled]="!availableBrands.includes(brand)"
+                          (change)="onBrandSelectionChange(brand, checkbox.checked)"
+                        >
+                        <label [for]="'brand-' + brand" [class.disabled]="!availableBrands.includes(brand)">{{ brand }}</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Fuel Types -->
+                  <div class="fuel-types">
+                    <h3 class="subsection-title">{{ translate('fuelTypes') }}</h3>
+                    <div class="fuel-buttons">
+                      <button class="fuel-button" 
+                              [class.active]="selectedFuelTypes.includes('diesel')" 
+                              [class.disabled]="!availableFuelTypes.includes('Diesel')"
+                              [disabled]="!availableFuelTypes.includes('Diesel')"
+                              (click)="toggleFuelType('diesel')">
+                        {{ selectedLanguage === 'nl' ? 'Diesel' : 'Diesel' }}
+                      </button>
+                      <button class="fuel-button" 
+                              [class.active]="selectedFuelTypes.includes('electric')" 
+                              [class.disabled]="!availableFuelTypes.includes('Électrique')"
+                              [disabled]="!availableFuelTypes.includes('Électrique')"
+                              (click)="toggleFuelType('electric')">
+                        {{ selectedLanguage === 'nl' ? 'Elektrisch' : 'Électrique' }}
+                      </button>
+                      <button class="fuel-button" 
+                              [class.active]="selectedFuelTypes.includes('hybrid')" 
+                              [class.disabled]="!availableFuelTypes.includes('Hybride')"
+                              [disabled]="!availableFuelTypes.includes('Hybride')"
+                              (click)="toggleFuelType('hybrid')">
+                        {{ selectedLanguage === 'nl' ? 'Hybride' : 'Hybride' }}
+                      </button>
+                      <button class="fuel-button" 
+                              [class.active]="selectedFuelTypes.includes('petrol')" 
+                              [class.disabled]="!availableFuelTypes.includes('Essence')"
+                              [disabled]="!availableFuelTypes.includes('Essence')"
+                              (click)="toggleFuelType('petrol')">
+                        {{ selectedLanguage === 'nl' ? 'Benzine' : 'Essence' }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <!-- Reference Car List -->
+                <div class="form-section" *ngIf="areTopFieldsFilled()">
+                  <h2 class="section-title">{{ translate('referenceCarList') }}</h2>
+                  
+                  <!-- Table view when cars are available -->
+                  <div class="reference-car-table-container" *ngIf="!isLoadingReferenceCars && referenceCars.length > 0">
+                    <table class="reference-car-table">
+                      <thead>
+                        <tr>
+                          <th class="radio-header">
+                            {{ translate('select') }}
+                          </th>
+                          <th>{{ translate('brand') }}</th>
+                          <th>{{ translate('model') }}</th>
+                          <th>{{ translate('monthlyTco') }}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let car of referenceCars" class="reference-car-row">
+                          <td class="radio-cell">
+                            <input 
+                              type="radio" 
+                              name="referenceCar"
+                              [checked]="selectedReferenceCar === car.id.toString()"
+                              (change)="onReferenceCarSelectionChange(car.id.toString())"
+                            >
+                          </td>
+                          <td class="brand-cell">{{ car.brand }}</td>
+                          <td class="model-cell">
+                            <div class="model-name">{{ car.model }}</div>
+                            <div class="model-description" *ngIf="car.description">{{ car.description }}</div>
+                          </td>
+                          <td class="tco-cell">{{ formatCurrency(car.monthlyTco || 0) }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination-container">
+                      <div class="pagination-info">
+                        <span class="showing-text">{{ translate('showing') }} {{ getShowingRange() }}</span>
+                        <span class="total-pages-text">{{ translate('of') }} {{ totalPages }} {{ translate('pages') }}</span>
+                      </div>
+                      <div class="pagination-controls">
+                        <button 
+                          class="pagination-btn" 
+                          [disabled]="currentPage === 1"
+                          (click)="goToPage(currentPage - 1)"
+                        >
+                          ‹
+                        </button>
+                        <button 
+                          *ngFor="let page of getPaginationRange()" 
+                          class="pagination-btn"
+                          [class.active]="page === currentPage"
+                          (click)="goToPage(page)"
+                        >
+                          {{ page }}
+                        </button>
+                        <button 
+                          class="pagination-btn" 
+                          [disabled]="currentPage === totalPages"
+                          (click)="goToPage(currentPage + 1)"
+                        >
+                          ›
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Loading state -->
+                  <div class="reference-car-loading" *ngIf="isLoadingReferenceCars">
+                    <div class="loading-spinner"></div>
+                    <p>{{ translate('loadingReferenceCars') }}</p>
+                  </div>
+                  
+                  <!-- Empty state when no cars found -->
+                  <div class="reference-car-placeholder" *ngIf="!isLoadingReferenceCars && referenceCars.length === 0">
+                    <img src="assets/desert.svg" alt="No cars found" class="desert-image">
+                    <p>{{ translate('noReferenceCarsFound') }}</p>
+                    <button class="choose-car-button">{{ translate('tryAdjustingYourFilters') }}</button>
+                  </div>
+                </div>
+
+                <!-- Reference Car List Placeholder -->
+                <div class="form-section" *ngIf="!areTopFieldsFilled()">
+                  <h2 class="section-title">{{ translate('referenceCarList') }}</h2>
+                  <div class="reference-config-placeholder">
+                    <img src="assets/desert.svg" alt="Fill parameters" class="desert-image">
+                    <p>{{ translate('pleaseFillInCarCategoryParameters') }}</p>
+                  </div>
+                </div>
+
+
+              </div>
+
+              <!-- Right side - Preview -->
+              <div class="setup-preview">
+                <button class="save-button" [disabled]="!isFormValid()" (click)="saveCategory()">
+                  {{ editingCategory ? translate('updateCarCategory') : translate('saveCarCategory') }}
+                </button>
+                
+                <div class="preview-card">
+                  <div class="preview-header">
+                    <svg class="car-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M3 12L5 10H19L21 12M3 12V18A2 2 0 0 0 5 20H19A2 2 0 0 0 21 18V12M3 12L5 6H19L21 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <div>
+                      <h3 class="preview-title">{{ translate('carCategory') }}</h3>
+                      <p class="preview-subtitle">{{ translate('parameters') }}</p>
+                    </div>
+                  </div>
+                  
+                  <div class="preview-content">
+                    <div class="preview-item">
+                      <span class="preview-label">{{ translate('name') }}</span>
+                      <span class="preview-value">{{ newCategory.name || '--' }}</span>
+                    </div>
+                    <div class="preview-item">
+                      <span class="preview-label">{{ translate('employeeContribution') }}:</span>
+                      <span class="preview-value">{{ newCategory.employeeContribution.enabled ? translate('yes') : translate('no') }}</span>
+                    </div>
+                    <div class="preview-item">
+                      <span class="preview-label">{{ translate('annualKilometer') }}</span>
+                      <span class="preview-value">{{ newCategory.annualKilometers || '--' }}</span>
+                    </div>
+                    <div class="preview-item">
+                      <span class="preview-label">{{ translate('leasingDurationLabel') }}</span>
+                      <span class="preview-value">{{ newCategory.leasingDuration || '--' }}</span>
+                    </div>
+                    
+                    <div class="preview-section">
+                      <h4 class="preview-section-title">{{ translate('referenceCar') }}</h4>
+                      <div class="preview-item">
+                        <span class="preview-label">{{ translate('brand') }}:</span>
+                        <span class="preview-value">{{ selectedReferenceCarData?.brand || '--' }}</span>
+                      </div>
+                      <div class="preview-item">
+                        <span class="preview-label">{{ translate('model') }}:</span>
+                        <span class="preview-value">{{ selectedReferenceCarData?.model || '--' }}</span>
+                      </div>
+                      <div class="preview-item">
+                        <span class="preview-label">{{ translate('fuelType') }}</span>
+                        <span class="preview-value">{{ selectedReferenceCarData?.fuel_type || '--' }}</span>
+                      </div>
+                      <div class="preview-item">
+                        <span class="preview-label">{{ translate('monthlyTco') }}:</span>
+                        <span class="preview-value">{{ calculatedTco ? formatCurrency(calculatedTco) : '--' }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- TCO Calculation Details -->
+                <div class="tco-details-card" *ngIf="tcoCalculationDetails && tcoCalculationDetails.length > 0">
+                  <div class="tco-details-header">
+                    <svg class="calculator-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M9 7H6a2 2 0 0 0-2 2v10c0 1.1.9 2 2 2h10a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M9 7a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <div>
+                      <h3 class="tco-details-title">{{ translate('tcoCalculationDetails') }}</h3>
+                      <p class="tco-details-subtitle">{{ translate('parametersUsedInCalculation') }}</p>
+                    </div>
+                  </div>
+                  
+                  <div class="tco-details-content">
+                    <div class="tco-detail-item" *ngFor="let detail of tcoCalculationDetails">
+                      <div class="tco-detail-main">
+                        <span class="tco-detail-label">{{ detail.label }}:</span>
+                        <span class="tco-detail-value">{{ formatCurrency(detail.annualAmount / 12) }}/month</span>
+                      </div>
+                      <div class="tco-detail-subitems" *ngIf="detail.subItems && detail.subItems.length > 0">
+                        <div class="tco-detail-subitem" *ngFor="let subItem of detail.subItems">
+                          <span class="tco-detail-sub-label">{{ subItem.label }}:</span>
+                          <span class="tco-detail-sub-value">{{ formatCurrency(subItem.annualAmount / 12) }}/month</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Close button -->
+            <button class="close-button" (click)="showAddCategoryForm = false">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Original Step 4 Content -->
+        <div class="content-text-white" *ngIf="!showAddCategoryForm">
+          <h1 class="content-title">{{ translate('carCategoriesAndTcos') }}</h1>
+          
+          <div class="content-description">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
+
+          <div class="action-buttons">
+            <button class="inspire-button" (click)="inspireMe()">
+              <svg class="wand-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M12 2L10 4L12 6L14 4L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 8L6 10L8 12L10 10L8 8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 14L2 16L4 18L6 16L4 14Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>{{ translate('inspireMe') }}</span>
+            </button>
+            <button class="add-category-button" (click)="addCategory()">
+              <svg class="plus-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M10 5V15M5 10H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>{{ translate('addCategory') }}</span>
+            </button>
+          </div>
+
+          <div class="table-container">
+            <!-- Empty state when no categories exist -->
+            <div class="empty-categories-state" *ngIf="!hasCategories()">
+              <div class="empty-state-content">
+                <img src="assets/desert.svg" alt="No categories" class="empty-state-image">
+                <h3 class="empty-state-title">{{ translate('noCarCategoriesYet') }}</h3>
+                <p class="empty-state-description">{{ translate('getStartedByAddingYourFirstCarCategory') }}</p>
+              </div>
+            </div>
+            
+            <!-- Categories table when categories exist -->
+            <table class="categories-table" *ngIf="hasCategories()">
+              <thead>
+                <tr>
+                  <th>{{ translate('name') }}</th>
+                  <th>{{ translate('referenceCar') }}</th>
+                  <th>{{ translate('annualKm') }}</th>
+                  <th>{{ translate('leasingDurationTable') }}</th>
+                  <th>{{ translate('monthlyTcoTable') }}</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let category of carCategories">
+                  <td>{{ category.name }}</td>
+                  <td>
+                    <div class="car-brand">{{ category.referenceCar?.brand || '--' }}</div>
+                    <div class="car-model">{{ category.referenceCar?.model || '--' }}</div>
+                  </td>
+                  <td>{{ category.annualKilometers?.toLocaleString() }} km</td>
+                  <td>{{ category.leasingDuration }} months</td>
+                  <td>{{ category.monthlyTco ? formatCurrency(category.monthlyTco) : '€--' }}</td>
+                  <td>
+                    <div class="status-actions">
+                      <div class="status-icon" [class]="category.status">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" *ngIf="category.status === 'success'">
+                          <circle cx="8" cy="8" r="8" fill="#28A745"/>
+                          <path d="M6 8L7.5 9.5L10 7" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" *ngIf="category.status === 'error'">
+                          <path d="M8 2L14 8L8 14L2 8L8 2Z" fill="#DC3545"/>
+                          <path d="M8 6V10M6 8H10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" *ngIf="category.status === 'pending'">
+                          <circle cx="8" cy="8" r="8" fill="#FFC107"/>
+                          <path d="M8 4V8L10 10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </div>
+                      <div class="action-icons">
+                        <button class="action-button edit" (click)="editCategory(category)" title="Edit category">
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12.854 1.146a.5.5 0 0 0-.707 0L10.5 2.793l-.293-.293a.5.5 0 0 0-.707.707l.293.293-7.147 7.147a.5.5 0 0 0-.146.353v2.5a.5.5 0 0 0 .5.5h2.5a.5.5 0 0 0 .353-.146l7.147-7.147.293.293a.5.5 0 0 0 .707-.707l-.293-.293L14.854 1.854a.5.5 0 0 0 0-.708l-2-2z"/>
+                          </svg>
+                        </button>
+                        <button class="action-button delete" (click)="deleteCategory(category)" title="Delete category">
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" fill="currentColor"/>
+                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" fill="currentColor"/>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Navigation Buttons - Outside containers, on gray background -->
+        <div class="navigation-buttons">
+          <button class="previous-button" (click)="previousStep()">
+            <svg class="arrow-icon-left" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M15.8333 10H4.16666M4.16666 10L9.16666 5M4.16666 10L9.16666 15" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>{{ translate('previous') }}</span>
+          </button>
+          <div class="review-button-container">
+            <button 
+              class="send-review-button" 
+              [class.disabled]="!canProceedToReview()"
+              [disabled]="!canProceedToReview()"
+              (click)="nextStep()">
+              <span>{{ translate('sendForReview') }}</span>
+              <svg class="arrow-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4.16666 10H15.8333M15.8333 10L10.8333 5M15.8333 10L10.8333 15" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="review-button-help" *ngIf="!canProceedToReview()">
+              <span *ngIf="carCategories.length === 0">{{ translate('pleaseAddAtLeastOneCarCategory') }}</span>
+              <span *ngIf="carCategories.length > 0 && hasCategoriesWithErrorStatus()">{{ translate('allCategoriesMustHaveReferenceCarAndTcoCalculation') }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 5: Review Confirmation -->
+      <div class="content-full" *ngIf="currentStep === 5">
+        <div class="content-text-white">
+          <h1 class="review-title">{{ translate('yourMobilityBudgetPolicy') }}</h1>
+          
+          <div class="review-content">
+            <!-- Document Status -->
+            <div class="document-status-section">
+              <div class="status-indicator" [class]="documentStatus">
+                <div class="status-icon">
+                  <svg *ngIf="documentStatus === 'pending'" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="#FFC107" stroke-width="2"/>
+                    <path d="M12 6V12L16 14" stroke="#FFC107" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                  <svg *ngIf="documentStatus === 'approved'" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" fill="#28A745"/>
+                    <path d="M9 12L11 14L15 10" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+
+                </div>
+                <div class="status-text">
+                  <h3>{{ translate('documentStatus') }}: {{ documentStatus | titlecase }}</h3>
+                  <p *ngIf="documentStatus === 'pending'">{{ translate('yourPolicyIsBeingReviewedBy') }} {{ partner }}.</p>
+                  <p *ngIf="documentStatus === 'approved'">{{ translate('yourPolicyHasBeenApproved') }}</p>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- Document Actions -->
+            <div class="document-actions">
+              <!-- For Partners -->
+              <div *ngIf="isPartnerMode" class="partner-document-actions">
+                <div class="document-viewer">
+                  <div class="document-header">
+                    <h3>{{ translate('documentPreview') }}</h3>
+                    
+                    <!-- Language Selection Buttons -->
+                    <div class="language-buttons" *ngIf="getAvailableLanguages().length > 0">
+                      <button 
+                        class="language-button" 
+                        [class.active]="documentLanguage === 'nl'"
+                        (click)="switchDocumentLanguage('nl')"
+                        *ngIf="documentUrls.nl?.previewUrl">
+                        NL
+                      </button>
+                      <button 
+                        class="language-button" 
+                        [class.active]="documentLanguage === 'fr'"
+                        (click)="switchDocumentLanguage('fr')"
+                        *ngIf="documentUrls.fr?.previewUrl">
+                        FR
+                      </button>
+                      <button 
+                        class="language-button" 
+                        [class.active]="documentLanguage === 'en'"
+                        (click)="switchDocumentLanguage('en')"
+                        *ngIf="documentUrls.en?.previewUrl">
+                        EN
+                      </button>
+                      
+
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="document-actions-top">
+                      <button 
+                        class="edit-button-top" 
+                        [class.disabled]="showDocumentEditor"
+                        [disabled]="showDocumentEditor"
+                        (click)="openDocumentEditor()" 
+                        *ngIf="documentStatus !== 'approved'">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M8 1V15M1 8H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <span>{{ translate('edit') }}</span>
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <div class="document-content" *ngIf="getAvailableLanguages().length > 0 || documentUrl; else noDocument">
+                    <div class="text-document-viewer" *ngIf="!showDocumentEditor">
+                      <div class="document-text" [innerHTML]="documentContent | safe:'html'"></div>
+                    </div>
+                    <div class="document-editor" *ngIf="showDocumentEditor">
+                      <div class="editor-header">
+                        <h4>{{ translate('editDocument') }}</h4>
+                        <div class="editor-actions">
+                          <button class="save-button" (click)="saveDocumentChanges()">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M13 3H3V13H13V3ZM11 11H5V5H11V11Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path d="M7 7H9V9H7V7Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>{{ translate('saveChanges') }}</span>
+                          </button>
+                          <button class="cancel-button" (click)="closeDocumentEditor()">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>{{ translate('cancel') }}</span>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="document-editor-content">
+                        <div 
+                          #documentEditor
+                          class="document-editor" 
+                          contenteditable="true"
+                          (input)="onEditorInput($event)"
+                          [attr.placeholder]="translate('editYourDocumentContentHere')">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <ng-template #noDocument>
+                    <div class="no-document-placeholder" *ngIf="!isGeneratingDocument">
+                      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14,2 14,8 20,8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10,9 9,9 8,9"/>
+                      </svg>
+                      <p>{{ translate('noDocumentAvailableYet') }}</p>
+                      <p class="document-status">{{ translate('status') }}: {{ documentStatus || 'draft' | titlecase }}</p>
+                    </div>
+                    <div class="document-loading" *ngIf="isGeneratingDocument">
+                      <div class="loading-spinner">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                          <circle cx="12" cy="12" r="10" stroke="#E5E7EB" stroke-width="2"/>
+                          <path d="M12 2A10 10 0 0 1 12 22A10 10 0 0 1 12 2" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-dasharray="31.416" stroke-dashoffset="31.416">
+                            <animate attributeName="stroke-dashoffset" dur="1s" values="31.416;0;31.416" repeatCount="indefinite"/>
+                          </path>
+                        </svg>
+                      </div>
+                      <p>{{ translate('generatingDocument') }}</p>
+                      <p class="loading-subtitle">{{ translate('pleaseWaitWhileWeCreateYourTcoDocument') }}</p>
+                    </div>
+                  </ng-template>
+                </div>
+                
+                <!-- Status Actions (Approve/Reject) - First, centered under document -->
+                <div class="status-actions" *ngIf="isPartnerMode && (documentStatus === 'pending' || documentStatus === 'rejected')">
+                  <button class="approve-button" (click)="updateDocumentStatus('approved')">
+                    <svg class="approve-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M16.6667 5L7.5 14.1667L3.33333 10" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>{{ translate('approve') }}</span>
+                  </button>
+                  <button class="reject-button" (click)="updateDocumentStatus('rejected')">
+                    <svg class="reject-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>{{ translate('reject') }}</span>
+                  </button>
+                </div>
+                <div class="status-actions" *ngIf="documentStatus === 'approved'">
+                  <div class="approved-actions">
+                    <div class="download-actions">
+                      <button class="download-button" (click)="downloadDocument('en')" *ngIf="documentUrls.en?.downloadUrl">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M12 2H10V8H6V2H4L8 6L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <span>Download PDF EN</span>
+                      </button>
+                      <button class="download-button" (click)="downloadDocument('nl')" *ngIf="documentUrls.nl?.downloadUrl">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M12 2H10V8H6V2H4L8 6L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <span>Download PDF NL</span>
+                      </button>
+                      <button class="download-button" (click)="downloadDocument('fr')" *ngIf="documentUrls.fr?.downloadUrl">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M12 2H10V8H6V2H4L8 6L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <span>Download PDF FR</span>
+                      </button>
+                    </div>
+
+                  </div>
+                </div>
+
+
+              </div>
+
+              <!-- For Regular Users -->
+              <div *ngIf="!isPartnerMode" class="user-document-actions">
+                <div *ngIf="documentStatus === 'approved'">
+                  <div class="thumbs-up-container">
+                    <img src="assets/thumbsup.svg" alt="Thumbs up" class="thumbs-up-icon">
+                  </div>
+                  <div class="review-message">
+                    <p><strong>{{ translate('yourPolicyHasBeenApproved') }}</strong> {{ translate('youCanNowDownloadYourDocumentInDifferentLanguages') }}</p>
+                  </div>
+                  <div class="multi-language-downloads">
+                    <button class="download-button" (click)="downloadDocument('en')" *ngIf="documentUrls.en">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M3 17V19A2 2 0 0 0 5 21H15A2 2 0 0 0 17 19V17M10 11L10 3M10 11L7 8M10 11L13 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      <span>{{ translate('downloadEnglish') }}</span>
+                    </button>
+                    <button class="download-button" (click)="downloadDocument('nl')" *ngIf="documentUrls.nl">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M3 17V19A2 2 0 0 0 5 21H15A2 2 0 0 0 17 19V17M10 11L10 3M10 11L7 8M10 11L13 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      <span>{{ translate('downloadNederlands') }}</span>
+                    </button>
+                    <button class="download-button" (click)="downloadDocument('fr')" *ngIf="documentUrls.fr">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M3 17V19A2 2 0 0 0 5 21H15A2 2 0 0 0 17 19V17M10 11L10 3M10 11L7 8M10 11L13 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      <span>{{ translate('downloadFrancais') }}</span>
+                    </button>
+                  </div>
+                </div>
+                <div *ngIf="documentStatus === 'pending'">
+                  <div class="thumbs-up-container">
+                    <img src="assets/thumbsup.svg" alt="Thumbs up" class="thumbs-up-icon">
+                  </div>
+                  <div class="review-message">
+                    <p><strong>{{ translate('yourPolicyIsBeingReviewedByPartnerComplete') }} {{ partner }}.</strong> {{ translate('onceReadyYouWillBeNotifiedByEmailComplete') }}</p>
+                  </div>
+                </div>
+
+                <div *ngIf="documentStatus === 'rejected'">
+                  <div class="rejected-container">
+                    <svg class="rejected-icon" width="48" height="48" viewBox="0 0 48 48" fill="none">
+                      <path d="M24 4C12.95 4 4 12.95 4 24C4 35.05 12.95 44 24 44C35.05 44 44 35.05 44 24C44 12.95 35.05 4 24 4ZM30.59 20.59L26.83 24.35L30.59 28.11L28.11 30.59L24.35 26.83L20.59 30.59L18.11 28.11L21.87 24.35L18.11 20.59L20.59 18.11L24.35 21.87L28.11 18.11L30.59 20.59Z" fill="#DC3545"/>
+                    </svg>
+                  </div>
+                  <div class="rejected-message">
+                    <p><strong>{{ translate('yourPolicyHasBeenRejected') }}</strong> {{ translate('pleaseReviewAndResubmit') }}</p>
+                  </div>
+                  <div class="rejected-actions">
+                    <button class="reset-button" (click)="resetToStep4()">
+                      <span>{{ translate('rejectAndResetToStep4') }}</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div *ngIf="!documentStatus || documentStatus === 'draft'">
+                  <div class="thumbs-up-container">
+                    <img src="assets/thumbsup.svg" alt="Thumbs up" class="thumbs-up-icon">
+                  </div>
+                  <div class="review-message">
+                    <p><strong>{{ translate('readyToSubmitForReview') }}</strong></p>
+                    <p>{{ translate('pleaseReviewYourCategoriesAndSubmit') }}</p>
+                  </div>
+                  <div class="submit-actions">
+                    <button 
+                      class="submit-button" 
+                      [disabled]="!canGenerateDocument()"
+                      (click)="submitForReview()"
+                      *ngIf="canGenerateDocument()">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 1L13 4H11V9H9V4H7L10 1Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19 10L16 7V9H11V11H16V13L19 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      <span>{{ translate('submitForReview') }}</span>
+                    </button>
+                    <div *ngIf="!canGenerateDocument()" class="submit-disabled-message">
+                      <p>{{ translate('completeAllCategoriesFirst') }}</p>
+                      <p>{{ translate('allCategoriesMustHaveValidTco') }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-content">
+      <img src="assets/Monizze_Negative.svg" alt="Monizze Logo" class="footer-logo">
+    </div>
+  </div>
+</div>
+
+<!-- TCO Results Modal -->
+<app-tco-results 
+  [result]="tcoResult" 
+  [isVisible]="showTcoResults" 
+  (close)="onTcoResultsClose()">
+</app-tco-results>
+
+<!-- AI Analysis Popup -->
+<app-ai-analysis-popup
+  [isVisible]="showAiAnalysisPopup"
+  [categories]="aiAnalysisCategories"
+  [fileName]="currentAnalyzedFile"
+  (close)="onAiAnalysisClose()"
+  (addCategories)="onAddCategoriesFromAnalysis($event)">
+</app-ai-analysis-popup>

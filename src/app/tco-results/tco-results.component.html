@@ -1,0 +1,97 @@
+<div class="tco-results-overlay" *ngIf="isVisible" (click)="onClose()">
+  <div class="tco-results-modal" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2 class="modal-title">TCO Berekening Resultaat</h2>
+      <button class="close-button" (click)="onClose()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="modal-content" *ngIf="result">
+      <div class="tco-summary">
+        <div class="vehicle-info">
+          <h3>{{ result.vehicle.brand }} {{ result.vehicle.model }}</h3>
+          <p class="vehicle-details">
+            <span class="detail-item">
+              <strong>Brandstof:</strong> {{ getFuelTypeDisplay(result.vehicle.fuelType) }}
+            </span>
+            <span class="detail-item">
+              <strong>CO₂:</strong> {{ result.vehicle.co2Emissions }} g/km
+            </span>
+            <span class="detail-item">
+              <strong>Verbruik:</strong> {{ result.vehicle.fuelConsumption }}
+            </span>
+          </p>
+        </div>
+
+        <div class="parameters-info">
+          <h4>Parameters</h4>
+          <div class="parameters-grid">
+            <div class="parameter-item">
+              <span class="parameter-label">Jaarlijkse kilometers:</span>
+              <span class="parameter-value">{{ result.parameters.yearlyKm.toLocaleString() }} km</span>
+            </div>
+            <div class="parameter-item">
+              <span class="parameter-label">Lease duur:</span>
+              <span class="parameter-value">{{ result.parameters.duration }} maanden</span>
+            </div>
+            <div class="parameter-item">
+              <span class="parameter-label">Geschatte maandelijkse lease kost:</span>
+              <span class="parameter-value">{{ formatCurrency(result.parameters.estimatedMonthlyLeaseCost) }}</span>
+            </div>
+            <div class="parameter-item">
+              <span class="parameter-label">Geschatte maandelijkse brandstof kost:</span>
+              <span class="parameter-value">{{ formatCurrency(result.parameters.estimatedMonthlyFuelCost) }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tco-breakdown">
+          <h4>TCO Breakdown</h4>
+          <div class="breakdown-list">
+            <div class="breakdown-item" *ngFor="let item of result.tcoBreakdown">
+              <div class="breakdown-header">
+                <span class="breakdown-label">{{ item.label }}</span>
+                <span class="breakdown-amount">{{ formatCurrency(item.annualAmount) }}</span>
+              </div>
+              <div class="breakdown-subitems" *ngIf="item.subItems && item.subItems.length > 0">
+                <div class="subitem" *ngFor="let subItem of item.subItems">
+                  <span class="subitem-label">{{ subItem.label }}</span>
+                  <span class="subitem-amount">{{ formatCurrency(subItem.annualAmount) }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tco-totals">
+          <div class="total-item">
+            <span class="total-label">Totaal Jaarlijkse TCO:</span>
+            <span class="total-amount">{{ formatCurrency(result.totalAnnualTCO) }}</span>
+          </div>
+          <div class="total-item">
+            <span class="total-label">Totaal Maandelijkse TCO:</span>
+            <span class="total-amount">{{ formatCurrency(result.totalMonthlyTCO) }}</span>
+          </div>
+        </div>
+
+        <div class="additional-costs" *ngIf="result.additionalCosts && result.additionalCosts.length > 0">
+          <h4>Extra Kosten</h4>
+          <div class="costs-list">
+            <div class="cost-item" *ngFor="let cost of result.additionalCosts">
+              <span class="cost-label">{{ cost.label }}</span>
+              <span class="cost-amount">{{ formatCurrency(cost.amount) }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="close-btn" (click)="onClose()">Sluiten</button>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,74 @@
+<div class="ai-analysis-popup-overlay" *ngIf="isVisible" (click)="onClose()">
+  <div class="ai-analysis-popup" (click)="$event.stopPropagation()">
+    <div class="popup-header">
+      <h3>AI Document Analysis Results</h3>
+      <button class="close-button" (click)="onClose()">×</button>
+    </div>
+
+    <div class="popup-content">
+      <div class="file-info">
+        <p><strong>File:</strong> {{ fileName }}</p>
+        <p><strong>Categories Found:</strong> {{ categories.length }}</p>
+      </div>
+
+      <div class="categories-list" *ngIf="categories.length > 0">
+        <h4>Detected Car Categories</h4>
+        <div class="category-item" *ngFor="let category of categories" 
+             [class.selected]="isCategorySelected(category)"
+             (click)="toggleCategorySelection(category)">
+          
+          <div class="category-header">
+            <div class="category-name">{{ category.categoryName }}</div>
+            <div class="confidence-badge" 
+                 [style.background-color]="getConfidenceColor(category.confidence)">
+              {{ getConfidenceText(category.confidence) }} ({{ (category.confidence * 100).toFixed(0) }}%)
+            </div>
+          </div>
+
+          <div class="category-details">
+            <div class="detail-row" *ngIf="category.monthlyBudget">
+              <span class="detail-label">Monthly Budget:</span>
+              <span class="detail-value">€{{ category.monthlyBudget }}</span>
+            </div>
+            <div class="detail-row" *ngIf="category.employeeContribution">
+              <span class="detail-label">Employee Contribution:</span>
+              <span class="detail-value">€{{ category.employeeContribution }}</span>
+            </div>
+            <div class="detail-row" *ngIf="category.cleaningCost">
+              <span class="detail-label">Cleaning Cost:</span>
+              <span class="detail-value">€{{ category.cleaningCost }}</span>
+            </div>
+            <div class="detail-row" *ngIf="category.parkingCost">
+              <span class="detail-label">Parking Cost:</span>
+              <span class="detail-value">€{{ category.parkingCost }}</span>
+            </div>
+            <div class="detail-row" *ngIf="category.fuelCard">
+              <span class="detail-label">Fuel Card:</span>
+              <span class="detail-value">€{{ category.fuelCard }}</span>
+            </div>
+          </div>
+
+          <div class="selection-indicator">
+            <div class="checkbox" [class.checked]="isCategorySelected(category)">
+              <span class="checkmark" *ngIf="isCategorySelected(category)">✓</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="no-categories" *ngIf="categories.length === 0">
+        <p>No car categories were detected in this document.</p>
+        <p>Please make sure the document contains information about car categories, budgets, or related parameters.</p>
+      </div>
+    </div>
+
+    <div class="popup-actions">
+      <button class="cancel-button" (click)="onClose()">Cancel</button>
+      <button class="add-button" 
+              [disabled]="selectedCategories.length === 0"
+              (click)="onAddCategories()">
+        Add Selected Categories ({{ selectedCategories.length }})
+      </button>
+    </div>
+  </div>
+</div>

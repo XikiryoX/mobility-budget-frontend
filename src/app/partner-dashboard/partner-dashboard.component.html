@@ -1,0 +1,212 @@
+<div class="partner-dashboard">
+  <!-- Header -->
+  <div class="header-bar">
+    <div class="logo-container">
+      <img src="assets/Monizze_Positive.svg" alt="Monizze Logo" class="company-logo">
+    </div>
+    
+    <div class="partner-info">
+      <h1 class="partner-title">{{ translate('loggedInAs') }} {{ partnerName }}</h1>
+    </div>
+    
+    <div class="header-actions">
+      <!-- Language Selector -->
+      <div class="language-selector">
+        <select [(ngModel)]="selectedLanguage" (change)="onLanguageChange()">
+          <option *ngFor="let lang of availableLanguages" [value]="lang.code">
+            {{ lang.name }}
+          </option>
+        </select>
+      </div>
+      
+      <!-- Sign Out Button -->
+      <button class="sign-out-button" (click)="signOut()">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M6 12L2 8L6 4M2 8H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>{{ translate('signOut') }}</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="content-container">
+      <div class="dashboard-header">
+        <h2 class="dashboard-title">{{ translate('clientPoliciesOverview') }}</h2>
+        <p class="dashboard-subtitle">{{ translate('manageAndReviewAllYourClientsMobilityBudgetPolicies') }}</p>
+      </div>
+
+              <!-- Loading State -->
+        <div class="loading-container" *ngIf="isLoading">
+          <div class="loading-spinner"></div>
+          <p>{{ translate('loadingClientPolicies') }}</p>
+        </div>
+
+      <!-- Error State -->
+      <div class="error-container" *ngIf="error">
+        <div class="error-message">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="#EF4444" stroke-width="2"/>
+            <path d="M12 8V12M12 16H12.01" stroke="#EF4444" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span>{{ error }}</span>
+        </div>
+        <button class="retry-button" (click)="loadPartnerSessions()">{{ translate('tryAgain') }}</button>
+      </div>
+
+      <!-- Companies List -->
+      <div class="companies-container" *ngIf="!isLoading && !error">
+        <div class="companies-header">
+          <div class="companies-title-section">
+            <h3>{{ translate('companies') }} ({{ filteredCompanySessions.length }})</h3>
+          </div>
+          <div class="companies-filter-section">
+            <div class="filter-container">
+              <svg class="filter-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M1.5 2.5L6.5 7.5V13.5L9.5 11.5V7.5L14.5 2.5H1.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <input 
+                type="text" 
+                class="company-filter-input" 
+                [placeholder]="translate('filterByCompanyName')" 
+                [(ngModel)]="companyFilter"
+                (ngModelChange)="onCompanyFilterChange()"
+              >
+              <button 
+                class="clear-filter-button" 
+                *ngIf="companyFilter"
+                (click)="clearCompanyFilter()"
+                [title]="translate('clearFilter')"
+              >
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M10.5 3.5L3.5 10.5M3.5 3.5L10.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="companies-list">
+          <div class="company-item" *ngFor="let company of filteredCompanySessions">
+            <!-- Company Header -->
+            <div class="company-header" (click)="toggleCompanyExpansion(company)">
+              <div class="company-info">
+                <div class="company-name">{{ company.companyName }}</div>
+                <div class="company-details">
+                  <span class="company-contact">{{ translate('contact') }}: {{ company.contactPerson }}</span>
+                  <span class="company-email" *ngIf="company.companyEmail">
+                    • {{ company.companyEmail }}
+                  </span>
+                </div>
+              </div>
+              
+              <div class="company-stats">
+                <div class="session-count">
+                  {{ getSessionCount(company) }} {{ getSessionCount(company) === 1 ? translate('policy') : translate('policies') }}
+                </div>
+                <div class="company-status-summary">
+                  <span class="status-dot completed" *ngIf="getCompletedSessions(company) > 0">{{ getCompletedSessions(company) }}</span>
+                  <span class="status-dot pending" *ngIf="getPendingSessions(company) > 0">{{ getPendingSessions(company) }}</span>
+                  <span class="status-dot draft" *ngIf="getDraftSessions(company) > 0">{{ getDraftSessions(company) }}</span>
+                </div>
+                <div class="expand-icon" [class.expanded]="company.expanded">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M6 9L10 13L14 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Policies Table (Collapsible) -->
+            <div class="sessions-container" *ngIf="company.expanded">
+              <div class="sessions-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>{{ translate('contact') }}</th>
+                      <th>{{ translate('status') }}</th>
+                      <th>{{ translate('currentStep') }}</th>
+                      <th>{{ translate('categories') }}</th>
+                      <th>{{ translate('lastActivity') }}</th>
+                      <th>{{ translate('actions') }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let session of company.sessions">
+                      <td class="user-cell">
+                        <div class="user-info">
+                          <div class="user-name">{{ session.signup?.fullName || translate('unknownContact') }}</div>
+                          <div class="user-email">{{ session.signup?.email || translate('noEmail') }}</div>
+                        </div>
+                      </td>
+                      <td class="status-cell">
+                        <div class="status-badge" [class]="getStatusClass(session)">
+                          {{ getStatusText(session) }}
+                        </div>
+                      </td>
+                      <td class="step-cell">
+                        <div class="step-info">
+                          <div class="step-number">{{ translate('step') }} {{ getCurrentStep(session) }}</div>
+                          <div class="step-name">{{ getStepName(session) }}</div>
+                        </div>
+                      </td>
+                      <td class="categories-cell">
+                        <div class="categories-info">
+                          <div class="category-count">{{ getCategoryCount(session) }} {{ translate('categoryCount') }}</div>
+                          <div class="category-status" *ngIf="getCategoryCount(session) > 0">
+                            {{ getCompletedCategories(session) }} {{ translate('completed') }}
+                          </div>
+                        </div>
+                      </td>
+                      <td class="activity-cell">
+                        <div class="activity-info">
+                          <div class="activity-date">{{ formatDate(session.lastActivityAt) }}</div>
+                          <div class="activity-time">{{ formatTime(session.lastActivityAt) }}</div>
+                        </div>
+                      </td>
+                      <td class="actions-cell">
+                        <div class="action-buttons">
+                          <button class="open-session-button" (click)="openSession(session)">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8 3H3V13H13V8M8 3L13 8M8 3V8H13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>{{ translate('openSession') }}</span>
+                          </button>
+                          <button 
+                            class="delete-session-button" 
+                            (click)="deleteSession(session, $event)"
+                            [disabled]="isDeleting(session)"
+                            [class.deleting]="isDeleting(session)">
+                            <svg *ngIf="!isDeleting(session)" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M2 4H3.33333H14M5.33333 4V2.66667C5.33333 2.31305 5.47381 1.97391 5.72386 1.72386C5.97391 1.47381 6.31305 1.33333 6.66667 1.33333H9.33333C9.68695 1.33333 10.0261 1.47381 10.2761 1.72386C10.5262 1.97391 10.6667 2.31305 10.6667 2.66667V4M12.6667 4V13.3333C12.6667 13.687 12.5262 14.0261 12.2761 14.2761C12.0261 14.5262 11.687 14.6667 11.3333 14.6667H4.66667C4.31305 14.6667 3.97391 14.5262 3.72386 14.2761C3.47381 14.0261 3.33333 13.687 3.33333 13.3333V4H12.6667Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <div *ngIf="isDeleting(session)" class="delete-spinner"></div>
+                            <span>{{ isDeleting(session) ? translate('deleting') : translate('delete') }}</span>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" *ngIf="companySessions.length === 0 && !isLoading && !error">
+          <div class="empty-icon">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+              <circle cx="32" cy="32" r="32" fill="#F3F4F6"/>
+              <path d="M32 16C23.1634 16 16 23.1634 16 32C16 40.8366 23.1634 48 32 48C40.8366 48 48 40.8366 48 32C48 23.1634 40.8366 16 32 16ZM32 44C25.3726 44 20 38.6274 20 32C20 25.3726 25.3726 20 32 20C38.6274 20 44 25.3726 44 32C44 38.6274 38.6274 44 32 44Z" fill="#9CA3AF"/>
+              <path d="M32 24C28.6863 24 26 26.6863 26 30C26 33.3137 28.6863 36 32 36C35.3137 36 38 33.3137 38 30C38 26.6863 35.3137 24 32 24ZM32 34C30.3431 34 29 32.6569 29 31C29 29.3431 30.3431 28 32 28C33.6569 28 35 29.3431 35 31C35 32.6569 33.6569 34 32 34Z" fill="#9CA3AF"/>
+            </svg>
+          </div>
+          <h3>{{ translate('noClientPoliciesFound') }}</h3>
+          <p>{{ translate('youDontHaveAnyClientPoliciesYet') }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
