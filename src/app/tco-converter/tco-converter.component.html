@@ -728,7 +728,7 @@
                 <div class="car-filter-overlay" *ngIf="showCarFilter">
                   <div class="car-filter-modal">
                     <div class="filter-header">
-                      <h3 class="filter-title">{{ translate('selectReferenceCar') }}</h3>
+                      <h3 class="filter-title">{{ translate('selectReferenceCars') }}</h3>
                       <button class="close-button" (click)="closeCarFilter()">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                           <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -757,14 +757,21 @@
                             <div 
                               class="model-item" 
                               *ngFor="let model of group.models"
-                              (click)="selectCarFromFilter(model)"
-                              [class.selected]="selectedReferenceCar === model.id.toString()"
+                              [class.selected]="isCarSelected(model.id.toString())"
                             >
+                              <div class="model-checkbox">
+                                <input 
+                                  type="checkbox" 
+                                  [id]="'car-' + model.id"
+                                  [checked]="isCarSelected(model.id.toString())"
+                                  (change)="toggleCarSelection(model)"
+                                >
+                                <label [for]="'car-' + model.id"></label>
+                              </div>
                               <div class="model-info">
                                 <div class="model-name">{{ model.model }}</div>
-                                <div class="model-description" *ngIf="model.description">{{ model.description }}</div>
+                                <div class="model-tco">{{ formatCurrency(model.monthlyTco || 0) }}</div>
                               </div>
-                              <div class="model-tco">{{ formatCurrency(model.monthlyTco || 0) }}</div>
                             </div>
                           </div>
                         </div>
@@ -776,8 +783,13 @@
                     </div>
                     
                     <div class="filter-actions">
-                      <button class="cancel-button" (click)="closeCarFilter()">{{ translate('cancel') }}</button>
-                      <button class="apply-button" (click)="applyCarFilter()" [disabled]="!selectedReferenceCar">{{ translate('apply') }}</button>
+                      <div class="selection-info" *ngIf="selectedCarsInFilter.length > 0">
+                        {{ selectedCarsInFilter.length }} {{ translate('carsSelected') }}
+                      </div>
+                      <div class="action-buttons">
+                        <button class="cancel-button" (click)="closeCarFilter()">{{ translate('cancel') }}</button>
+                        <button class="apply-button" (click)="applyCarFilter()" [disabled]="selectedCarsInFilter.length === 0">{{ translate('apply') }}</button>
+                      </div>
                     </div>
                   </div>
                 </div>

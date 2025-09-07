@@ -729,6 +729,16 @@ export class TranslationService {
         fr: 'Sélectionner une voiture de référence',
         en: 'Select Reference Car'
       },
+      'selectReferenceCars': {
+        nl: 'Selecteer referentieauto\'s',
+        fr: 'Sélectionner des voitures de référence',
+        en: 'Select Reference Cars'
+      },
+      'carsSelected': {
+        nl: 'auto\'s geselecteerd',
+        fr: 'voitures sélectionnées',
+        en: 'cars selected'
+      },
       'models': {
         nl: 'modellen',
         fr: 'modèles',

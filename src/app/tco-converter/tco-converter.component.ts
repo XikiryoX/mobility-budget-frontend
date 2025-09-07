@@ -95,6 +95,7 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
   carFilterSearch: string = '';
   allReferenceCars: any[] = [];
   filteredCarGroups: any[] = [];
+  selectedCarsInFilter: string[] = [];
 
   // Sorting
   tcoSortDirection: 'asc' | 'desc' | null = null;
@@ -1291,6 +1292,7 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
     this.showCarFilter = false;
     this.carFilterSearch = '';
     this.filteredCarGroups = [];
+    this.selectedCarsInFilter = [];
   }
 
   loadAllReferenceCars(): void {
@@ -1325,12 +1327,27 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
   }
 
   groupCarsByBrand(): void {
+    // Group by brand and main model (remove motorization details)
     const grouped = this.allReferenceCars.reduce((groups: any, car: any) => {
       const brand = car.brand;
+      const mainModel = this.getMainModel(car.model);
+      
       if (!groups[brand]) {
         groups[brand] = [];
       }
-      groups[brand].push(car);
+      
+      // Check if this main model already exists
+      const existingModel = groups[brand].find((m: any) => m.model === mainModel);
+      if (existingModel) {
+        // Keep the one with the lowest TCO
+        if (car.monthlyTco < existingModel.monthlyTco) {
+          const index = groups[brand].indexOf(existingModel);
+          groups[brand][index] = { ...car, model: mainModel };
+        }
+      } else {
+        groups[brand].push({ ...car, model: mainModel });
+      }
+      
       return groups;
     }, {});
 
@@ -1338,6 +1355,12 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
       brand,
       models: grouped[brand].sort((a: any, b: any) => a.model.localeCompare(b.model))
     })).sort((a, b) => a.brand.localeCompare(b.brand));
+  }
+
+  getMainModel(modelName: string): string {
+    // Remove motorization details and keep only the main model name
+    // Examples: "A3 2.0 TDI" -> "A3", "Golf 1.6 TSI" -> "Golf"
+    return modelName.split(' ')[0];
   }
 
   filterCars(): void {
@@ -1349,16 +1372,29 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
     const searchTerm = this.carFilterSearch.toLowerCase();
     const filtered = this.allReferenceCars.filter((car: any) => 
       car.brand.toLowerCase().includes(searchTerm) ||
-      car.model.toLowerCase().includes(searchTerm) ||
+      this.getMainModel(car.model).toLowerCase().includes(searchTerm) ||
       (car.description && car.description.toLowerCase().includes(searchTerm))
     );
 
+    // Use the same grouping logic as groupCarsByBrand
     const grouped = filtered.reduce((groups: any, car: any) => {
       const brand = car.brand;
+      const mainModel = this.getMainModel(car.model);
+      
       if (!groups[brand]) {
         groups[brand] = [];
       }
-      groups[brand].push(car);
+      
+      const existingModel = groups[brand].find((m: any) => m.model === mainModel);
+      if (existingModel) {
+        if (car.monthlyTco < existingModel.monthlyTco) {
+          const index = groups[brand].indexOf(existingModel);
+          groups[brand][index] = { ...car, model: mainModel };
+        }
+      } else {
+        groups[brand].push({ ...car, model: mainModel });
+      }
+      
       return groups;
     }, {});
 
@@ -1368,14 +1404,26 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
     })).sort((a, b) => a.brand.localeCompare(b.brand));
   }
 
-  selectCarFromFilter(car: any): void {
-    this.selectedReferenceCar = car.id.toString();
+  isCarSelected(carId: string): boolean {
+    return this.selectedCarsInFilter.includes(carId);
+  }
+
+  toggleCarSelection(car: any): void {
+    const carId = car.id.toString();
+    const index = this.selectedCarsInFilter.indexOf(carId);
+    
+    if (index > -1) {
+      this.selectedCarsInFilter.splice(index, 1);
+    } else {
+      this.selectedCarsInFilter.push(carId);
+    }
   }
 
   applyCarFilter(): void {
-    if (this.selectedReferenceCar) {
+    if (this.selectedCarsInFilter.length > 0) {
+      // For now, just select the first car (can be extended later for multiple selection)
+      this.selectedReferenceCar = this.selectedCarsInFilter[0];
       this.closeCarFilter();
-      // The selected car is already set, no need to reload the table
     }
   }
 
