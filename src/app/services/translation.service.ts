@@ -378,7 +378,7 @@ export class TranslationService {
         en: 'General information'
       },
       'uploadCarPolicy': {
-        nl: 'Upload autobeleid',
+        nl: 'Upload auto policy',
         fr: 'Télécharger la politique automobile',
         en: 'Upload car policy'
       },
@@ -393,7 +393,7 @@ export class TranslationService {
         en: 'Car categories'
       },
       'mobilityBudgetPolicy': {
-        nl: 'Mobiliteitsbudget beleid',
+        nl: 'Mobiliteitsbudget policy',
         fr: 'Politique de budget mobilité',
         en: 'Mobility budget policy'
       },
@@ -408,7 +408,7 @@ export class TranslationService {
         en: 'Previous'
       },
       'addYourExistingCarPolicy': {
-        nl: 'Voeg je bestaande autobeleid toe',
+        nl: 'Voeg je bestaande auto policy toe',
         fr: 'Ajoutez votre politique automobile existante',
         en: 'Add your existing car policy'
       },
@@ -428,12 +428,12 @@ export class TranslationService {
         en: 'Browse files'
       },
       'noCarPolicy': {
-        nl: 'Geen autobeleid?',
+        nl: 'Geen auto policy?',
         fr: 'Pas de politique automobile ?',
         en: 'No car policy?'
       },
       'noCarPolicyDescription': {
-        nl: 'Je hebt geen autobeleid? Geen zorgen! Ga gewoon naar de volgende stap en je kunt de informatie zelf invoeren.',
+        nl: 'Je hebt geen auto policy? Geen zorgen! Ga gewoon naar de volgende stap en je kunt de informatie zelf invoeren.',
         fr: 'Vous n\'avez pas de politique automobile ? Pas de soucis ! Passez simplement à l\'étape suivante et vous pourrez saisir les informations vous-même.',
         en: 'You don\'t have a car policy? No worries! Just move to the next step and you will be able to input the information yourself.'
       },
@@ -534,12 +534,12 @@ export class TranslationService {
         en: '✅ Included in the budget (for car-related trips)<br>❌ Other transport modes (train, flight, etc.) must be reimbursed separately.'
       },
       'mobilityBudgetLease': {
-        nl: 'Consistent binnen categorieën, afgestemd op daadwerkelijk autogebruik en beleidsregels.',
+        nl: 'Consistent binnen categorieën, afgestemd op daadwerkelijk autogebruik en policy regels.',
         fr: 'Cohérent au sein des catégories, aligné sur l\'utilisation réelle de la voiture et les règles de politique.',
         en: 'Consistent within categories, aligned with actual car usage and policy rules.'
       },
       'recommendationLease': {
-        nl: 'Aanbevolen voor bedrijven die een realistische, datagedreven aanpak willen die zowel gebruik als interne autobeleid weerspiegelt.',
+        nl: 'Aanbevolen voor bedrijven die een realistische, datagedreven aanpak willen die zowel gebruik als interne auto policy weerspiegelt.',
         fr: 'Recommandé pour les entreprises qui souhaitent une approche réaliste et basée sur les données reflétant à la fois l\'utilisation et les politiques automobiles internes.',
         en: 'Recommended for companies that want a realistic, data-driven approach reflecting both usage and internal car policies.'
       },
@@ -714,6 +714,31 @@ export class TranslationService {
         fr: 'Essayez d\'ajuster vos filtres',
         en: 'Try adjusting your filters'
       },
+      'filter': {
+        nl: 'Filter',
+        fr: 'Filtrer',
+        en: 'Filter'
+      },
+      'searchCars': {
+        nl: 'Zoek auto\'s...',
+        fr: 'Rechercher des voitures...',
+        en: 'Search cars...'
+      },
+      'selectReferenceCar': {
+        nl: 'Selecteer referentieauto',
+        fr: 'Sélectionner une voiture de référence',
+        en: 'Select Reference Car'
+      },
+      'models': {
+        nl: 'modellen',
+        fr: 'modèles',
+        en: 'models'
+      },
+      'noCarsFound': {
+        nl: 'Geen auto\'s gevonden',
+        fr: 'Aucune voiture trouvée',
+        en: 'No cars found'
+      },
       'updateCarCategory': {
         nl: 'Autocategorie bijwerken',
         fr: 'Mettre à jour la catégorie de voiture',
@@ -873,7 +898,7 @@ export class TranslationService {
       },
       // Step 5: Review Confirmation translations
       'yourMobilityBudgetPolicy': {
-        nl: 'Je mobiliteitsbudget beleid',
+        nl: 'Je mobiliteitsbudget policy',
         fr: 'Votre politique de budget mobilité',
         en: 'Your mobility budget policy'
       },
@@ -883,17 +908,17 @@ export class TranslationService {
         en: 'Document Status'
       },
       'yourPolicyIsBeingReviewedBy': {
-        nl: 'Je beleid wordt beoordeeld door',
+        nl: 'Je policy wordt beoordeeld door',
         fr: 'Votre politique est examinée par',
         en: 'Your policy is being reviewed by'
       },
       'yourPolicyHasBeenApproved': {
-        nl: 'Je beleid is goedgekeurd!',
+        nl: 'Je policy is goedgekeurd!',
         fr: 'Votre politique a été approuvée !',
         en: 'Your policy has been approved!'
       },
       'yourPolicyNeedsRevisions': {
-        nl: 'Je beleid heeft revisies nodig.',
+        nl: 'Je policy heeft revisies nodig.',
         fr: 'Votre politique nécessite des révisions.',
         en: 'Your policy needs revisions.'
       },
@@ -988,7 +1013,7 @@ export class TranslationService {
         en: 'Download (Français)'
       },
       'yourPolicyIsBeingReviewedByPartner': {
-        nl: 'Je beleid wordt beoordeeld door',
+        nl: 'Je policy wordt beoordeeld door',
         fr: 'Votre politique est examinée par',
         en: 'Your policy is being reviewed by'
       },
@@ -1008,7 +1033,7 @@ export class TranslationService {
         en: 'for more information.'
       },
       'yourPolicyHasBeenSubmittedForReview': {
-        nl: 'Je beleid is ingediend voor beoordeling!',
+        nl: 'Je policy is ingediend voor beoordeling!',
         fr: 'Votre politique a été soumise pour examen !',
         en: 'Your policy has been submitted for review!'
       },
@@ -1024,7 +1049,7 @@ export class TranslationService {
       },
       // Complete sentences for better formatting
       'yourPolicyHasBeenSubmittedForReviewComplete': {
-        nl: 'Je beleid is ingediend voor beoordeling! Het wordt beoordeeld door',
+        nl: 'Je policy is ingediend voor beoordeling! Het wordt beoordeeld door',
         fr: 'Votre politique a été soumise pour examen ! Il sera examiné par',
         en: 'Your policy has been submitted for review! It will be reviewed by'
       },
@@ -1034,7 +1059,7 @@ export class TranslationService {
         en: 'and you will be notified by email once ready.'
       },
       'yourPolicyIsBeingReviewedByPartnerComplete': {
-        nl: 'Je beleid wordt beoordeeld door',
+        nl: 'Je policy wordt beoordeeld door',
         fr: 'Votre politique est examinée par',
         en: 'Your policy is being reviewed by'
       },
@@ -1044,7 +1069,7 @@ export class TranslationService {
         en: 'Once ready, you will be notified by email.'
       },
       'yourPolicyNeedsRevisionsComplete': {
-        nl: 'Je beleid heeft revisies nodig. Neem contact op met',
+        nl: 'Je policy heeft revisies nodig. Neem contact op met',
         fr: 'Votre politique nécessite des révisions. Veuillez contacter',
         en: 'Your policy needs revisions. Please contact'
       },
@@ -1087,17 +1112,17 @@ export class TranslationService {
       },
 
       'clientPoliciesOverview': {
-        nl: 'Klant Beleid Overzicht',
+        nl: 'Klant Policy Overzicht',
         fr: 'Aperçu des politiques clients',
         en: 'Client Policies Overview'
       },
       'manageAndReviewAllYourClientsMobilityBudgetPolicies': {
-        nl: 'Beheer en beoordeel alle mobiliteitsbudget beleid van je klanten',
+        nl: 'Beheer en beoordeel alle mobiliteitsbudget policies van je klanten',
         fr: 'Gérez et examinez toutes les politiques de budget mobilité de vos clients',
         en: 'Manage and review all your clients\' mobility budget policies'
       },
       'loadingClientPolicies': {
-        nl: 'Klant beleid laden...',
+        nl: 'Klant policies laden...',
         fr: 'Chargement des politiques clients...',
         en: 'Loading client policies...'
       },
@@ -1157,27 +1182,27 @@ export class TranslationService {
         en: 'Deleting...'
       },
       'policy': {
-        nl: 'Beleid',
+        nl: 'Policy',
         fr: 'Politique',
         en: 'Policy'
       },
       'policies': {
-        nl: 'Beleid',
+        nl: 'Policies',
         fr: 'Politiques',
         en: 'Policies'
       },
       'noClientPoliciesFound': {
-        nl: 'Geen Klant Beleid Gevonden',
+        nl: 'Geen Klant Policies Gevonden',
         fr: 'Aucune politique client trouvée',
         en: 'No Client Policies Found'
       },
       'youDontHaveAnyClientPoliciesYet': {
-        nl: 'Je hebt nog geen klant beleid. Beleid verschijnt hier zodra je klanten beginnen met het maken van mobiliteitsbudget beleid.',
+        nl: 'Je hebt nog geen klant policies. Policies verschijnen hier zodra je klanten beginnen met het maken van mobiliteitsbudget policies.',
         fr: 'Vous n\'avez pas encore de politiques clients. Les politiques apparaîtront ici une fois que vos clients commenceront à créer des politiques de budget mobilité.',
         en: 'You don\'t have any client policies yet. Policies will appear here once your clients start creating mobility budget policies.'
       },
       'generatingPolicyDocuments': {
-        nl: 'Beleidsdocumenten worden gegenereerd...',
+        nl: 'Policy documenten worden gegenereerd...',
         fr: 'Génération des documents de politique...',
         en: 'Generating policy documents...'
       },
@@ -1190,7 +1215,42 @@ export class TranslationService {
         nl: 'Fout bij het genereren van het document',
         fr: 'Erreur lors de la génération du document',
         en: 'Error generating document'
-      }
+      },
+    'completedPolicy': {
+      nl: 'Voltooide policy',
+      fr: 'Politique terminée',
+      en: 'Completed policy'
+    },
+    'completedPolicies': {
+      nl: 'Voltooide policies',
+      fr: 'Politiques terminées',
+      en: 'Completed policies'
+    },
+    'inProgressPolicy': {
+      nl: 'Policy in uitvoering',
+      fr: 'Politique en cours',
+      en: 'In progress policy'
+    },
+    'inProgressPolicies': {
+      nl: 'Policies in uitvoering',
+      fr: 'Politiques en cours',
+      en: 'In progress policies'
+    },
+    'draftPolicy': {
+      nl: 'Concept policy',
+      fr: 'Politique brouillon',
+      en: 'Draft policy'
+    },
+    'draftPolicies': {
+      nl: 'Concept policies',
+      fr: 'Politiques brouillon',
+      en: 'Draft policies'
+    },
+    'nextStep': {
+      nl: 'Volgende stap',
+      fr: 'Étape suivante',
+      en: 'Next step'
+    }
   };
 
   constructor() {

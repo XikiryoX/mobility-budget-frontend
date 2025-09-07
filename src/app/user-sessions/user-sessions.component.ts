@@ -116,4 +116,14 @@ export class UserSessionsComponent implements OnInit, OnDestroy {
   translate(key: string): string {
     return this.translationService.translate(key);
   }
+
+  openLanguageDropdown(selectElement: HTMLSelectElement): void {
+    // Create and dispatch a mousedown event to open the dropdown
+    const event = new MouseEvent('mousedown', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    selectElement.dispatchEvent(event);
+  }
 }

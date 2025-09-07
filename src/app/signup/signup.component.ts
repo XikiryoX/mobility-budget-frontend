@@ -262,7 +262,7 @@ export class SignupComponent implements OnInit, OnDestroy {
       email: this.email,
       phoneCountryCode: this.selectedCountry,
       phoneNumber: this.phoneNumber,
-      socialSecretary: this.socialSecretary,
+      socialSecretary: this.socialSecretary.toUpperCase(), // Ensure uppercase
       companyNumber: this.companyNumber,
       companyName: this.companyInfo?.name || this.companyName || this.companyNumber,
       companyAddress: this.companyInfo?.address || null,
@@ -307,5 +307,15 @@ export class SignupComponent implements OnInit, OnDestroy {
     if (this.companyNumberError) {
       this.onCompanyNumberChange();
     }
+  }
+
+  openLanguageDropdown(selectElement: HTMLSelectElement): void {
+    // Create and dispatch a mousedown event to open the dropdown
+    const event = new MouseEvent('mousedown', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    selectElement.dispatchEvent(event);
   }
 }

@@ -3,14 +3,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslationService, Language } from '../services/translation.service';
-import { UserSessionService, UserSession } from '../services/user-session.service';
-import { PartnerService } from '../services/partner.service';
+import { UserSessionService } from '../services/user-session.service';
+import { SocialSecretaryService } from '../services/social-secretary.service';
 
 interface CompanySessions {
-  companyName: string;
-  companyEmail: string;
-  contactPerson: string;
-  sessions: UserSession[];
+  signup: any;
+  sessions: any[];
+  totalSessions: number;
+  pendingSessions: number;
+  completedSessions: number;
+  inProgressSessions: number;
   expanded: boolean;
 }
 
@@ -39,7 +41,7 @@ export class PartnerDashboardComponent implements OnInit {
     private router: Router,
     private translationService: TranslationService,
     private userSessionService: UserSessionService,
-    private partnerService: PartnerService
+    private socialSecretaryService: SocialSecretaryService
   ) {}
 
   ngOnInit(): void {
@@ -51,21 +53,24 @@ export class PartnerDashboardComponent implements OnInit {
   }
 
   checkAuthentication(): void {
-    if (!this.partnerService.isPartner()) {
+    const isPartner = localStorage.getItem('isPartner') === 'true';
+    if (!isPartner) {
       console.error('No partner authentication found - redirecting to login');
       this.router.navigate(['/partner-login']);
       return;
     }
 
-    const currentPartner = this.partnerService.getCurrentPartner();
-    if (!currentPartner) {
+    const partnerId = localStorage.getItem('partnerId');
+    const partnerName = localStorage.getItem('partnerName');
+    
+    if (!partnerId || !partnerName) {
       console.error('Invalid partner data - redirecting to login');
       this.router.navigate(['/partner-login']);
       return;
     }
     
-    this.partnerId = currentPartner.id;
-    this.partnerName = currentPartner.name;
+    this.partnerId = partnerId;
+    this.partnerName = partnerName;
     console.log('Partner authenticated:', this.partnerName);
   }
 
@@ -73,14 +78,26 @@ export class PartnerDashboardComponent implements OnInit {
     this.isLoading = true;
     this.error = '';
 
-    // Get all sessions for this partner
-    this.userSessionService.findByPartnerId(this.partnerId).subscribe({
-      next: (sessions) => {
+    // Get all companies and sessions for this partner using the correct service
+    this.socialSecretaryService.getCompaniesAndSessions(this.partnerId).subscribe({
+      next: (response) => {
         this.isLoading = false;
-        console.log('Loaded sessions for partner:', sessions);
+        console.log('Loaded companies and sessions for partner:', response);
         
-        // Group sessions by company
-        this.groupSessionsByCompany(sessions);
+        // Transform the response to match our interface
+        this.companySessions = response.companies.map(company => ({
+          signup: company.signup,
+          sessions: company.sessions,
+          totalSessions: company.totalSessions,
+          pendingSessions: company.pendingSessions,
+          completedSessions: company.completedSessions,
+          inProgressSessions: company.inProgressSessions || 0,
+          expanded: false
+        }));
+        
+        // Initialize filtered companies
+        this.applyCompanyFilter();
+        console.log('Transformed company sessions:', this.companySessions);
       },
       error: (error) => {
         this.isLoading = false;
@@ -90,50 +107,14 @@ export class PartnerDashboardComponent implements OnInit {
     });
   }
 
-  private groupSessionsByCompany(sessions: UserSession[]): void {
-    const companyMap = new Map<string, CompanySessions>();
-
-    sessions.forEach(session => {
-      if (session.signup && session.signup.companyName) {
-        // Use company name as key and display name
-        const companyKey = session.signup.companyName;
-        const companyName = session.signup.companyName;
-
-        if (!companyMap.has(companyKey)) {
-          companyMap.set(companyKey, {
-            companyName: companyName,
-            companyEmail: session.signup.email,
-            contactPerson: session.signup.fullName,
-            sessions: [],
-            expanded: false
-          });
-        }
-
-        companyMap.get(companyKey)!.sessions.push(session);
-      }
-    });
-
-    // Convert map to array, sort sessions within each company by last activity, then sort companies by name
-    this.companySessions = Array.from(companyMap.values())
-      .map(company => ({
-        ...company,
-        sessions: company.sessions.sort((a, b) => {
-          const dateA = new Date(a.lastActivityAt || 0);
-          const dateB = new Date(b.lastActivityAt || 0);
-          return dateB.getTime() - dateA.getTime(); // Most recent first
-        })
-      }))
-      .sort((a, b) => a.companyName.localeCompare(b.companyName));
-    
-    // Initialize filtered companies
-    this.applyCompanyFilter();
-  }
+  // Data is now loaded directly from the backend with the correct structure
+  // No need to group sessions by company as the backend already provides this
 
   toggleCompanyExpansion(company: CompanySessions): void {
     company.expanded = !company.expanded;
   }
 
-  openSession(session: UserSession): void {
+  openSession(session: any): void {
     // Navigate to TCO converter with session ID and partner mode
     this.router.navigate(['/tco-converter'], {
       queryParams: { 
@@ -146,7 +127,7 @@ export class PartnerDashboardComponent implements OnInit {
     });
   }
 
-  getStatusClass(session: UserSession): string {
+  getStatusClass(session: any): string {
     const status = session.status || 'draft';
     switch (status) {
       case 'completed':
@@ -157,13 +138,13 @@ export class PartnerDashboardComponent implements OnInit {
       case 'under_review':
         return 'pending';
       case 'in_progress':
-        return 'active';
+        return 'pending';
       default:
         return 'draft';
     }
   }
 
-  getStatusText(session: UserSession): string {
+  getStatusText(session: any): string {
     const status = session.status || 'draft';
     switch (status) {
       case 'completed':
@@ -183,11 +164,11 @@ export class PartnerDashboardComponent implements OnInit {
     }
   }
 
-  getCurrentStep(session: UserSession): number {
+  getCurrentStep(session: any): number {
     return session.currentStep || 1;
   }
 
-  getStepName(session: UserSession): string {
+  getStepName(session: any): string {
     const step = session.currentStep || 1;
     switch (step) {
       case 1:
@@ -205,13 +186,13 @@ export class PartnerDashboardComponent implements OnInit {
     }
   }
 
-  getCategoryCount(session: UserSession): number {
+  getCategoryCount(session: any): number {
     return session.carCategories?.length || 0;
   }
 
-  getCompletedCategories(session: UserSession): number {
+  getCompletedCategories(session: any): number {
     if (!session.carCategories) return 0;
-    return session.carCategories.filter(cat => cat.status === 'success').length;
+    return session.carCategories.filter((cat: any) => cat.status === 'success').length;
   }
 
   formatDate(date: Date | string): string {
@@ -229,25 +210,23 @@ export class PartnerDashboardComponent implements OnInit {
   }
 
   getSessionCount(company: CompanySessions): number {
-    return company.sessions.length;
+    return company.totalSessions;
   }
 
   getCompletedSessions(company: CompanySessions): number {
-    return company.sessions.filter(session => 
-      session.status === 'completed' || session.status === 'approved'
-    ).length;
+    return company.completedSessions;
   }
 
   getPendingSessions(company: CompanySessions): number {
-    return company.sessions.filter(session => 
-      session.status === 'submitted' || session.status === 'under_review'
-    ).length;
+    return company.pendingSessions;
+  }
+
+  getInProgressSessions(company: CompanySessions): number {
+    return company.inProgressSessions || 0;
   }
 
   getDraftSessions(company: CompanySessions): number {
-    return company.sessions.filter(session => 
-      session.status === 'draft' || session.status === 'in_progress'
-    ).length;
+    return company.totalSessions - (company.completedSessions + company.pendingSessions + (company.inProgressSessions || 0));
   }
 
   onLanguageChange(): void {
@@ -255,7 +234,9 @@ export class PartnerDashboardComponent implements OnInit {
   }
 
   signOut(): void {
-    this.partnerService.logout();
+    localStorage.removeItem('isPartner');
+    localStorage.removeItem('partnerId');
+    localStorage.removeItem('partnerName');
     this.router.navigate(['/partner-login']);
   }
 
@@ -263,7 +244,7 @@ export class PartnerDashboardComponent implements OnInit {
     return this.translationService.translate(key);
   }
 
-  deleteSession(session: UserSession, event: Event): void {
+  deleteSession(session: any, event: Event): void {
     event.stopPropagation(); // Prevent row click
     
     if (confirm(`Are you sure you want to delete this session for ${session.signup?.fullName || 'Unknown Contact'}? This action cannot be undone.`)) {
@@ -285,7 +266,7 @@ export class PartnerDashboardComponent implements OnInit {
     }
   }
 
-  isDeleting(session: UserSession): boolean {
+  isDeleting(session: any): boolean {
     return this.deletingSessionId === session.id;
   }
 
@@ -305,11 +286,21 @@ export class PartnerDashboardComponent implements OnInit {
     } else {
       const filterValue = this.companyFilter.toLowerCase().trim();
       this.filteredCompanySessions = this.companySessions.filter(company =>
-        company.companyName.toLowerCase().includes(filterValue) ||
-        company.contactPerson.toLowerCase().includes(filterValue) ||
-        company.companyEmail.toLowerCase().includes(filterValue)
+        company.signup.companyName.toLowerCase().includes(filterValue) ||
+        company.signup.fullName.toLowerCase().includes(filterValue) ||
+        company.signup.email.toLowerCase().includes(filterValue)
       );
     }
+  }
+
+  openLanguageDropdown(selectElement: HTMLSelectElement): void {
+    // Create and dispatch a mousedown event to open the dropdown
+    const event = new MouseEvent('mousedown', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    selectElement.dispatchEvent(event);
   }
 }
 

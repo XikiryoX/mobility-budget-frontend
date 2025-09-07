@@ -11,12 +11,21 @@
     
     <div class="header-actions">
       <!-- Language Selector -->
-      <div class="language-selector">
-        <select [(ngModel)]="selectedLanguage" (change)="onLanguageChange()">
-          <option *ngFor="let lang of availableLanguages" [value]="lang.code">
-            {{ lang.name }}
-          </option>
-        </select>
+      <div class="language-selector-container">
+        <div class="language-selector">
+          <select 
+            #languageSelect
+            [(ngModel)]="selectedLanguage" 
+            (change)="onLanguageChange()"
+            style="background: transparent !important; background-color: transparent !important; background-image: none !important; border: none !important; border-radius: 0 !important; outline: none !important; box-shadow: none !important; -webkit-appearance: none !important; -moz-appearance: none !important; appearance: none !important; padding: 0 !important; margin: 0 !important; min-width: 60px !important; font-size: 1rem !important; font-weight: 500 !important; color: #333 !important; cursor: pointer !important;">
+            <option *ngFor="let lang of availableLanguages" [value]="lang.code">
+              {{ lang.name }}
+            </option>
+          </select>
+          <svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" (click)="openLanguageDropdown(languageSelect)" style="cursor: pointer;">
+            <path d="M4 6L8 10L12 6" stroke="#666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
       </div>
       
       <!-- Sign Out Button -->
@@ -48,7 +57,7 @@
         <div class="error-message">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
             <circle cx="12" cy="12" r="10" stroke="#EF4444" stroke-width="2"/>
-            <path d="M12 8V12M12 16H12.01" stroke="#EF4444" stroke-width="2" stroke-linecap="round"/>
+            <path d="M12 8V12M12 16H12.01" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <span>{{ error }}</span>
         </div>
@@ -92,11 +101,11 @@
             <!-- Company Header -->
             <div class="company-header" (click)="toggleCompanyExpansion(company)">
               <div class="company-info">
-                <div class="company-name">{{ company.companyName }}</div>
+                <div class="company-name">{{ company.signup.companyName }}</div>
                 <div class="company-details">
-                  <span class="company-contact">{{ translate('contact') }}: {{ company.contactPerson }}</span>
-                  <span class="company-email" *ngIf="company.companyEmail">
-                    • {{ company.companyEmail }}
+                  <span class="company-contact">{{ translate('contact') }}: {{ company.signup.fullName }}</span>
+                  <span class="company-email" *ngIf="company.signup.email">
+                    • {{ company.signup.email }}
                   </span>
                 </div>
               </div>
@@ -106,9 +115,9 @@
                   {{ getSessionCount(company) }} {{ getSessionCount(company) === 1 ? translate('policy') : translate('policies') }}
                 </div>
                 <div class="company-status-summary">
-                  <span class="status-dot completed" *ngIf="getCompletedSessions(company) > 0">{{ getCompletedSessions(company) }}</span>
-                  <span class="status-dot pending" *ngIf="getPendingSessions(company) > 0">{{ getPendingSessions(company) }}</span>
-                  <span class="status-dot draft" *ngIf="getDraftSessions(company) > 0">{{ getDraftSessions(company) }}</span>
+                  <span class="status-dot completed" *ngIf="getCompletedSessions(company) > 0" [title]="getCompletedSessions(company) + ' ' + (getCompletedSessions(company) === 1 ? translate('completedPolicy') : translate('completedPolicies'))">{{ getCompletedSessions(company) }}</span>
+                  <span class="status-dot in-progress" *ngIf="getInProgressSessions(company) > 0" [title]="getInProgressSessions(company) + ' ' + (getInProgressSessions(company) === 1 ? translate('inProgressPolicy') : translate('inProgressPolicies'))">{{ getInProgressSessions(company) }}</span>
+                  <span class="status-dot pending" *ngIf="getPendingSessions(company) > 0" [title]="getPendingSessions(company) + ' ' + (getPendingSessions(company) === 1 ? translate('draftPolicy') : translate('draftPolicies'))">{{ getPendingSessions(company) }}</span>
                 </div>
                 <div class="expand-icon" [class.expanded]="company.expanded">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -136,8 +145,8 @@
                     <tr *ngFor="let session of company.sessions">
                       <td class="user-cell">
                         <div class="user-info">
-                          <div class="user-name">{{ session.signup?.fullName || translate('unknownContact') }}</div>
-                          <div class="user-email">{{ session.signup?.email || translate('noEmail') }}</div>
+                          <div class="user-name">{{ company.signup.fullName || translate('unknownContact') }}</div>
+                          <div class="user-email">{{ company.signup.email || translate('noEmail') }}</div>
                         </div>
                       </td>
                       <td class="status-cell">

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslationService, Language } from '../services/translation.service';
-import { PartnerService } from '../services/partner.service';
+import { SocialSecretaryService } from '../services/social-secretary.service';
 
 @Component({
   selector: 'app-partner-login',
@@ -25,7 +25,7 @@ export class PartnerLoginComponent {
   constructor(
     private router: Router,
     private translationService: TranslationService,
-    private partnerService: PartnerService
+    private socialSecretaryService: SocialSecretaryService
   ) {
     this.availableLanguages = this.translationService.getAvailableLanguages();
     this.selectedLanguage = this.translationService.getCurrentLanguage();
@@ -48,39 +48,42 @@ export class PartnerLoginComponent {
 
     console.log('Partner login attempt for:', this.email);
 
-    // For now, we'll use a simple check for the admin user
-    if (this.email.toLowerCase() === 'securex@mobility.be') {
-      // Admin user - proceed to partner dashboard
-      this.loginAsAdmin();
-    } else {
-      // Check if this is a valid partner email
-      this.checkPartnerEmail();
-    }
+    // Authenticate via backend
+    this.socialSecretaryService.authenticate(this.email).subscribe({
+      next: (socialSecretary) => {
+        if (socialSecretary) {
+          // Valid partner - proceed to partner dashboard
+          this.loginAsPartner(socialSecretary);
+        } else {
+          // Not a registered partner
+          this.isLoading = false;
+          this.error = 'This email is not registered as a partner. Please contact support.';
+        }
+      },
+      error: (error) => {
+        console.error('Authentication error:', error);
+        this.isLoading = false;
+        this.error = 'Authentication failed. Please try again or contact support.';
+      }
+    });
   }
 
-  private loginAsAdmin(): void {
-    console.log('Logging in as Securex admin...');
+  private loginAsPartner(socialSecretary: any): void {
+    console.log(`Logging in as ${socialSecretary.name} partner...`);
     
-    // Store admin credentials
+    // Store partner credentials
     localStorage.setItem('userEmail', this.email);
-    localStorage.setItem('partnerId', 'securex');
-    localStorage.setItem('partnerName', 'Securex');
-    localStorage.setItem('partnerCode', 'securex');
+    localStorage.setItem('partnerId', socialSecretary.id);
+    localStorage.setItem('partnerName', socialSecretary.name);
+    localStorage.setItem('partnerCode', socialSecretary.socialSecretaryCode);
     localStorage.setItem('isPartner', 'true');
 
-    this.success = 'Login successful! Redirecting to partner dashboard...';
+    this.success = `Login successful! Redirecting to ${socialSecretary.name} partner dashboard...`;
     
     // Redirect to partner dashboard
     setTimeout(() => {
       this.router.navigate(['/partner-dashboard']);
     }, 1000);
-  }
-
-  private checkPartnerEmail(): void {
-    // For now, we'll only allow the admin user
-    // In the future, this would check against a partner database
-    this.isLoading = false;
-    this.error = 'This email is not registered as a partner. Please contact support.';
   }
 
   private isValidEmail(email: string): boolean {
@@ -94,6 +97,16 @@ export class PartnerLoginComponent {
 
   goToUserLogin(): void {
     this.router.navigate(['/login']);
+  }
+
+  openLanguageDropdown(selectElement: HTMLSelectElement): void {
+    // Create and dispatch a mousedown event to open the dropdown
+    const event = new MouseEvent('mousedown', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    selectElement.dispatchEvent(event);
   }
 
   translate(key: string): string {

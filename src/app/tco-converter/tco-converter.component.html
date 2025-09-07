@@ -24,12 +24,23 @@
           </svg>
           <span>{{ translate('mySessions') }}</span>
         </button>
-        <div class="language-selector">
-          <select class="language-dropdown" name="selectedLanguage" [(ngModel)]="selectedLanguage" (change)="onLanguageChange()">
-            <option *ngFor="let lang of availableLanguages" [value]="lang.code">
-              {{ lang.name }}
-            </option>
-          </select>
+        <div class="language-selector-container">
+          <div class="language-selector">
+            <select 
+              #languageSelect1
+              class="language-dropdown" 
+              name="selectedLanguage" 
+              [(ngModel)]="selectedLanguage" 
+              (change)="onLanguageChange()"
+              style="background: transparent !important; background-color: transparent !important; background-image: none !important; border: none !important; border-radius: 0 !important; outline: none !important; box-shadow: none !important; -webkit-appearance: none !important; -moz-appearance: none !important; appearance: none !important; padding: 0 !important; margin: 0 !important; min-width: 60px !important; font-size: 1rem !important; font-weight: 500 !important; color: #333 !important; cursor: pointer !important;">
+              <option *ngFor="let lang of availableLanguages" [value]="lang.code">
+                {{ lang.name }}
+              </option>
+            </select>
+            <svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" (click)="openLanguageDropdown(languageSelect1)" style="cursor: pointer;">
+              <path d="M4 6L8 10L12 6" stroke="#666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
         </div>
         <div class="user-menu" *ngIf="userEmail">
           <button class="user-button" (click)="toggleUserMenu()">
@@ -51,12 +62,23 @@
 
       <!-- Partner actions -->
       <div *ngIf="isPartnerMode" class="partner-actions">
-        <div class="language-selector">
-          <select class="language-dropdown" name="selectedLanguage" [(ngModel)]="selectedLanguage" (change)="onLanguageChange()">
-            <option *ngFor="let lang of availableLanguages" [value]="lang.code">
-              {{ lang.name }}
-            </option>
-          </select>
+        <div class="language-selector-container">
+          <div class="language-selector">
+            <select 
+              #languageSelect2
+              class="language-dropdown" 
+              name="selectedLanguage" 
+              [(ngModel)]="selectedLanguage" 
+              (change)="onLanguageChange()"
+              style="background: transparent !important; background-color: transparent !important; background-image: none !important; border: none !important; border-radius: 0 !important; outline: none !important; box-shadow: none !important; -webkit-appearance: none !important; -moz-appearance: none !important; appearance: none !important; padding: 0 !important; margin: 0 !important; min-width: 60px !important; font-size: 1rem !important; font-weight: 500 !important; color: #333 !important; cursor: pointer !important;">
+              <option *ngFor="let lang of availableLanguages" [value]="lang.code">
+                {{ lang.name }}
+              </option>
+            </select>
+            <svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" (click)="openLanguageDropdown(languageSelect2)" style="cursor: pointer;">
+              <path d="M4 6L8 10L12 6" stroke="#666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
         </div>
         <button class="back-to-dashboard-button" (click)="goToPartnerDashboard()">
           <svg class="dashboard-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -600,7 +622,15 @@
 
                 <!-- Reference Car List -->
                 <div class="form-section" *ngIf="areTopFieldsFilled()">
-                  <h2 class="section-title">{{ translate('referenceCarList') }}</h2>
+                  <div class="section-header">
+                    <h2 class="section-title">{{ translate('referenceCarList') }}</h2>
+                    <button class="filter-button" (click)="openCarFilter()">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                      </svg>
+                      {{ translate('filter') }}
+                    </button>
+                  </div>
                   
                   <!-- Table view when cars are available -->
                   <div class="reference-car-table-container" *ngIf="!isLoadingReferenceCars && referenceCars.length > 0">
@@ -679,6 +709,64 @@
                     <img src="assets/desert.svg" alt="No cars found" class="desert-image">
                     <p>{{ translate('noReferenceCarsFound') }}</p>
                     <button class="choose-car-button">{{ translate('tryAdjustingYourFilters') }}</button>
+                  </div>
+                </div>
+
+                <!-- Car Filter Modal -->
+                <div class="car-filter-overlay" *ngIf="showCarFilter">
+                  <div class="car-filter-modal">
+                    <div class="filter-header">
+                      <h3 class="filter-title">{{ translate('selectReferenceCar') }}</h3>
+                      <button class="close-button" (click)="closeCarFilter()">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                          <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                      </button>
+                    </div>
+                    
+                    <div class="filter-search">
+                      <input 
+                        type="text" 
+                        class="search-input" 
+                        [placeholder]="translate('searchCars')"
+                        [(ngModel)]="carFilterSearch"
+                        (input)="filterCars()"
+                      >
+                    </div>
+                    
+                    <div class="filter-content">
+                      <div class="car-groups" *ngIf="filteredCarGroups.length > 0">
+                        <div class="car-group" *ngFor="let group of filteredCarGroups">
+                          <div class="brand-header">
+                            <h4 class="brand-name">{{ group.brand }}</h4>
+                            <span class="model-count">{{ group.models.length }} {{ translate('models') }}</span>
+                          </div>
+                          <div class="models-list">
+                            <div 
+                              class="model-item" 
+                              *ngFor="let model of group.models"
+                              (click)="selectCarFromFilter(model)"
+                              [class.selected]="selectedReferenceCar === model.id.toString()"
+                            >
+                              <div class="model-info">
+                                <div class="model-name">{{ model.model }}</div>
+                                <div class="model-description" *ngIf="model.description">{{ model.description }}</div>
+                              </div>
+                              <div class="model-tco">{{ formatCurrency(model.monthlyTco || 0) }}</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="no-results" *ngIf="filteredCarGroups.length === 0 && carFilterSearch">
+                        <p>{{ translate('noCarsFound') }}</p>
+                      </div>
+                    </div>
+                    
+                    <div class="filter-actions">
+                      <button class="cancel-button" (click)="closeCarFilter()">{{ translate('cancel') }}</button>
+                      <button class="apply-button" (click)="applyCarFilter()" [disabled]="!selectedReferenceCar">{{ translate('apply') }}</button>
+                    </div>
                   </div>
                 </div>
 
@@ -901,7 +989,7 @@
               [class.disabled]="!canProceedToReview()"
               [disabled]="!canProceedToReview()"
               (click)="nextStep()">
-              <span>{{ translate('sendForReview') }}</span>
+              <span>{{ translate('nextStep') }}</span>
               <svg class="arrow-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <path d="M4.16666 10H15.8333M15.8333 10L10.8333 5M15.8333 10L10.8333 15" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -928,6 +1016,10 @@
                     <circle cx="12" cy="12" r="10" stroke="#FFC107" stroke-width="2"/>
                     <path d="M12 6V12L16 14" stroke="#FFC107" stroke-width="2" stroke-linecap="round"/>
                   </svg>
+                  <svg *ngIf="documentStatus === 'submitted'" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" fill="#17A2B8"/>
+                    <path d="M9 12L11 14L15 10" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
                   <svg *ngIf="documentStatus === 'approved'" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <circle cx="12" cy="12" r="10" fill="#28A745"/>
                     <path d="M9 12L11 14L15 10" stroke="white" stroke-width="2" stroke-linecap="round"/>
@@ -937,6 +1029,7 @@
                 <div class="status-text">
                   <h3>{{ translate('documentStatus') }}: {{ documentStatus | titlecase }}</h3>
                   <p *ngIf="documentStatus === 'pending'">{{ translate('yourPolicyIsBeingReviewedBy') }} {{ partner }}.</p>
+                  <p *ngIf="documentStatus === 'submitted'">{{ translate('yourPolicyHasBeenSubmittedForReview') }}</p>
                   <p *ngIf="documentStatus === 'approved'">{{ translate('yourPolicyHasBeenApproved') }}</p>
 
                 </div>
@@ -1138,7 +1231,8 @@
                   </div>
                 </div>
 
-                <div *ngIf="documentStatus === 'rejected'">
+                <!-- Note: rejected status is not possible in step 5, so this section is hidden -->
+                <div *ngIf="documentStatus === 'rejected' && currentStep !== 5">
                   <div class="rejected-container">
                     <svg class="rejected-icon" width="48" height="48" viewBox="0 0 48 48" fill="none">
                       <path d="M24 4C12.95 4 4 12.95 4 24C4 35.05 12.95 44 24 44C35.05 44 44 35.05 44 24C44 12.95 35.05 4 24 4ZM30.59 20.59L26.83 24.35L30.59 28.11L28.11 30.59L24.35 26.83L20.59 30.59L18.11 28.11L21.87 24.35L18.11 20.59L20.59 18.11L24.35 21.87L28.11 18.11L30.59 20.59Z" fill="#DC3545"/>

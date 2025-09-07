@@ -41,6 +41,7 @@ export interface CompanyWithSessions {
   totalSessions: number;
   pendingSessions: number;
   completedSessions: number;
+  inProgressSessions: number;
 }
 
 export interface SocialSecretaryStatistics {
@@ -214,5 +215,16 @@ export class SocialSecretaryService {
       default:
         return 'status-default';
     }
+  }
+
+  /**
+   * Logout social secretary
+   */
+  logout(): void {
+    localStorage.removeItem('userEmail');
+    localStorage.removeItem('partnerId');
+    localStorage.removeItem('partnerName');
+    localStorage.removeItem('partnerCode');
+    localStorage.removeItem('isPartner');
   }
 }

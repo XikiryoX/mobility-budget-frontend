@@ -90,6 +90,12 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
   totalCars = 0;
   isLoadingReferenceCars = false;
 
+  // Car filter modal
+  showCarFilter: boolean = false;
+  carFilterSearch: string = '';
+  allReferenceCars: any[] = [];
+  filteredCarGroups: any[] = [];
+
   // Partner for review
   partner: string = '';
   
@@ -100,7 +106,7 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
   userName: string = '';
   
   // Document management
-  documentStatus: 'draft' | 'pending' | 'approved' | 'rejected' = 'draft';
+  documentStatus: 'draft' | 'pending' | 'submitted' | 'approved' | 'rejected' = 'draft';
   documentUrl: string = '';
   documentContent: string = '';
   documentUrls: { en?: { previewUrl: string; downloadUrl: string }; nl?: { previewUrl: string; downloadUrl: string }; fr?: { previewUrl: string; downloadUrl: string } } = {};
@@ -215,9 +221,9 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
       
       // A step is completed if:
       // 1. It's a previous step (step.id < this.currentStep), OR
-      // 2. It's the current step (step 5) AND the document is approved (not rejected)
+      // 2. It's the current step (step 5) AND the document is approved or submitted
       step.completed = (step.id < this.currentStep) || 
-                      (step.id === 5 && this.documentStatus === 'approved');
+                      (step.id === 5 && (this.documentStatus === 'approved' || this.documentStatus === 'submitted'));
       
       console.log(`🔧 Step ${step.id}: active=${step.active}, completed=${step.completed}`);
     });
@@ -235,15 +241,30 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
       this.currentStep++;
       this.updateSteps();
       
-      // If moving to step 5 (review), check if we can generate document
+      // If moving to step 5 (review), automatically generate document and submit for review
       if (this.currentStep === 5 && this.currentSessionId) {
         // Only generate document if all categories have valid TCO
         if (this.canGenerateDocument()) {
-          // Force regeneration of the document to ensure latest templates are used
-          this.forceDocumentRegeneration();
+          console.log('🔄 Moving to step 5 - automatically generating document and submitting for review...');
+          
+          // Generate the document first
+          this.saveTcoDocument();
+          
+          // Update the document status to 'submitted' (ready for review)
+          this.documentStatus = 'submitted';
+          
+          // Update session status to 'submitted'
+          this.updateSessionStatus('submitted');
+          
+          console.log('✅ Document generated and submitted for review automatically');
         } else {
-          console.log('Cannot generate document: not all categories have valid TCO');
-          // Optionally show a message to the user
+          console.log('❌ Cannot generate document: not all categories have valid TCO');
+          // Show error message to user
+          alert('Cannot generate document: Please ensure all car categories have valid TCO calculations (green checkmarks)');
+          // Go back to step 4
+          this.currentStep = 4;
+          this.updateSteps();
+          return;
         }
       }
       
@@ -559,17 +580,13 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
           this.selectedFuelTypes = session.selectedFuelTypes || ['diesel', 'electric', 'hybrid', 'petrol'];
           this.selectedBrands = session.selectedBrands || [];
           
-          // Set currentStep based on document status or session currentStep
-          if (session.documentStatus === 'approved') {
-            this.currentStep = 5;
-            console.log(`🔧 Session approved, setting currentStep to 5`);
-          } else {
-            this.currentStep = session.currentStep || 1;
-            console.log(`🔧 Session not approved, using currentStep: ${this.currentStep}`);
-          }
+          // Set currentStep based on session currentStep
+          this.currentStep = session.currentStep || 1;
+          console.log(`🔧 Using session currentStep: ${this.currentStep}`);
           
-          // Set document status
-          this.documentStatus = (session.documentStatus as 'draft' | 'pending' | 'approved' | 'rejected') || 'draft';
+          // Set document status based on current step and session status
+          this.documentStatus = this.getValidDocumentStatus(this.currentStep, session.documentStatus || 'draft') as 'draft' | 'pending' | 'submitted' | 'approved' | 'rejected';
+          console.log(`🔧 Step ${this.currentStep}: Document status set to ${this.documentStatus}`);
           
           // Store the session ID in localStorage
           localStorage.setItem('currentSessionId', session.id);
@@ -1057,8 +1074,8 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
   loadTcoDistribution(): void {
     // Only load if top fields are filled
     if (!this.areTopFieldsFilled()) {
-      this.tcoDistribution = [];
-      this.isLoadingTcoData = false;
+      // If no fields are filled, load with default values for initial display
+      this.loadTcoDistributionWithDefaults();
       return;
     }
 
@@ -1257,6 +1274,105 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
     // Calculate TCO for the selected vehicle only if top fields are filled
     if (this.areTopFieldsFilled()) {
       this.calculateTCOForVehicle(carId);
+    }
+  }
+
+  // Car filter modal methods
+  openCarFilter(): void {
+    this.showCarFilter = true;
+    this.carFilterSearch = '';
+    this.loadAllReferenceCars();
+  }
+
+  closeCarFilter(): void {
+    this.showCarFilter = false;
+    this.carFilterSearch = '';
+    this.filteredCarGroups = [];
+  }
+
+  loadAllReferenceCars(): void {
+    // Load all reference cars without pagination for the filter
+    const filters = {
+      yearlyKm: this.newCategory.annualKilometers && this.newCategory.annualKilometers !== '' ? parseInt(this.newCategory.annualKilometers, 10) : undefined,
+      duration: this.newCategory.leasingDuration && this.newCategory.leasingDuration !== '' ? parseInt(this.newCategory.leasingDuration, 10) : undefined,
+      brands: this.selectedBrands,
+      fuelTypes: this.selectedFuelTypes.map(type => {
+        switch(type) {
+          case 'diesel': return 'Diesel';
+          case 'electric': return 'Électrique';
+          case 'hybrid': return 'Hybride';
+          case 'petrol': return 'Essence';
+          default: return type;
+        }
+      }).filter((value, index, self) => self.indexOf(value) === index),
+      minTco: this.tcoRangeMin,
+      maxTco: this.tcoRangeMax
+    };
+
+    this.vehiclesService.getReferenceCars(1, 1000, filters).subscribe({
+      next: (data) => {
+        this.allReferenceCars = data.cars;
+        this.groupCarsByBrand();
+      },
+      error: (error) => {
+        console.error('Error loading all reference cars:', error);
+        this.allReferenceCars = [];
+      }
+    });
+  }
+
+  groupCarsByBrand(): void {
+    const grouped = this.allReferenceCars.reduce((groups: any, car: any) => {
+      const brand = car.brand;
+      if (!groups[brand]) {
+        groups[brand] = [];
+      }
+      groups[brand].push(car);
+      return groups;
+    }, {});
+
+    this.filteredCarGroups = Object.keys(grouped).map(brand => ({
+      brand,
+      models: grouped[brand].sort((a: any, b: any) => a.model.localeCompare(b.model))
+    })).sort((a, b) => a.brand.localeCompare(b.brand));
+  }
+
+  filterCars(): void {
+    if (!this.carFilterSearch.trim()) {
+      this.groupCarsByBrand();
+      return;
+    }
+
+    const searchTerm = this.carFilterSearch.toLowerCase();
+    const filtered = this.allReferenceCars.filter((car: any) => 
+      car.brand.toLowerCase().includes(searchTerm) ||
+      car.model.toLowerCase().includes(searchTerm) ||
+      (car.description && car.description.toLowerCase().includes(searchTerm))
+    );
+
+    const grouped = filtered.reduce((groups: any, car: any) => {
+      const brand = car.brand;
+      if (!groups[brand]) {
+        groups[brand] = [];
+      }
+      groups[brand].push(car);
+      return groups;
+    }, {});
+
+    this.filteredCarGroups = Object.keys(grouped).map(brand => ({
+      brand,
+      models: grouped[brand].sort((a: any, b: any) => a.model.localeCompare(b.model))
+    })).sort((a, b) => a.brand.localeCompare(b.brand));
+  }
+
+  selectCarFromFilter(car: any): void {
+    this.selectedReferenceCar = car.id.toString();
+  }
+
+  applyCarFilter(): void {
+    if (this.selectedReferenceCar) {
+      this.closeCarFilter();
+      // The selected car is already set, no need to reload the table
     }
   }
 
@@ -1813,6 +1929,26 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  // Helper method to get valid document status for current step
+  getValidDocumentStatus(step: number, sessionDocumentStatus: string): string {
+    if (step === 5) {
+      // In step 5, document status can be 'draft', 'pending', 'submitted', or 'approved'
+      // 'rejected' status is not possible in step 5
+      if (sessionDocumentStatus === 'approved') {
+        return 'approved';
+      } else if (sessionDocumentStatus === 'submitted') {
+        return 'submitted';
+      } else if (sessionDocumentStatus === 'pending') {
+        return 'pending';
+      } else {
+        return 'draft';
+      }
+    } else {
+      // For other steps, use the session document status
+      return sessionDocumentStatus || 'draft';
+    }
+  }
+
   // Helper method to convert plain text back to HTML
   private convertTextToHtml(plainText: string): string {
     if (!plainText) return '';
@@ -2247,7 +2383,7 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
         
         // Load document information
         this.documentUrl = session.documentUrl || '';
-        this.documentStatus = (session.documentStatus as 'draft' | 'pending' | 'approved' | 'rejected') || 'draft';
+        this.documentStatus = (session.documentStatus as 'draft' | 'pending' | 'submitted' | 'approved' | 'rejected') || 'draft';
         this.documentUrls = session.documentUrls || {};
         
         // If document is approved, automatically set currentStep to 5 (review)
@@ -2458,5 +2594,75 @@ Debug Info:
    */
   public getCacheSize(): number {
     return Object.keys(this.languageContentCache || {}).length;
+  }
+
+  /**
+   * Update session status in the backend
+   */
+  private updateSessionStatus(status: 'draft' | 'in_progress' | 'submitted' | 'under_review' | 'approved' | 'rejected' | 'completed'): void {
+    if (!this.currentSessionId) return;
+
+    const updateData = {
+      status: status,
+      lastActivityAt: new Date()
+    };
+
+    console.log('Updating session status to:', status);
+
+    this.userSessionService.update(this.currentSessionId, updateData).subscribe({
+      next: (response) => {
+        console.log('Session status updated successfully:', response);
+      },
+      error: (error) => {
+        console.error('Error updating session status:', error);
+      }
+    });
+  }
+
+  // Load TCO distribution with default values for initial display
+  private loadTcoDistributionWithDefaults(): void {
+    this.isLoadingTcoData = true;
+    
+    // Use default values for initial display
+    const defaultYearlyKm = 15000;
+    const defaultDuration = 60;
+    
+    // Map frontend fuel types to database values
+    const fuelTypes = this.selectedFuelTypes.map(type => {
+      switch(type) {
+        case 'diesel': return 'Diesel';
+        case 'electric': return 'Électrique';
+        case 'hybrid': return 'Hybride';
+        case 'petrol': return 'Essence';
+        default: return type;
+      }
+    }).filter((value, index, self) => self.indexOf(value) === index); // Remove duplicates
+    
+    this.vehiclesService.getTcoDistribution(defaultYearlyKm, defaultDuration, [], fuelTypes).subscribe({
+      next: (distribution: any[]) => {
+        this.tcoDistribution = distribution;
+        console.log('Loaded TCO distribution with defaults:', distribution);
+        this.isLoadingTcoData = false;
+        // Initialize TCO range when distribution changes
+        this.initializeTcoRange();
+        // Update available filters after loading TCO distribution
+        this.updateAvailableFilters();
+      },
+      error: (error) => {
+        console.error('Error loading TCO distribution with defaults:', error);
+        this.tcoDistribution = [];
+        this.isLoadingTcoData = false;
+      }
+    });
+  }
+
+  openLanguageDropdown(selectElement: HTMLSelectElement): void {
+    // Create and dispatch a mousedown event to open the dropdown
+    const event = new MouseEvent('mousedown', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    selectElement.dispatchEvent(event);
   }
 }

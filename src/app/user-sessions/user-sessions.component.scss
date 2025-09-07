@@ -31,24 +31,80 @@
   width: auto;
 }
 
+.language-selector-container {
+  display: flex !important;
+  align-items: center !important;
+  padding: 8px 16px !important;
+  border: 1px solid #D2D9D8 !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  transition: all 0.3s ease !important;
+}
+
+.language-selector-container:hover {
+  border-color: #999 !important;
+  background: #F5F5F5 !important;
+}
+
 .language-selector {
-  display: flex;
-  align-items: center;
+  display: flex !important;
+  align-items: center !important;
+  position: relative !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 8px !important;
 }
 
 .language-dropdown {
-  display: flex;
-  height: 48px;
-  padding: 12px 24px;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid #D2D9D8;
-  background: #FEFEFE;
-  border-radius: 4px;
-  font-family: inherit;
-  font-size: 14px;
-  cursor: pointer;
+  /* Force complete transparency */
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  -webkit-background-image: none !important;
+  -moz-background-image: none !important;
+  
+  /* Remove all borders and outlines */
+  border: none !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  
+  /* Remove all browser default styling */
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  
+  /* Typography */
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  color: #333 !important;
+  font-family: inherit !important;
+  
+  /* Layout */
+  padding: 0 !important;
+  margin: 0 !important;
+  min-width: 60px !important;
+  width: auto !important;
+  height: auto !important;
+  line-height: 1 !important;
+  
+  /* Cursor */
+  cursor: pointer !important;
+  
+  /* Remove any transforms or animations */
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+.dropdown-arrow {
+  flex-shrink: 0 !important;
+  pointer-events: none !important;
+  transition: transform 0.3s ease !important;
+}
+
+.language-selector-container:hover .dropdown-arrow {
+  transform: translateY(1px) !important;
 }
 
 // Main Content

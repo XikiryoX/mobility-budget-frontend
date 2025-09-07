@@ -1091,6 +1091,32 @@
     margin-bottom: 1.5rem;
   }
 
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .filter-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #FF6B35;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: #E55A2B;
+    }
+  }
+
   .form-group {
     margin-bottom: 1.5rem;
   }
@@ -1665,6 +1691,224 @@
     height: auto;
     margin-bottom: 1.5rem;
     opacity: 0.7;
+  }
+
+  // Car filter modal
+  .car-filter-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+  }
+
+  .car-filter-modal {
+    background: white;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 800px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+
+  .filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .filter-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #374151;
+    margin: 0;
+  }
+
+  .close-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 6px;
+    color: #6b7280;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: #f3f4f6;
+    }
+  }
+
+  .filter-search {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.2s ease;
+
+    &:focus {
+      outline: none;
+      border-color: #FF6B35;
+      box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+    }
+  }
+
+  .filter-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem 1.5rem;
+  }
+
+  .car-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .car-group {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .brand-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .brand-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #374151;
+    margin: 0;
+  }
+
+  .model-count {
+    font-size: 14px;
+    color: #6b7280;
+    background: #e5e7eb;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .models-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .model-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #f3f4f6;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: #f9fafb;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &.selected {
+      background: #fef3f2;
+      border-left: 3px solid #FF6B35;
+    }
+  }
+
+  .model-info {
+    flex: 1;
+  }
+
+  .model-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.25rem;
+  }
+
+  .model-description {
+    font-size: 13px;
+    color: #6b7280;
+  }
+
+  .model-tco {
+    font-size: 14px;
+    font-weight: 600;
+    color: #FF6B35;
+  }
+
+  .no-results {
+    text-align: center;
+    padding: 2rem;
+    color: #6b7280;
+  }
+
+  .filter-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .cancel-button {
+    padding: 0.75rem 1.5rem;
+    background: #f3f4f6;
+    color: #374151;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: #e5e7eb;
+    }
+  }
+
+  .apply-button {
+    padding: 0.75rem 1.5rem;
+    background: #FF6B35;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover:not(:disabled) {
+      background: #E55A2B;
+    }
+
+    &:disabled {
+      background: #d1d5db;
+      cursor: not-allowed;
+    }
   }
 
   .choose-car-button {

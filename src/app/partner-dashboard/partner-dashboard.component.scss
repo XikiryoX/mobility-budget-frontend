@@ -54,32 +54,7 @@
   gap: 1rem;
 }
 
-.language-selector {
-  display: flex;
-  align-items: center;
-}
 
-.language-selector select {
-  background: transparent;
-  border: none;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #333;
-  cursor: pointer;
-  outline: none;
-  padding: 0;
-  min-width: 60px;
-}
-
-.language-selector select:focus {
-  outline: none;
-}
-
-.language-selector select option {
-  background: white;
-  color: #333;
-  padding: 8px 12px;
-}
 
 .sign-out-button {
   display: flex;
@@ -384,11 +359,11 @@
     background: #10B981;
   }
 
-  &.pending {
+  &.in-progress {
     background: #F59E0B;
   }
 
-  &.draft {
+  &.pending {
     background: #6B7280;
   }
 }
@@ -474,14 +449,9 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
 
-  &.active {
+  &.completed {
     background: #D1FAE5;
     color: #065F46;
-  }
-
-  &.completed {
-    background: #DBEAFE;
-    color: #1E40AF;
   }
 
   &.pending {
@@ -692,4 +662,261 @@
     align-items: flex-end;
     gap: 0.5rem;
   }
+}
+
+/* Override any pseudo-elements */
+.language-selector select:before,
+.language-selector select:after,
+.language-selector select::before,
+.language-selector select::after {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Force maximum transparency with highest specificity */
+.language-selector.language-selector select,
+.language-selector select.language-selector,
+.language-selector select[class*="language"],
+.language-selector select[class*="selector"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  border-radius: 0 !important;
+  background-image: none !important;
+  -webkit-background-image: none !important;
+  -moz-background-image: none !important;
+}
+
+
+
+/* Language Selector - Complete Override with Maximum Specificity */
+.language-selector-container {
+  display: flex !important;
+  align-items: center !important;
+  padding: 8px 16px !important;
+  border: 1px solid #D2D9D8 !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  transition: all 0.3s ease !important;
+}
+
+.language-selector-container:hover {
+  border-color: #999 !important;
+  background: #F5F5F5 !important;
+}
+
+.partner-dashboard .header-bar .header-actions .language-selector {
+  display: flex !important;
+  align-items: center !important;
+  position: relative !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 8px !important;
+}
+
+.partner-dashboard .header-bar .header-actions .language-selector select {
+  /* Force complete transparency */
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  -webkit-background-image: none !important;
+  -moz-background-image: none !important;
+  
+  /* Remove all borders and outlines */
+  border: none !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  
+  /* Remove all browser default styling */
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  
+  /* Typography */
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  color: #333 !important;
+  font-family: inherit !important;
+  
+  /* Layout */
+  padding: 0 !important;
+  margin: 0 !important;
+  min-width: 60px !important;
+  width: auto !important;
+  height: auto !important;
+  line-height: 1 !important;
+  
+  /* Cursor */
+  cursor: pointer !important;
+  
+  /* Remove any transforms or animations */
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* Force transparency on all states */
+.partner-dashboard .header-bar .header-actions .language-selector select:focus,
+.partner-dashboard .header-bar .header-actions .language-selector select:hover,
+.partner-dashboard .header-bar .header-actions .language-selector select:active,
+.partner-dashboard .header-bar .header-actions .language-selector select:visited,
+.partner-dashboard .header-bar .header-actions .language-selector select:default {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+/* Override option styling */
+.partner-dashboard .header-bar .header-actions .language-selector select option {
+  background: white !important;
+  background-color: white !important;
+  color: #333 !important;
+  padding: 8px 12px !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+}
+
+/* Remove all browser-specific dropdown arrows and styling */
+.partner-dashboard .header-bar .header-actions .language-selector select::-ms-expand {
+  display: none !important;
+}
+
+.partner-dashboard .header-bar .header-actions .language-selector select::-webkit-outer-spin-button,
+.partner-dashboard .header-bar .header-actions .language-selector select::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
+
+.partner-dashboard .header-bar .header-actions .language-selector select::-webkit-search-decoration,
+.partner-dashboard .header-bar .header-actions .language-selector select::-webkit-search-cancel-button,
+.partner-dashboard .header-bar .header-actions .language-selector select::-webkit-search-results-button,
+.partner-dashboard .header-bar .header-actions .language-selector select::-webkit-search-results-decoration {
+  -webkit-appearance: none !important;
+}
+
+/* Remove any pseudo-elements that might be added by browsers */
+.partner-dashboard .header-bar .header-actions .language-selector select:before,
+.partner-dashboard .header-bar .header-actions .language-selector select:after,
+.partner-dashboard .header-bar .header-actions .language-selector select::before,
+.partner-dashboard .header-bar .header-actions .language-selector select::after {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Additional specificity for any potential conflicts */
+.partner-dashboard .header-bar .header-actions .language-selector select[class*="language"],
+.partner-dashboard .header-bar .header-actions .language-selector select[class*="select"],
+.partner-dashboard .header-bar .header-actions .language-selector select[class*="dropdown"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+/* ULTIMATE OVERRIDE - Target any element with language selector classes */
+.partner-dashboard .header-bar .header-actions .language-selector select,
+.partner-dashboard .header-bar .header-actions .language-selector select *,
+.partner-dashboard .header-bar .header-actions .language-selector select:any-link,
+.partner-dashboard .header-bar .header-actions .language-selector select:any-link *,
+.partner-dashboard .header-bar .header-actions .language-selector select:any-link:before,
+.partner-dashboard .header-bar .header-actions .language-selector select:any-link:after,
+.partner-dashboard .header-bar .header-actions .language-selector select:any-link::before,
+.partner-dashboard .header-bar .header-actions .language-selector select:any-link::after {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  -webkit-background-image: none !important;
+  -moz-background-image: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  text-decoration: none !important;
+  list-style: none !important;
+}
+
+/* Override Angular Material specific styles */
+.partner-dashboard .header-bar .header-actions .language-selector select.mat-select,
+.partner-dashboard .header-bar .header-actions .language-selector select.mat-form-field,
+.partner-dashboard .header-bar .header-actions .language-selector select.mat-input-element,
+.partner-dashboard .header-bar .header-actions .language-selector select.mat-select-trigger,
+.partner-dashboard .header-bar .header-actions .language-selector select.mat-select-value,
+.partner-dashboard .header-bar .header-actions .language-selector select.mat-select-arrow {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+/* Override any potential CSS framework styles */
+.partner-dashboard .header-bar .header-actions .language-selector select.btn,
+.partner-dashboard .header-bar .header-actions .language-selector select.button,
+.partner-dashboard .header-bar .header-actions .language-selector select.form-control,
+.partner-dashboard .header-bar .header-actions .language-selector select.input,
+.partner-dashboard .header-bar .header-actions .language-selector select.text-input {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+/* Force override for any inline styles */
+.partner-dashboard .header-bar .header-actions .language-selector select[style*="background"],
+.partner-dashboard .header-bar .header-actions .language-selector select[style*="border"],
+.partner-dashboard .header-bar .header-actions .language-selector select[style*="box-shadow"],
+.partner-dashboard .header-bar .header-actions .language-selector select[style*="border-radius"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
 }
