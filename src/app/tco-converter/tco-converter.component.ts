@@ -96,6 +96,9 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
   allReferenceCars: any[] = [];
   filteredCarGroups: any[] = [];
 
+  // Sorting
+  tcoSortDirection: 'asc' | 'desc' | null = null;
+
   // Partner for review
   partner: string = '';
   
@@ -1374,6 +1377,26 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
       this.closeCarFilter();
       // The selected car is already set, no need to reload the table
     }
+  }
+
+  // Sorting methods
+  sortByTco(): void {
+    if (this.tcoSortDirection === null || this.tcoSortDirection === 'desc') {
+      this.tcoSortDirection = 'asc';
+    } else {
+      this.tcoSortDirection = 'desc';
+    }
+    
+    this.referenceCars.sort((a, b) => {
+      const tcoA = a.monthlyTco || 0;
+      const tcoB = b.monthlyTco || 0;
+      
+      if (this.tcoSortDirection === 'asc') {
+        return tcoA - tcoB;
+      } else {
+        return tcoB - tcoA;
+      }
+    });
   }
 
   calculateTCOForVehicle(carId: string): void {
