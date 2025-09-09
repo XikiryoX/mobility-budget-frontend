@@ -719,6 +719,11 @@ export class TranslationService {
         fr: 'Filtrer',
         en: 'Filter'
       },
+      'clearFilter': {
+        nl: 'Filter wissen',
+        fr: 'Effacer le filtre',
+        en: 'Clear Filter'
+      },
       'searchCars': {
         nl: 'Zoek auto\'s...',
         fr: 'Rechercher des voitures...',

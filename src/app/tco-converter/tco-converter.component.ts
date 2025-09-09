@@ -96,6 +96,7 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
   allReferenceCars: any[] = [];
   filteredCarGroups: any[] = [];
   selectedCarsInFilter: string[] = [];
+  isCarFilterActive: boolean = false;
 
   // Sorting
   tcoSortDirection: 'asc' | 'desc' | null = null;
@@ -312,6 +313,8 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
     } else {
       this.selectedFuelTypes.push(fuelType);
     }
+    // Reset car filter when other filters change
+    this.isCarFilterActive = false;
     // Reload data when fuel types change
     this.loadTcoDistribution();
     this.currentPage = 1; // Reset to first page
@@ -1139,6 +1142,8 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
     } else {
       this.selectedBrands = this.selectedBrands.filter(b => b !== brand);
     }
+    // Reset car filter when other filters change
+    this.isCarFilterActive = false;
     this.loadTcoDistribution();
     this.currentPage = 1; // Reset to first page
     this.loadReferenceCars();
@@ -1227,6 +1232,7 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
       this.totalPages = 0;
       this.totalCars = 0;
       this.isLoadingReferenceCars = false;
+      this.isCarFilterActive = false; // Reset filter when no data
       return;
     }
 
@@ -1293,6 +1299,12 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
     this.carFilterSearch = '';
     this.filteredCarGroups = [];
     this.selectedCarsInFilter = [];
+  }
+
+  clearCarFilter(): void {
+    // Reset the reference cars to show all cars again
+    this.isCarFilterActive = false;
+    this.loadReferenceCars();
   }
 
   loadAllReferenceCars(): void {
@@ -1421,8 +1433,25 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
 
   applyCarFilter(): void {
     if (this.selectedCarsInFilter.length > 0) {
-      // For now, just select the first car (can be extended later for multiple selection)
+      // Filter the reference cars to only show the selected ones
+      this.referenceCars = this.allReferenceCars.filter((car: any) => 
+        this.selectedCarsInFilter.includes(car.id.toString())
+      );
+      
+      // Update pagination info for filtered results
+      this.totalCars = this.referenceCars.length;
+      this.totalPages = Math.ceil(this.totalCars / 10);
+      this.currentPage = 1; // Reset to first page
+      
+      // Select the first car from the filtered results
       this.selectedReferenceCar = this.selectedCarsInFilter[0];
+      
+      // Mark filter as active
+      this.isCarFilterActive = true;
+      
+      // Reload TCO distribution to show filtered data
+      this.loadTcoDistribution();
+      
       this.closeCarFilter();
     }
   }
@@ -1561,6 +1590,9 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
   onTopFieldsChange(): void {
     // Reset reference car configuration when top fields change
     this.resetReferenceCar();
+    
+    // Reset car filter when top-level parameters change
+    this.isCarFilterActive = false;
     
     // Update available filters and load reference cars with new parameters
     if (this.areTopFieldsFilled()) {
@@ -1799,6 +1831,9 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
   applyTcoRangeFilter(): void {
     // Filter reference cars based on TCO range
     console.log(`Applying TCO range filter: €${this.tcoRangeMin} - €${this.tcoRangeMax}`);
+    
+    // Reset car filter when TCO range changes
+    this.isCarFilterActive = false;
     
     // Use setTimeout to prevent immediate filtering that can cause slider jumping
     setTimeout(() => {

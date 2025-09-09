@@ -1098,6 +1098,12 @@
     margin-bottom: 1.5rem;
   }
 
+  .filter-buttons {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
   .filter-button {
     display: flex;
     align-items: center;
@@ -1114,6 +1120,25 @@
 
     &:hover {
       background: #E55A2B;
+    }
+  }
+
+  .clear-filter-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #6B7280;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: #4B5563;
     }
   }
 
