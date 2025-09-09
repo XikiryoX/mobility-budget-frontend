@@ -2043,13 +2043,13 @@
     border-color: #37403F;
   }
 
-  .save-button {
-    padding: 16px 32px;
+  .setup-preview .save-button {
+    padding: 20px 40px;
     background: white;
     color: #37403F;
     border: 1px solid #E5E5E5;
     border-radius: 4px;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -2059,14 +2059,14 @@
     margin-bottom: 1rem;
   }
 
-  .save-button:disabled {
+  .setup-preview .save-button:disabled {
     background: #F8F9FA;
     color: #6C757D;
     border-color: #E5E5E5;
     cursor: not-allowed;
   }
 
-  .save-button:hover:not(:disabled) {
+  .setup-preview .save-button:hover:not(:disabled) {
     background: #F8F9FA;
     border-color: #37403F;
   }
@@ -2281,7 +2281,7 @@
       overflow-y: visible;
     }
     
-    .save-button {
+    .setup-preview .save-button {
       position: static;
       margin-bottom: 1rem;
     }
