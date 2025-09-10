@@ -634,7 +634,7 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
             currentStep: 4,
             selectedCalculationMethod: 0, // Default to no selection
             selectedFuelTypes: ['diesel', 'electric', 'hybrid', 'petrol'],
-            selectedBrands: [lowSegmentCar.brand],
+            selectedBrands: [],
             carCategories: []
           };
           

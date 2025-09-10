@@ -10,7 +10,7 @@ import { I18nPipe } from '../pipes/i18n.pipe';
 @Component({
   selector: 'app-user-sessions',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, I18nPipe],
   templateUrl: './user-sessions.component.html',
   styleUrls: ['./user-sessions.component.scss']
 })
