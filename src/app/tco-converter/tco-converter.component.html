@@ -808,7 +808,7 @@
               <!-- Right side - Preview -->
               <div class="setup-preview">
                 <button class="save-button" [disabled]="!isFormValid()" (click)="saveCategory()">
-                  {{ editingCategory ? 'updateCarCategory' | i18n : 'saveCarCategory' | i18n }}
+                  {{ (editingCategory ? 'updateCarCategory' : 'saveCarCategory') | i18n }}
                 </button>
                 
                 <div class="preview-card">
@@ -829,7 +829,7 @@
                     </div>
                     <div class="preview-item">
                       <span class="preview-label">{{ 'employeeContribution' | i18n }}:</span>
-                      <span class="preview-value">{{ newCategory.employeeContribution.enabled ? 'yes' | i18n : 'no' | i18n }}</span>
+                      <span class="preview-value">{{ (newCategory.employeeContribution.enabled ? 'yes' : 'no') | i18n }}</span>
                     </div>
                     <div class="preview-item">
                       <span class="preview-label">{{ 'annualKilometer' | i18n }}</span>
