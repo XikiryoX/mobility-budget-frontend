@@ -804,6 +804,21 @@ export class TranslationService {
         fr: 'Adresse',
         en: 'Address'
       },
+      'newPolicy': {
+        nl: 'Nieuwe Policy',
+        fr: 'Nouvelle Politique',
+        en: 'New Policy'
+      },
+      'startNewPolicy': {
+        nl: 'Start een nieuwe policy voor deze klant',
+        fr: 'Démarrer une nouvelle politique pour ce client',
+        en: 'Start a new policy for this client'
+      },
+      'errorCreatingSession': {
+        nl: 'Fout bij het aanmaken van een nieuwe sessie. Probeer opnieuw.',
+        fr: 'Erreur lors de la création d\'une nouvelle session. Veuillez réessayer.',
+        en: 'Error creating new session. Please try again.'
+      },
       'searchCars': {
         nl: 'Zoek auto\'s...',
         fr: 'Rechercher des voitures...',

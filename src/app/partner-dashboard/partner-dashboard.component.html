@@ -119,6 +119,12 @@
                   <span class="status-dot in-progress" *ngIf="getInProgressSessions(company) > 0" [title]="getInProgressSessions(company) + ' ' + (getInProgressSessions(company) === 1 ? translate('inProgressPolicy') : translate('inProgressPolicies'))">{{ getInProgressSessions(company) }}</span>
                   <span class="status-dot pending" *ngIf="getPendingSessions(company) > 0" [title]="getPendingSessions(company) + ' ' + (getPendingSessions(company) === 1 ? translate('draftPolicy') : translate('draftPolicies'))">{{ getPendingSessions(company) }}</span>
                 </div>
+                <button class="new-policy-button" (click)="startNewPolicy(company, $event)" title="{{ translate('startNewPolicy') }}">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>{{ translate('newPolicy') }}</span>
+                </button>
                 <div class="expand-icon" [class.expanded]="company.expanded">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                     <path d="M6 9L10 13L14 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

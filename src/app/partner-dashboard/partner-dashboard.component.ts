@@ -266,6 +266,44 @@ export class PartnerDashboardComponent implements OnInit {
     }
   }
 
+  startNewPolicy(company: CompanySessions, event: Event): void {
+    event.stopPropagation(); // Prevent company expansion
+    
+    // Create a new session for this company
+    const newSessionData = {
+      signupId: company.signup.id,
+      companyName: company.signup.companyName,
+      fullName: company.signup.fullName,
+      email: company.signup.email,
+      socialSecretary: company.signup.socialSecretary,
+      companyNumber: company.signup.companyNumber,
+      phoneNumber: company.signup.phoneNumber,
+      phoneCountryCode: company.signup.phoneCountryCode
+    };
+
+    // Create new session
+    this.userSessionService.createSession(newSessionData).subscribe({
+      next: (newSession) => {
+        console.log('New session created:', newSession);
+        // Navigate to the TCO converter with the new session
+        this.router.navigate(['/tco-converter'], { 
+          queryParams: { 
+            sessionId: newSession.id,
+            partnerMode: 'true',
+            partnerId: this.partnerId,
+            partnerName: this.partnerName,
+            companyName: company.signup.companyName,
+            userName: company.signup.fullName
+          }
+        });
+      },
+      error: (error) => {
+        console.error('Error creating new session:', error);
+        alert(this.translate('errorCreatingSession'));
+      }
+    });
+  }
+
   isDeleting(session: any): boolean {
     return this.deletingSessionId === session.id;
   }
