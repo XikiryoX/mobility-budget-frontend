@@ -1037,7 +1037,16 @@
       <!-- Step 5: Review Confirmation -->
       <div class="content-full" *ngIf="currentStep === 5">
         <div class="content-text-white">
-          <h1 class="review-title">{{ translate('yourMobilityBudgetPolicy') }}</h1>
+          <div class="review-header" *ngIf="isPartnerMode">
+            <h1 class="review-title">{{ translate('yourMobilityBudgetPolicy') }}</h1>
+            <button class="new-client-button" (click)="openNewClientModal()">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>{{ translate('newClient') }}</span>
+            </button>
+          </div>
+          <h1 class="review-title" *ngIf="!isPartnerMode">{{ translate('yourMobilityBudgetPolicy') }}</h1>
           
           <div class="review-content">
             <!-- Document Status -->
@@ -1337,3 +1346,171 @@
   (close)="onAiAnalysisClose()"
   (addCategories)="onAddCategoriesFromAnalysis($event)">
 </app-ai-analysis-popup>
+
+<!-- New Client Modal -->
+<div class="new-client-overlay" *ngIf="showNewClientModal">
+  <div class="new-client-modal">
+    <div class="modal-header">
+      <h2 class="modal-title">{{ translate('newClient') }}</h2>
+      <button class="close-button" (click)="closeNewClientModal()">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="modal-content">
+      <form (ngSubmit)="submitNewClient()" #newClientForm="ngForm">
+        <!-- Full Name -->
+        <div class="form-group">
+          <label for="newClientFullName" class="form-label">{{ translate('fullName') }}</label>
+          <div class="input-container" [class.valid]="newClientData.fullName && !newClientData.fullNameError">
+            <input 
+              type="text" 
+              id="newClientFullName" 
+              name="fullName"
+              class="form-input"
+              [(ngModel)]="newClientData.fullName"
+              (blur)="validateNewClientFullName()"
+              required
+            >
+            <div class="validation-icon" *ngIf="newClientData.fullName && !newClientData.fullNameError">
+              <span class="checkmark">✓</span>
+            </div>
+          </div>
+          <div class="error-message" *ngIf="newClientData.fullNameError">{{ newClientData.fullNameError }}</div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="newClientEmail" class="form-label">{{ translate('email') }}</label>
+          <div class="input-container" [class.valid]="newClientData.email && !newClientData.emailError">
+            <input 
+              type="email" 
+              id="newClientEmail" 
+              name="email"
+              class="form-input"
+              [(ngModel)]="newClientData.email"
+              (blur)="validateNewClientEmail()"
+              required
+            >
+            <div class="validation-icon" *ngIf="newClientData.email && !newClientData.emailError">
+              <span class="checkmark">✓</span>
+            </div>
+          </div>
+          <div class="error-message" *ngIf="newClientData.emailError">{{ newClientData.emailError }}</div>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="form-group">
+          <label for="newClientPhone" class="form-label">{{ translate('phoneNumber') }}</label>
+          <div class="phone-input-container">
+            <select 
+              class="country-select"
+              [(ngModel)]="newClientData.selectedCountry"
+              name="countryCode"
+            >
+              <option value="+32">🇧🇪 +32</option>
+              <option value="+31">🇳🇱 +31</option>
+              <option value="+33">🇫🇷 +33</option>
+              <option value="+49">🇩🇪 +49</option>
+            </select>
+            <div class="input-container" [class.valid]="newClientData.phoneNumber && !newClientData.phoneNumberError">
+              <input 
+                type="tel" 
+                id="newClientPhone" 
+                name="phoneNumber"
+                class="form-input"
+                [(ngModel)]="newClientData.phoneNumber"
+                (blur)="validateNewClientPhoneNumber()"
+                placeholder="{{ translate('phoneNumberPlaceholder') }}"
+                required
+              >
+              <div class="validation-icon" *ngIf="newClientData.phoneNumber && !newClientData.phoneNumberError">
+                <span class="checkmark">✓</span>
+              </div>
+            </div>
+          </div>
+          <div class="error-message" *ngIf="newClientData.phoneNumberError">{{ newClientData.phoneNumberError }}</div>
+        </div>
+
+        <!-- Social Secretary (Disabled) -->
+        <div class="form-group">
+          <label for="newClientSocialSecretary" class="form-label">{{ translate('socialSecretary') }}</label>
+          <div class="input-container disabled">
+            <select 
+              id="newClientSocialSecretary" 
+              name="socialSecretary"
+              class="form-input disabled"
+              [(ngModel)]="newClientData.socialSecretary"
+              disabled
+            >
+              <option value="{{ partnerName }}">{{ partnerName }}</option>
+            </select>
+          </div>
+          <div class="help-text">{{ translate('socialSecretaryPreFilled') }}</div>
+        </div>
+
+        <!-- Company Number -->
+        <div class="form-group">
+          <label for="newClientCompanyNumber" class="form-label">{{ translate('companyNumber') }}</label>
+          <div class="input-container" [class.valid]="newClientData.companyNumber && !newClientData.companyNumberError">
+            <input 
+              type="text" 
+              id="newClientCompanyNumber" 
+              name="companyNumber"
+              class="form-input"
+              [(ngModel)]="newClientData.companyNumber"
+              (blur)="validateNewClientCompanyNumber()"
+              placeholder="BE0123456789"
+              required
+            >
+            <div class="validation-icon" *ngIf="newClientData.companyNumber && !newClientData.companyNumberError">
+              <span class="checkmark">✓</span>
+            </div>
+          </div>
+          <div class="error-message" *ngIf="newClientData.companyNumberError">{{ newClientData.companyNumberError }}</div>
+        </div>
+
+        <!-- Company Name -->
+        <div class="form-group" *ngIf="newClientData.showCompanyNameInput">
+          <label for="newClientCompanyName" class="form-label">{{ translate('companyName') }}</label>
+          <div class="input-container" [class.valid]="newClientData.companyName && !newClientData.companyNameError">
+            <input 
+              type="text" 
+              id="newClientCompanyName" 
+              name="companyName"
+              class="form-input"
+              [(ngModel)]="newClientData.companyName"
+              (blur)="validateNewClientCompanyName()"
+              required
+            >
+            <div class="validation-icon" *ngIf="newClientData.companyName && !newClientData.companyNameError">
+              <span class="checkmark">✓</span>
+            </div>
+          </div>
+          <div class="error-message" *ngIf="newClientData.companyNameError">{{ newClientData.companyNameError }}</div>
+        </div>
+
+        <!-- Company Info Display -->
+        <div class="company-info" *ngIf="newClientData.companyInfo">
+          <h4>{{ translate('companyInformation') }}</h4>
+          <p><strong>{{ translate('companyName') }}:</strong> {{ newClientData.companyInfo.name }}</p>
+          <p *ngIf="newClientData.companyInfo.address"><strong>{{ translate('address') }}:</strong> {{ newClientData.companyInfo.address }}</p>
+        </div>
+      </form>
+    </div>
+    
+    <div class="modal-actions">
+      <button class="cancel-button" (click)="closeNewClientModal()">{{ translate('cancel') }}</button>
+      <button 
+        class="submit-button" 
+        (click)="submitNewClient()" 
+        [disabled]="!isNewClientFormValid() || isSubmittingNewClient"
+      >
+        <span *ngIf="!isSubmittingNewClient">{{ translate('createClient') }}</span>
+        <span *ngIf="isSubmittingNewClient">{{ translate('creating') }}...</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -123,6 +123,27 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
   // Cache for storing edited content across languages
   private languageContentCache: { [key: string]: string } = {};
 
+  // New Client Modal
+  showNewClientModal: boolean = false;
+  isSubmittingNewClient: boolean = false;
+  newClientData = {
+    fullName: '',
+    email: '',
+    phoneNumber: '',
+    selectedCountry: '+32',
+    socialSecretary: '',
+    companyNumber: '',
+    companyName: '',
+    showCompanyNameInput: false,
+    companyInfo: null as any,
+    // Validation errors
+    fullNameError: '',
+    emailError: '',
+    phoneNumberError: '',
+    companyNumberError: '',
+    companyNameError: ''
+  };
+
 
   // Language
   selectedLanguage: Language = 'en';
@@ -2301,6 +2322,124 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
     localStorage.removeItem('partnerName');
     localStorage.removeItem('partnerCode');
     this.router.navigate(['/login']);
+  }
+
+  // New Client Modal methods
+  openNewClientModal(): void {
+    this.showNewClientModal = true;
+    this.resetNewClientData();
+    // Pre-fill social secretary with partner name
+    this.newClientData.socialSecretary = this.partnerName;
+  }
+
+  closeNewClientModal(): void {
+    this.showNewClientModal = false;
+    this.resetNewClientData();
+  }
+
+  resetNewClientData(): void {
+    this.newClientData = {
+      fullName: '',
+      email: '',
+      phoneNumber: '',
+      selectedCountry: '+32',
+      socialSecretary: this.partnerName,
+      companyNumber: '',
+      companyName: '',
+      showCompanyNameInput: false,
+      companyInfo: null,
+      fullNameError: '',
+      emailError: '',
+      phoneNumberError: '',
+      companyNumberError: '',
+      companyNameError: ''
+    };
+  }
+
+  // Validation methods for new client
+  validateNewClientFullName(): void {
+    if (!this.newClientData.fullName.trim()) {
+      this.newClientData.fullNameError = this.translate('fullNameRequired');
+    } else if (this.newClientData.fullName.trim().length < 2) {
+      this.newClientData.fullNameError = this.translate('fullNameMinLength');
+    } else {
+      this.newClientData.fullNameError = '';
+    }
+  }
+
+  validateNewClientEmail(): void {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!this.newClientData.email.trim()) {
+      this.newClientData.emailError = this.translate('emailRequired');
+    } else if (!emailRegex.test(this.newClientData.email)) {
+      this.newClientData.emailError = this.translate('emailInvalid');
+    } else {
+      this.newClientData.emailError = '';
+    }
+  }
+
+  validateNewClientPhoneNumber(): void {
+    const phoneRegex = /^[0-9+\-\s\(\)]{8,15}$/;
+    if (!this.newClientData.phoneNumber.trim()) {
+      this.newClientData.phoneNumberError = this.translate('phoneNumberRequired');
+    } else if (!phoneRegex.test(this.newClientData.phoneNumber)) {
+      this.newClientData.phoneNumberError = this.translate('phoneNumberInvalid');
+    } else {
+      this.newClientData.phoneNumberError = '';
+    }
+  }
+
+  validateNewClientCompanyNumber(): void {
+    const companyNumberRegex = /^(BE)?[0-9]{10}$/;
+    if (!this.newClientData.companyNumber.trim()) {
+      this.newClientData.companyNumberError = this.translate('companyNumberRequired');
+    } else if (!companyNumberRegex.test(this.newClientData.companyNumber)) {
+      this.newClientData.companyNumberError = this.translate('companyNumberInvalid');
+    } else {
+      this.newClientData.companyNumberError = '';
+      // Trigger company lookup
+      this.lookupCompanyInfo();
+    }
+  }
+
+  validateNewClientCompanyName(): void {
+    if (!this.newClientData.companyName.trim()) {
+      this.newClientData.companyNameError = this.translate('companyNameRequired');
+    } else {
+      this.newClientData.companyNameError = '';
+    }
+  }
+
+  lookupCompanyInfo(): void {
+    if (!this.newClientData.companyNumber || this.newClientData.companyNumberError) return;
+    
+    // This would integrate with VIES API similar to signup component
+    // For now, we'll just show the company name input
+    this.newClientData.showCompanyNameInput = true;
+  }
+
+  isNewClientFormValid(): boolean {
+    return !!(this.newClientData.fullName && !this.newClientData.fullNameError &&
+              this.newClientData.email && !this.newClientData.emailError &&
+              this.newClientData.phoneNumber && !this.newClientData.phoneNumberError &&
+              this.newClientData.companyNumber && !this.newClientData.companyNumberError &&
+              (!this.newClientData.showCompanyNameInput || (this.newClientData.companyName && !this.newClientData.companyNameError)));
+  }
+
+  submitNewClient(): void {
+    if (!this.isNewClientFormValid() || this.isSubmittingNewClient) return;
+
+    this.isSubmittingNewClient = true;
+    
+    // Here you would call the signup service to create a new client
+    // For now, we'll just simulate the process
+    setTimeout(() => {
+      console.log('Creating new client:', this.newClientData);
+      this.isSubmittingNewClient = false;
+      this.closeNewClientModal();
+      // Show success message
+      alert(this.translate('clientCreatedSuccessfully'));
+    }, 2000);
   }
 
   // File upload methods

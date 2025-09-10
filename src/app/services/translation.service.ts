@@ -724,6 +724,86 @@ export class TranslationService {
         fr: 'Effacer le filtre',
         en: 'Clear Filter'
       },
+      'newClient': {
+        nl: 'Nieuwe Klant',
+        fr: 'Nouveau Client',
+        en: 'New Client'
+      },
+      'createClient': {
+        nl: 'Klant Aanmaken',
+        fr: 'Créer Client',
+        en: 'Create Client'
+      },
+      'creating': {
+        nl: 'Aanmaken',
+        fr: 'Création',
+        en: 'Creating'
+      },
+      'clientCreatedSuccessfully': {
+        nl: 'Klant succesvol aangemaakt!',
+        fr: 'Client créé avec succès!',
+        en: 'Client created successfully!'
+      },
+      'socialSecretaryPreFilled': {
+        nl: 'Sociaal secretariaat is automatisch ingevuld',
+        fr: 'Le secrétariat social est pré-rempli automatiquement',
+        en: 'Social secretary is automatically pre-filled'
+      },
+      'fullNameRequired': {
+        nl: 'Volledige naam is verplicht',
+        fr: 'Le nom complet est obligatoire',
+        en: 'Full name is required'
+      },
+      'fullNameMinLength': {
+        nl: 'Volledige naam moet minimaal 2 karakters bevatten',
+        fr: 'Le nom complet doit contenir au moins 2 caractères',
+        en: 'Full name must be at least 2 characters'
+      },
+      'emailRequired': {
+        nl: 'E-mail is verplicht',
+        fr: 'L\'e-mail est obligatoire',
+        en: 'Email is required'
+      },
+      'emailInvalid': {
+        nl: 'Ongeldig e-mailadres',
+        fr: 'Adresse e-mail invalide',
+        en: 'Invalid email address'
+      },
+      'phoneNumberRequired': {
+        nl: 'Telefoonnummer is verplicht',
+        fr: 'Le numéro de téléphone est obligatoire',
+        en: 'Phone number is required'
+      },
+      'phoneNumberInvalid': {
+        nl: 'Ongeldig telefoonnummer',
+        fr: 'Numéro de téléphone invalide',
+        en: 'Invalid phone number'
+      },
+      'companyNumberRequired': {
+        nl: 'Ondernemingsnummer is verplicht',
+        fr: 'Le numéro d\'entreprise est obligatoire',
+        en: 'Company number is required'
+      },
+      'companyNumberInvalid': {
+        nl: 'Ongeldig ondernemingsnummer (formaat: BE0123456789)',
+        fr: 'Numéro d\'entreprise invalide (format: BE0123456789)',
+        en: 'Invalid company number (format: BE0123456789)'
+      },
+      'companyNameRequired': {
+        nl: 'Bedrijfsnaam is verplicht',
+        fr: 'Le nom de l\'entreprise est obligatoire',
+        en: 'Company name is required'
+      },
+      'companyInformation': {
+        nl: 'Bedrijfsinformatie',
+        fr: 'Informations sur l\'entreprise',
+        en: 'Company Information'
+      },
+      'address': {
+        nl: 'Adres',
+        fr: 'Adresse',
+        en: 'Address'
+      },
       'searchCars': {
         nl: 'Zoek auto\'s...',
         fr: 'Rechercher des voitures...',

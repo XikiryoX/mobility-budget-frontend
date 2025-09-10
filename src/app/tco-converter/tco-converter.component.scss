@@ -3518,6 +3518,250 @@
   }
 }
 
+// New Client Button and Modal
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.new-client-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: #F59100;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #E07A00;
+    transform: translateY(-1px);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+// New Client Modal
+.new-client-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1rem;
+}
+
+.new-client-modal {
+  background: white;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #E5E7EB;
+  background: #F8F9FA;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #37403F;
+  margin: 0;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  color: #6B7280;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #E5E7EB;
+    color: #37403F;
+  }
+}
+
+.modal-content {
+  padding: 2rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid #E5E7EB;
+  background: #F8F9FA;
+}
+
+.cancel-button {
+  padding: 12px 24px;
+  background: #F3F4F6;
+  color: #37403F;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #E5E7EB;
+    border-color: #9CA3AF;
+  }
+}
+
+.submit-button {
+  padding: 12px 24px;
+  background: #F59100;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover:not(:disabled) {
+    background: #E07A00;
+  }
+
+  &:disabled {
+    background: #D1D5DB;
+    cursor: not-allowed;
+  }
+}
+
+// Form styling for modal
+.modal-content .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.modal-content .form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #37403F;
+}
+
+.modal-content .form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: #F59100;
+    box-shadow: 0 0 0 3px rgba(245, 145, 0, 0.1);
+  }
+
+  &.disabled {
+    background: #F3F4F6;
+    color: #6B7280;
+    cursor: not-allowed;
+  }
+}
+
+.modal-content .input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &.valid .form-input {
+    border-color: #10B981;
+  }
+
+  &.disabled {
+    opacity: 0.6;
+  }
+}
+
+.modal-content .validation-icon {
+  position: absolute;
+  right: 12px;
+  color: #10B981;
+  font-weight: bold;
+}
+
+.modal-content .error-message {
+  color: #DC2626;
+  font-size: 14px;
+  margin-top: 0.25rem;
+}
+
+.modal-content .help-text {
+  color: #6B7280;
+  font-size: 14px;
+  margin-top: 0.25rem;
+}
+
+.modal-content .phone-input-container {
+  display: flex;
+  gap: 8px;
+}
+
+.modal-content .country-select {
+  padding: 12px 16px;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  font-size: 16px;
+  background: white;
+  cursor: pointer;
+  min-width: 120px;
+}
+
+.modal-content .company-info {
+  background: #F8F9FA;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+
+  h4 {
+    margin: 0 0 0.5rem 0;
+    color: #37403F;
+    font-size: 16px;
+  }
+
+  p {
+    margin: 0.25rem 0;
+    color: #6B7280;
+    font-size: 14px;
+  }
+}
+
 // Empty categories state styling
 .empty-categories-state {
   display: flex;
