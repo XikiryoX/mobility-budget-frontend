@@ -1209,6 +1209,11 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
     return item ? item.count : 0;
   }
 
+  isBarGreyedOut(range: number): boolean {
+    // Grey out bars that are outside the slider range
+    return range < this.tcoRangeMin || range > this.tcoRangeMax;
+  }
+
   updateAvailableFilters(): void {
     // Only update if top fields are filled
     if (!this.areTopFieldsFilled()) {

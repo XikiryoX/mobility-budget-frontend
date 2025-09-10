@@ -513,6 +513,7 @@
                           <div 
                             *ngFor="let item of getAllTcoRanges()" 
                             class="chart-bar"
+                            [class.greyed-out]="isBarGreyedOut(item)"
                             [style.height]="getBarHeight(getCountForRange(item))"
                             [title]="'€' + item + '-' + (item + 9) + ': ' + getCountForRange(item) + ' vehicles'"
                           >
@@ -531,8 +532,7 @@
                             <div class="axis-value">€{{ getMaxTco() }}</div>
                           </div>
                         </div>
-                        <!-- Slider sectie verborgen omdat deze niet werkt -->
-                        <!--
+                        <!-- TCO Range Slider -->
                         <div class="chart-sliders">
                           <div class="slider-container">
                             <div class="slider-track">
@@ -554,7 +554,6 @@
                             </div>
                           </div>
                         </div>
-                        -->
                       </div>
                       <div class="chart-placeholder" *ngIf="tcoDistribution.length === 0 && !isLoadingTcoData">
                         <p *ngIf="areTopFieldsFilled()">{{ translate('loadingTcoDistribution') }}</p>
