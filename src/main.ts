@@ -10,7 +10,6 @@ import localeEn from '@angular/common/locales/en';
 registerLocaleData(localeNl, 'nl');
 registerLocaleData(localeFr, 'fr');
 registerLocaleData(localeEn, 'en');
-registerLocaleData(localeEn, 'en');
 
 bootstrapApplication(AppComponent, appConfig)
   .catch((err) => console.error(err));
