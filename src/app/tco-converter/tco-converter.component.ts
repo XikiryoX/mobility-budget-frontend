@@ -633,7 +633,7 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
             currentStep: 4,
             selectedCalculationMethod: 0, // Default to no selection
             selectedFuelTypes: ['diesel', 'electric', 'hybrid', 'petrol'],
-            selectedBrands: [],
+            selectedBrands: [lowSegmentCar.brand],
             carCategories: []
           };
           
@@ -796,23 +796,34 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
         // Sort cars by price to determine segments
         const sortedCars = availableCars.sort((a: any, b: any) => (a.price || 0) - (b.price || 0));
         
-        // Select cars from different segments
-        const lowSegmentCar = sortedCars[0]; // Cheapest
-        const midSegmentCar = sortedCars[Math.floor(sortedCars.length / 2)]; // Middle
-        const highSegmentCar = sortedCars[sortedCars.length - 1]; // Most expensive
+        // Ensure we have at least 3 cars and select from different segments
+        if (sortedCars.length < 3) {
+          console.error('Not enough cars available for inspire me (need at least 3)');
+          return;
+        }
+        
+        // Select cars from different segments - ensure good distribution
+        const lowSegmentCar = sortedCars[0]; // Cheapest (low segment)
+        const midSegmentCar = sortedCars[Math.floor(sortedCars.length * 0.5)]; // Middle segment (50th percentile)
+        const highSegmentCar = sortedCars[Math.floor(sortedCars.length * 0.8)]; // High segment (80th percentile)
+        
+        console.log('Selected cars for segments:');
+        console.log('Low segment:', lowSegmentCar.brand, lowSegmentCar.model, 'Price:', lowSegmentCar.price);
+        console.log('Mid segment:', midSegmentCar.brand, midSegmentCar.model, 'Price:', midSegmentCar.price);
+        console.log('High segment:', highSegmentCar.brand, highSegmentCar.model, 'Price:', highSegmentCar.price);
 
-        // Create three categories
+        // Create three categories with descriptive names
         const categories = [
           {
-            name: 'Category 1',
+            name: 'Budget Segment',
             annualKilometers: yearlyKm,
             leasingDuration: duration,
             employeeContribution: { enabled: false, amount: 0 },
             cleaningCost: { enabled: false, amount: 0 },
             parkingCost: { enabled: false, amount: 0 },
             fuelCard: { enabled: false, amount: 0 },
-            selectedFuelTypes: ['petrol'],
-            selectedBrands: [],
+            selectedFuelTypes: [lowSegmentCar.fuel_type?.toLowerCase() || 'petrol'],
+            selectedBrands: [lowSegmentCar.brand],
             referenceCar: {
               id: lowSegmentCar.id,
               brand: lowSegmentCar.brand,
@@ -824,15 +835,15 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
             status: 'pending' // Red dot - needs TCO calculation
           },
           {
-            name: 'Category 2',
+            name: 'Mid-Range Segment',
             annualKilometers: yearlyKm,
             leasingDuration: duration,
             employeeContribution: { enabled: false, amount: 0 },
             cleaningCost: { enabled: false, amount: 0 },
             parkingCost: { enabled: false, amount: 0 },
             fuelCard: { enabled: false, amount: 0 },
-            selectedFuelTypes: ['petrol'],
-            selectedBrands: [],
+            selectedFuelTypes: [midSegmentCar.fuel_type?.toLowerCase() || 'petrol'],
+            selectedBrands: [midSegmentCar.brand],
             referenceCar: {
               id: midSegmentCar.id,
               brand: midSegmentCar.brand,
@@ -844,15 +855,15 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
             status: 'pending' // Red dot - needs TCO calculation
           },
           {
-            name: 'Category 3',
+            name: 'Premium Segment',
             annualKilometers: yearlyKm,
             leasingDuration: duration,
             employeeContribution: { enabled: false, amount: 0 },
             cleaningCost: { enabled: false, amount: 0 },
             parkingCost: { enabled: false, amount: 0 },
             fuelCard: { enabled: false, amount: 0 },
-            selectedFuelTypes: ['petrol'],
-            selectedBrands: [],
+            selectedFuelTypes: [highSegmentCar.fuel_type?.toLowerCase() || 'petrol'],
+            selectedBrands: [highSegmentCar.brand],
             referenceCar: {
               id: highSegmentCar.id,
               brand: highSegmentCar.brand,
