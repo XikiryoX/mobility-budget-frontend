@@ -1,0 +1,1054 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="signInToContinue" datatype="html">
+        <source>signInToContinue</source>
+        <target>Connectez-vous pour continuer vers</target>
+      </trans-unit>
+      <trans-unit id="emailAddress" datatype="html">
+        <source>emailAddress</source>
+        <target>Adresse e-mail</target>
+      </trans-unit>
+      <trans-unit id="addYourEmailAddress" datatype="html">
+        <source>addYourEmailAddress</source>
+        <target>Ajoutez votre adresse e-mail</target>
+      </trans-unit>
+      <trans-unit id="signIn" datatype="html">
+        <source>signIn</source>
+        <target>Se connecter</target>
+      </trans-unit>
+      <trans-unit id="signUp" datatype="html">
+        <source>signUp</source>
+        <target>S\</target>
+      </trans-unit>
+      <trans-unit id="wantToJoinPartner" datatype="html">
+        <source>wantToJoinPartner</source>
+        <target>Voulez-vous rejoindre notre plateforme en tant que partenaire ?</target>
+      </trans-unit>
+      <trans-unit id="becomePartner" datatype="html">
+        <source>becomePartner</source>
+        <target>Devenir partenaire</target>
+      </trans-unit>
+      <trans-unit id="viewPreviousSessions" datatype="html">
+        <source>viewPreviousSessions</source>
+        <target>Voir les sessions précédentes</target>
+      </trans-unit>
+      <trans-unit id="partnerLogin" datatype="html">
+        <source>partnerLogin</source>
+        <target>Connexion partenaire</target>
+      </trans-unit>
+      <trans-unit id="emailRequired" datatype="html">
+        <source>emailRequired</source>
+        <target>L\</target>
+      </trans-unit>
+      <trans-unit id="invalidEmail" datatype="html">
+        <source>invalidEmail</source>
+        <target>Veuillez saisir une adresse e-mail valide</target>
+      </trans-unit>
+      <trans-unit id="sending" datatype="html">
+        <source>sending</source>
+        <target>Envoi...</target>
+      </trans-unit>
+      <trans-unit id="imageText" datatype="html">
+        <source>imageText</source>
+        <target>La solution &lt;b&gt;100% belge&lt;/b&gt; pour les employeurs et les salariés.</target>
+      </trans-unit>
+      <trans-unit id="back" datatype="html">
+        <source>back</source>
+        <target>Retour</target>
+      </trans-unit>
+      <trans-unit id="signUpToContinue" datatype="html">
+        <source>signUpToContinue</source>
+        <target>Inscrivez-vous pour continuer vers</target>
+      </trans-unit>
+      <trans-unit id="fullName" datatype="html">
+        <source>fullName</source>
+        <target>Nom complet</target>
+      </trans-unit>
+      <trans-unit id="addYourFullName" datatype="html">
+        <source>addYourFullName</source>
+        <target>Ajoutez votre nom complet</target>
+      </trans-unit>
+      <trans-unit id="phoneNumber" datatype="html">
+        <source>phoneNumber</source>
+        <target>Numéro de téléphone</target>
+      </trans-unit>
+      <trans-unit id="addYourPhoneNumber" datatype="html">
+        <source>addYourPhoneNumber</source>
+        <target>Ajoutez votre numéro de téléphone</target>
+      </trans-unit>
+      <trans-unit id="socialSecretary" datatype="html">
+        <source>socialSecretary</source>
+        <target>Secrétariat social</target>
+      </trans-unit>
+      <trans-unit id="chooseYourSocialSecretary" datatype="html">
+        <source>chooseYourSocialSecretary</source>
+        <target>Choisissez votre secrétariat social</target>
+      </trans-unit>
+      <trans-unit id="companyNumber" datatype="html">
+        <source>companyNumber</source>
+        <target>Numéro d\</target>
+      </trans-unit>
+      <trans-unit id="addYourCompanyNumber" datatype="html">
+        <source>addYourCompanyNumber</source>
+        <target>Ajoutez votre numéro d\</target>
+      </trans-unit>
+      <trans-unit id="invalidCompanyNumber" datatype="html">
+        <source>invalidCompanyNumber</source>
+        <target>Veuillez saisir un numéro d\</target>
+      </trans-unit>
+      <trans-unit id="companyName" datatype="html">
+        <source>companyName</source>
+        <target>Nom de l\</target>
+      </trans-unit>
+      <trans-unit id="addYourCompanyName" datatype="html">
+        <source>addYourCompanyName</source>
+        <target>Ajoutez le nom de votre entreprise</target>
+      </trans-unit>
+      <trans-unit id="companyNameRequired" datatype="html">
+        <source>companyNameRequired</source>
+        <target>Le nom de l\</target>
+      </trans-unit>
+      <trans-unit id="companyNameTooShort" datatype="html">
+        <source>companyNameTooShort</source>
+        <target>Le nom de l\</target>
+      </trans-unit>
+      <trans-unit id="invalidPhoneNumber" datatype="html">
+        <source>invalidPhoneNumber</source>
+        <target>Veuillez saisir un numéro de téléphone valide</target>
+      </trans-unit>
+      <trans-unit id="fullNameRequired" datatype="html">
+        <source>fullNameRequired</source>
+        <target>Le nom complet est obligatoire</target>
+      </trans-unit>
+      <trans-unit id="companyLookupError" datatype="html">
+        <source>companyLookupError</source>
+        <target>Erreur lors de la recherche d\</target>
+      </trans-unit>
+      <trans-unit id="companyFound" datatype="html">
+        <source>companyFound</source>
+        <target>Entreprise trouvée</target>
+      </trans-unit>
+      <trans-unit id="lookingUpCompany" datatype="html">
+        <source>lookingUpCompany</source>
+        <target>Recherche d\</target>
+      </trans-unit>
+      <trans-unit id="testModeInfo" datatype="html">
+        <source>testModeInfo</source>
+        <target>Mode test - Validation d\</target>
+      </trans-unit>
+      <trans-unit id="testModeDescription" datatype="html">
+        <source>testModeDescription</source>
+        <target>Utilisez l\</target>
+      </trans-unit>
+      <trans-unit id="corsError" datatype="html">
+        <source>corsError</source>
+        <target>Erreur CORS - Utilisez un proxy backend pour la production</target>
+      </trans-unit>
+      <trans-unit id="productionTestVat" datatype="html">
+        <source>productionTestVat</source>
+        <target>Ce numéro de TVA est réservé pour les tests de production avec la vraie API EU VIES</target>
+      </trans-unit>
+      <trans-unit id="mySessions" datatype="html">
+        <source>mySessions</source>
+        <target>Mes politiques</target>
+      </trans-unit>
+      <trans-unit id="manageYourSessions" datatype="html">
+        <source>manageYourSessions</source>
+        <target>Gérez vos politiques et continuez où vous vous êtes arrêté</target>
+      </trans-unit>
+      <trans-unit id="loadingSessions" datatype="html">
+        <source>loadingSessions</source>
+        <target>Chargement des politiques...</target>
+      </trans-unit>
+      <trans-unit id="retry" datatype="html">
+        <source>retry</source>
+        <target>Réessayer</target>
+      </trans-unit>
+      <trans-unit id="createNewSession" datatype="html">
+        <source>createNewSession</source>
+        <target>Créer une nouvelle politique</target>
+      </trans-unit>
+      <trans-unit id="session" datatype="html">
+        <source>session</source>
+        <target>Politique</target>
+      </trans-unit>
+      <trans-unit id="currentStep" datatype="html">
+        <source>currentStep</source>
+        <target>Étape actuelle</target>
+      </trans-unit>
+      <trans-unit id="lastActivity" datatype="html">
+        <source>lastActivity</source>
+        <target>Dernière activité</target>
+      </trans-unit>
+      <trans-unit id="submitted" datatype="html">
+        <source>submitted</source>
+        <target>Soumis</target>
+      </trans-unit>
+      <trans-unit id="continue" datatype="html">
+        <source>continue</source>
+        <target>Continuer</target>
+      </trans-unit>
+      <trans-unit id="noSessionsYet" datatype="html">
+        <source>noSessionsYet</source>
+        <target>Aucune politique encore</target>
+      </trans-unit>
+      <trans-unit id="createYourFirstSession" datatype="html">
+        <source>createYourFirstSession</source>
+        <target>Créez votre première politique pour commencer</target>
+      </trans-unit>
+      <trans-unit id="createFirstSession" datatype="html">
+        <source>createFirstSession</source>
+        <target>Créer la première politique</target>
+      </trans-unit>
+      <trans-unit id="backToLogin" datatype="html">
+        <source>backToLogin</source>
+        <target>Retour à la connexion</target>
+      </trans-unit>
+      <trans-unit id="partnerDashboard" datatype="html">
+        <source>partnerDashboard</source>
+        <target>Tableau de bord partenaire</target>
+      </trans-unit>
+      <trans-unit id="partnerImageText" datatype="html">
+        <source>partnerImageText</source>
+        <target>La solution &lt;b&gt;100% belge&lt;/b&gt; pour les secrétariats sociaux.</target>
+      </trans-unit>
+      <trans-unit id="userLogin" datatype="html">
+        <source>userLogin</source>
+        <target>Connexion utilisateur</target>
+      </trans-unit>
+      <trans-unit id="partnerInfo" datatype="html">
+        <source>partnerInfo</source>
+        <target>Pour les secrétariats sociaux et partenaires</target>
+      </trans-unit>
+      <trans-unit id="partnerNotFound" datatype="html">
+        <source>partnerNotFound</source>
+        <target>Partenaire non trouvé</target>
+      </trans-unit>
+      <trans-unit id="manageCompanyDossiers" datatype="html">
+        <source>manageCompanyDossiers</source>
+        <target>Gérez les dossiers de toutes les entreprises</target>
+      </trans-unit>
+      <trans-unit id="loadingCompanies" datatype="html">
+        <source>loadingCompanies</source>
+        <target>Chargement des entreprises...</target>
+      </trans-unit>
+      <trans-unit id="companies" datatype="html">
+        <source>companies</source>
+        <target>Entreprises</target>
+      </trans-unit>
+      <trans-unit id="totalCompanies" datatype="html">
+        <source>totalCompanies</source>
+        <target>Total entreprises</target>
+      </trans-unit>
+      <trans-unit id="totalSessions" datatype="html">
+        <source>totalSessions</source>
+        <target>Total politiques</target>
+      </trans-unit>
+      <trans-unit id="pendingSessions" datatype="html">
+        <source>pendingSessions</source>
+        <target>Politiques en attente</target>
+      </trans-unit>
+      <trans-unit id="completedSessions" datatype="html">
+        <source>completedSessions</source>
+        <target>Politiques terminées</target>
+      </trans-unit>
+      <trans-unit id="registered" datatype="html">
+        <source>registered</source>
+        <target>Enregistré</target>
+      </trans-unit>
+      <trans-unit id="noSessionsForCompany" datatype="html">
+        <source>noSessionsForCompany</source>
+        <target>Aucune politique pour cette entreprise</target>
+      </trans-unit>
+      <trans-unit id="noCompaniesYet" datatype="html">
+        <source>noCompaniesYet</source>
+        <target>Aucune entreprise encore</target>
+      </trans-unit>
+      <trans-unit id="noCompaniesDescription" datatype="html">
+        <source>noCompaniesDescription</source>
+        <target>Aucune entreprise n\</target>
+      </trans-unit>
+      <trans-unit id="logout" datatype="html">
+        <source>logout</source>
+        <target>Se déconnecter</target>
+      </trans-unit>
+      <trans-unit id="signOut" datatype="html">
+        <source>signOut</source>
+        <target>Se déconnecter</target>
+      </trans-unit>
+      <trans-unit id="backToTcoConverter" datatype="html">
+        <source>backToTcoConverter</source>
+        <target>Retour au convertisseur TCO</target>
+      </trans-unit>
+      <trans-unit id="generalInformation" datatype="html">
+        <source>generalInformation</source>
+        <target>Informations générales</target>
+      </trans-unit>
+      <trans-unit id="uploadCarPolicy" datatype="html">
+        <source>uploadCarPolicy</source>
+        <target>Télécharger la politique automobile</target>
+      </trans-unit>
+      <trans-unit id="calculationMethod" datatype="html">
+        <source>calculationMethod</source>
+        <target>Méthode de calcul</target>
+      </trans-unit>
+      <trans-unit id="carCategories" datatype="html">
+        <source>carCategories</source>
+        <target>Catégories de voitures</target>
+      </trans-unit>
+      <trans-unit id="mobilityBudgetPolicy" datatype="html">
+        <source>mobilityBudgetPolicy</source>
+        <target>Politique de budget mobilité</target>
+      </trans-unit>
+      <trans-unit id="next" datatype="html">
+        <source>next</source>
+        <target>Suivant</target>
+      </trans-unit>
+      <trans-unit id="previous" datatype="html">
+        <source>previous</source>
+        <target>Précédent</target>
+      </trans-unit>
+      <trans-unit id="addYourExistingCarPolicy" datatype="html">
+        <source>addYourExistingCarPolicy</source>
+        <target>Ajoutez votre politique automobile existante</target>
+      </trans-unit>
+      <trans-unit id="dragAndDropFiles" datatype="html">
+        <source>dragAndDropFiles</source>
+        <target>Glissez-déposez des fichiers ici ou cliquez pour parcourir</target>
+      </trans-unit>
+      <trans-unit id="or" datatype="html">
+        <source>or</source>
+        <target>ou</target>
+      </trans-unit>
+      <trans-unit id="browseFiles" datatype="html">
+        <source>browseFiles</source>
+        <target>Parcourir les fichiers</target>
+      </trans-unit>
+      <trans-unit id="noCarPolicy" datatype="html">
+        <source>noCarPolicy</source>
+        <target>Pas de politique automobile ?</target>
+      </trans-unit>
+      <trans-unit id="noCarPolicyDescription" datatype="html">
+        <source>noCarPolicyDescription</source>
+        <target>Vous n\</target>
+      </trans-unit>
+      <trans-unit id="chooseCalculationMethod" datatype="html">
+        <source>chooseCalculationMethod</source>
+        <target>Choisissez votre méthode de calcul des coûts énergétiques</target>
+      </trans-unit>
+      <trans-unit id="calculationMethodDescription1" datatype="html">
+        <source>calculationMethodDescription1</source>
+        <target>Sélectionnez comment vous souhaitez estimer les coûts énergétiques (carburant/électricité) dans le budget mobilité.</target>
+      </trans-unit>
+      <trans-unit id="calculationMethodDescription2" datatype="html">
+        <source>calculationMethodDescription2</source>
+        <target>Toutes les méthodes utilisent le même Total Cost of Ownership (TCO) par catégorie d\</target>
+      </trans-unit>
+      <trans-unit id="legalFormulaTitle" datatype="html">
+        <source>legalFormulaTitle</source>
+        <target>Formule légale basée sur la distance domicile-travail</target>
+      </trans-unit>
+      <trans-unit id="energyCost" datatype="html">
+        <source>energyCost</source>
+        <target>Coûts énergétiques :</target>
+      </trans-unit>
+      <trans-unit id="energyCostLegal" datatype="html">
+        <source>energyCostLegal</source>
+        <target>Calculé individuellement en utilisant la formule légale, basée sur la distance de navette domicile-travail.</target>
+      </trans-unit>
+      <trans-unit id="professionalTravel" datatype="html">
+        <source>professionalTravel</source>
+        <target>Voyages professionnels :</target>
+      </trans-unit>
+      <trans-unit id="professionalTravelNotIncluded" datatype="html">
+        <source>professionalTravelNotIncluded</source>
+        <target>❌ Non inclus dans le budget. Doit être remboursé séparément (par exemple, via des rapports de dépenses).</target>
+      </trans-unit>
+      <trans-unit id="mobilityBudget" datatype="html">
+        <source>mobilityBudget</source>
+        <target>Budget mobilité :</target>
+      </trans-unit>
+      <trans-unit id="mobilityBudgetLegal" datatype="html">
+        <source>mobilityBudgetLegal</source>
+        <target>Varie selon l\</target>
+      </trans-unit>
+      <trans-unit id="recommendationLegal" datatype="html">
+        <source>recommendationLegal</source>
+        <target>Recommandé pour les employeurs qui souhaitent une approche strictement basée sur la réglementation et personnalisée pour l\</target>
+      </trans-unit>
+      <trans-unit id="fixedAmountTitle" datatype="html">
+        <source>fixedAmountTitle</source>
+        <target>Montant énergétique fixe par catégorie</target>
+      </trans-unit>
+      <trans-unit id="energyCostFixed" datatype="html">
+        <source>energyCostFixed</source>
+        <target>Montant fixe défini par catégorie d\</target>
+      </trans-unit>
+      <trans-unit id="professionalTravelIncluded" datatype="html">
+        <source>professionalTravelIncluded</source>
+        <target>✅ Inclus dans le forfait (pour les trajets en voiture)&lt;br&gt;❌ Train, vol et autres modes de transport doivent être remboursés séparément.</target>
+      </trans-unit>
+      <trans-unit id="mobilityBudgetFixed" datatype="html">
+        <source>mobilityBudgetFixed</source>
+        <target>Uniforme pour tous les employés de la même catégorie.</target>
+      </trans-unit>
+      <trans-unit id="recommendationFixed" datatype="html">
+        <source>recommendationFixed</source>
+        <target>Recommandé pour les entreprises recherchant la simplicité et la prévisibilité budgétaire entre les catégories d\</target>
+      </trans-unit>
+      <trans-unit id="leaseContractTitle" datatype="html">
+        <source>leaseContractTitle</source>
+        <target>Estimation basée sur les kilomètres du contrat de location</target>
+      </trans-unit>
+      <trans-unit id="energyCostLease" datatype="html">
+        <source>energyCostLease</source>
+        <target>Basé sur les kilomètres annuels autorisés dans le contrat de location de la voiture, en utilisant la consommation de carburant ou d\</target>
+      </trans-unit>
+      <trans-unit id="professionalTravelLease" datatype="html">
+        <source>professionalTravelLease</source>
+        <target>✅ Inclus dans le budget (pour les trajets en voiture)&lt;br&gt;❌ Les autres modes de transport (train, vol, etc.) doivent être remboursés séparément.</target>
+      </trans-unit>
+      <trans-unit id="mobilityBudgetLease" datatype="html">
+        <source>mobilityBudgetLease</source>
+        <target>Cohérent au sein des catégories, aligné sur l\</target>
+      </trans-unit>
+      <trans-unit id="recommendationLease" datatype="html">
+        <source>recommendationLease</source>
+        <target>Recommandé pour les entreprises qui souhaitent une approche réaliste et basée sur les données reflétant à la fois l\</target>
+      </trans-unit>
+      <trans-unit id="newCarCategorySetup" datatype="html">
+        <source>newCarCategorySetup</source>
+        <target>Configuration de nouvelle catégorie de voiture</target>
+      </trans-unit>
+      <trans-unit id="carCategoryParameters" datatype="html">
+        <source>carCategoryParameters</source>
+        <target>Paramètres de catégorie de voiture</target>
+      </trans-unit>
+      <trans-unit id="categoryName" datatype="html">
+        <source>categoryName</source>
+        <target>Nom de catégorie</target>
+      </trans-unit>
+      <trans-unit id="addYourCategoryName" datatype="html">
+        <source>addYourCategoryName</source>
+        <target>Ajoutez votre nom de catégorie</target>
+      </trans-unit>
+      <trans-unit id="annualKilometersAllowed" datatype="html">
+        <source>annualKilometersAllowed</source>
+        <target>Kilomètres annuels autorisés</target>
+      </trans-unit>
+      <trans-unit id="kilometers" datatype="html">
+        <source>kilometers</source>
+        <target>-- Kilomètres</target>
+      </trans-unit>
+      <trans-unit id="leasingDuration" datatype="html">
+        <source>leasingDuration</source>
+        <target>Durée de location</target>
+      </trans-unit>
+      <trans-unit id="months" datatype="html">
+        <source>months</source>
+        <target>-- mois</target>
+      </trans-unit>
+      <trans-unit id="employeeContribution" datatype="html">
+        <source>employeeContribution</source>
+        <target>Contribution employé</target>
+      </trans-unit>
+      <trans-unit id="contributionAmount" datatype="html">
+        <source>contributionAmount</source>
+        <target>Montant de contribution</target>
+      </trans-unit>
+      <trans-unit id="addAnAmount" datatype="html">
+        <source>addAnAmount</source>
+        <target>Ajoutez un montant</target>
+      </trans-unit>
+      <trans-unit id="vehicleCleaningCostContribution" datatype="html">
+        <source>vehicleCleaningCostContribution</source>
+        <target>Contribution aux coûts de nettoyage du véhicule</target>
+      </trans-unit>
+      <trans-unit id="contributionValue" datatype="html">
+        <source>contributionValue</source>
+        <target>Valeur de contribution</target>
+      </trans-unit>
+      <trans-unit id="parkingStorageCostContribution" datatype="html">
+        <source>parkingStorageCostContribution</source>
+        <target>Contribution aux coûts de stationnement/stockage</target>
+      </trans-unit>
+      <trans-unit id="limitedFuelCard" datatype="html">
+        <source>limitedFuelCard</source>
+        <target>Carte carburant limitée</target>
+      </trans-unit>
+      <trans-unit id="monthlyAmountProvision" datatype="html">
+        <source>monthlyAmountProvision</source>
+        <target>Provision de montant mensuel</target>
+      </trans-unit>
+      <trans-unit id="addMaximumMonthlyAmountAllowed" datatype="html">
+        <source>addMaximumMonthlyAmountAllowed</source>
+        <target>Ajoutez le montant mensuel maximum autorisé</target>
+      </trans-unit>
+      <trans-unit id="referenceCarConfiguration" datatype="html">
+        <source>referenceCarConfiguration</source>
+        <target>Configuration de voiture de référence</target>
+      </trans-unit>
+      <trans-unit id="monthlyTcoRange" datatype="html">
+        <source>monthlyTcoRange</source>
+        <target>Plage TCO mensuelle</target>
+      </trans-unit>
+      <trans-unit id="loadingTcoDistribution" datatype="html">
+        <source>loadingTcoDistribution</source>
+        <target>Chargement de la distribution TCO...</target>
+      </trans-unit>
+      <trans-unit id="brands" datatype="html">
+        <source>brands</source>
+        <target>Marques</target>
+      </trans-unit>
+      <trans-unit id="fuelTypes" datatype="html">
+        <source>fuelTypes</source>
+        <target>Types de carburant</target>
+      </trans-unit>
+      <trans-unit id="pleaseFillInCarCategoryParameters" datatype="html">
+        <source>pleaseFillInCarCategoryParameters</source>
+        <target>Veuillez remplir les paramètres de catégorie de voiture pour trouver les configurations de voiture de référence.</target>
+      </trans-unit>
+      <trans-unit id="referenceCarList" datatype="html">
+        <source>referenceCarList</source>
+        <target>Liste des voitures de référence</target>
+      </trans-unit>
+      <trans-unit id="select" datatype="html">
+        <source>select</source>
+        <target>Sélectionner</target>
+      </trans-unit>
+      <trans-unit id="brand" datatype="html">
+        <source>brand</source>
+        <target>Marque</target>
+      </trans-unit>
+      <trans-unit id="model" datatype="html">
+        <source>model</source>
+        <target>Modèle</target>
+      </trans-unit>
+      <trans-unit id="monthlyTco" datatype="html">
+        <source>monthlyTco</source>
+        <target>TCO mensuel</target>
+      </trans-unit>
+      <trans-unit id="showing" datatype="html">
+        <source>showing</source>
+        <target>Affichage</target>
+      </trans-unit>
+      <trans-unit id="of" datatype="html">
+        <source>of</source>
+        <target>de</target>
+      </trans-unit>
+      <trans-unit id="pages" datatype="html">
+        <source>pages</source>
+        <target>pages</target>
+      </trans-unit>
+      <trans-unit id="loadingReferenceCars" datatype="html">
+        <source>loadingReferenceCars</source>
+        <target>Chargement des voitures de référence...</target>
+      </trans-unit>
+      <trans-unit id="noReferenceCarsFound" datatype="html">
+        <source>noReferenceCarsFound</source>
+        <target>Aucune voiture de référence trouvée avec les filtres actuels.</target>
+      </trans-unit>
+      <trans-unit id="tryAdjustingYourFilters" datatype="html">
+        <source>tryAdjustingYourFilters</source>
+        <target>Essayez d\</target>
+      </trans-unit>
+      <trans-unit id="filter" datatype="html">
+        <source>filter</source>
+        <target>Filtrer</target>
+      </trans-unit>
+      <trans-unit id="clearFilter" datatype="html">
+        <source>clearFilter</source>
+        <target>Effacer le filtre</target>
+      </trans-unit>
+      <trans-unit id="newClient" datatype="html">
+        <source>newClient</source>
+        <target>Nouveau Client</target>
+      </trans-unit>
+      <trans-unit id="createClient" datatype="html">
+        <source>createClient</source>
+        <target>Créer Client</target>
+      </trans-unit>
+      <trans-unit id="creating" datatype="html">
+        <source>creating</source>
+        <target>Création</target>
+      </trans-unit>
+      <trans-unit id="clientCreatedSuccessfully" datatype="html">
+        <source>clientCreatedSuccessfully</source>
+        <target>Client créé avec succès!</target>
+      </trans-unit>
+      <trans-unit id="socialSecretaryPreFilled" datatype="html">
+        <source>socialSecretaryPreFilled</source>
+        <target>Le secrétariat social est pré-rempli automatiquement</target>
+      </trans-unit>
+      <trans-unit id="fullNameMinLength" datatype="html">
+        <source>fullNameMinLength</source>
+        <target>Le nom complet doit contenir au moins 2 caractères</target>
+      </trans-unit>
+      <trans-unit id="emailInvalid" datatype="html">
+        <source>emailInvalid</source>
+        <target>Adresse e-mail invalide</target>
+      </trans-unit>
+      <trans-unit id="phoneNumberRequired" datatype="html">
+        <source>phoneNumberRequired</source>
+        <target>Le numéro de téléphone est obligatoire</target>
+      </trans-unit>
+      <trans-unit id="phoneNumberInvalid" datatype="html">
+        <source>phoneNumberInvalid</source>
+        <target>Numéro de téléphone invalide</target>
+      </trans-unit>
+      <trans-unit id="companyNumberRequired" datatype="html">
+        <source>companyNumberRequired</source>
+        <target>Le numéro d\</target>
+      </trans-unit>
+      <trans-unit id="companyNumberInvalid" datatype="html">
+        <source>companyNumberInvalid</source>
+        <target>Numéro d\</target>
+      </trans-unit>
+      <trans-unit id="companyInformation" datatype="html">
+        <source>companyInformation</source>
+        <target>Informations sur l\</target>
+      </trans-unit>
+      <trans-unit id="address" datatype="html">
+        <source>address</source>
+        <target>Adresse</target>
+      </trans-unit>
+      <trans-unit id="newPolicy" datatype="html">
+        <source>newPolicy</source>
+        <target>Nouvelle Politique</target>
+      </trans-unit>
+      <trans-unit id="startNewPolicy" datatype="html">
+        <source>startNewPolicy</source>
+        <target>Démarrer une nouvelle politique pour ce client</target>
+      </trans-unit>
+      <trans-unit id="errorCreatingSession" datatype="html">
+        <source>errorCreatingSession</source>
+        <target>Erreur lors de la création d\</target>
+      </trans-unit>
+      <trans-unit id="searchCars" datatype="html">
+        <source>searchCars</source>
+        <target>Rechercher des voitures...</target>
+      </trans-unit>
+      <trans-unit id="selectReferenceCar" datatype="html">
+        <source>selectReferenceCar</source>
+        <target>Sélectionner une voiture de référence</target>
+      </trans-unit>
+      <trans-unit id="selectReferenceCars" datatype="html">
+        <source>selectReferenceCars</source>
+        <target>Sélectionner des voitures de référence</target>
+      </trans-unit>
+      <trans-unit id="carsSelected" datatype="html">
+        <source>carsSelected</source>
+        <target>voitures sélectionnées</target>
+      </trans-unit>
+      <trans-unit id="models" datatype="html">
+        <source>models</source>
+        <target>modèles</target>
+      </trans-unit>
+      <trans-unit id="noCarsFound" datatype="html">
+        <source>noCarsFound</source>
+        <target>Aucune voiture trouvée</target>
+      </trans-unit>
+      <trans-unit id="updateCarCategory" datatype="html">
+        <source>updateCarCategory</source>
+        <target>Mettre à jour la catégorie de voiture</target>
+      </trans-unit>
+      <trans-unit id="saveCarCategory" datatype="html">
+        <source>saveCarCategory</source>
+        <target>Enregistrer la catégorie de voiture</target>
+      </trans-unit>
+      <trans-unit id="carCategory" datatype="html">
+        <source>carCategory</source>
+        <target>Catégorie de voiture</target>
+      </trans-unit>
+      <trans-unit id="parameters" datatype="html">
+        <source>parameters</source>
+        <target>Paramètres</target>
+      </trans-unit>
+      <trans-unit id="name" datatype="html">
+        <source>name</source>
+        <target>Nom :</target>
+      </trans-unit>
+      <trans-unit id="yes" datatype="html">
+        <source>yes</source>
+        <target>Oui</target>
+      </trans-unit>
+      <trans-unit id="no" datatype="html">
+        <source>no</source>
+        <target>Non</target>
+      </trans-unit>
+      <trans-unit id="annualKilometer" datatype="html">
+        <source>annualKilometer</source>
+        <target>Kilomètre annuel :</target>
+      </trans-unit>
+      <trans-unit id="leasingDurationLabel" datatype="html">
+        <source>leasingDurationLabel</source>
+        <target>Durée de location :</target>
+      </trans-unit>
+      <trans-unit id="fuelType" datatype="html">
+        <source>fuelType</source>
+        <target>Type de carburant :</target>
+      </trans-unit>
+      <trans-unit id="minimum" datatype="html">
+        <source>minimum</source>
+        <target>Minimum</target>
+      </trans-unit>
+      <trans-unit id="maximum" datatype="html">
+        <source>maximum</source>
+        <target>Maximum</target>
+      </trans-unit>
+      <trans-unit id="tcoCalculationDetails" datatype="html">
+        <source>tcoCalculationDetails</source>
+        <target>Détails du calcul TCO</target>
+      </trans-unit>
+      <trans-unit id="parametersUsedInCalculation" datatype="html">
+        <source>parametersUsedInCalculation</source>
+        <target>Paramètres utilisés dans le calcul</target>
+      </trans-unit>
+      <trans-unit id="carCategoriesAndTcos" datatype="html">
+        <source>carCategoriesAndTcos</source>
+        <target>Catégories de voitures et TCO</target>
+      </trans-unit>
+      <trans-unit id="inspireMe" datatype="html">
+        <source>inspireMe</source>
+        <target>Inspirez-moi</target>
+      </trans-unit>
+      <trans-unit id="addCategory" datatype="html">
+        <source>addCategory</source>
+        <target>Ajouter une catégorie</target>
+      </trans-unit>
+      <trans-unit id="noCarCategoriesYet" datatype="html">
+        <source>noCarCategoriesYet</source>
+        <target>Aucune catégorie de voiture pour le moment</target>
+      </trans-unit>
+      <trans-unit id="getStartedByAddingYourFirstCarCategory" datatype="html">
+        <source>getStartedByAddingYourFirstCarCategory</source>
+        <target>Commencez par ajouter votre première catégorie de voiture ou laissez-nous vous inspirer avec quelques suggestions.</target>
+      </trans-unit>
+      <trans-unit id="referenceCar" datatype="html">
+        <source>referenceCar</source>
+        <target>Voiture de référence</target>
+      </trans-unit>
+      <trans-unit id="annualKm" datatype="html">
+        <source>annualKm</source>
+        <target>Km annuels</target>
+      </trans-unit>
+      <trans-unit id="leasingDurationTable" datatype="html">
+        <source>leasingDurationTable</source>
+        <target>Durée de location</target>
+      </trans-unit>
+      <trans-unit id="monthlyTcoTable" datatype="html">
+        <source>monthlyTcoTable</source>
+        <target>TCO mensuel</target>
+      </trans-unit>
+      <trans-unit id="pleaseAddAtLeastOneCarCategory" datatype="html">
+        <source>pleaseAddAtLeastOneCarCategory</source>
+        <target>Veuillez ajouter au moins une catégorie de voiture pour continuer</target>
+      </trans-unit>
+      <trans-unit id="allCategoriesMustHaveReferenceCarAndTcoCalculation" datatype="html">
+        <source>allCategoriesMustHaveReferenceCarAndTcoCalculation</source>
+        <target>Toutes les catégories doivent avoir une voiture de référence et un calcul TCO pour continuer</target>
+      </trans-unit>
+      <trans-unit id="sendForReview" datatype="html">
+        <source>sendForReview</source>
+        <target>Envoyer pour examen</target>
+      </trans-unit>
+      <trans-unit id="readyToSubmitForReview" datatype="html">
+        <source>readyToSubmitForReview</source>
+        <target>Prêt à soumettre pour examen</target>
+      </trans-unit>
+      <trans-unit id="submitForReview" datatype="html">
+        <source>submitForReview</source>
+        <target>Soumettre pour examen</target>
+      </trans-unit>
+      <trans-unit id="pleaseReviewYourCategoriesAndSubmit" datatype="html">
+        <source>pleaseReviewYourCategoriesAndSubmit</source>
+        <target>Vérifiez vos catégories et soumettez pour examen</target>
+      </trans-unit>
+      <trans-unit id="completeAllCategoriesFirst" datatype="html">
+        <source>completeAllCategoriesFirst</source>
+        <target>Complétez d\</target>
+      </trans-unit>
+      <trans-unit id="allCategoriesMustHaveValidTco" datatype="html">
+        <source>allCategoriesMustHaveValidTco</source>
+        <target>Toutes les catégories doivent avoir un TCO valide</target>
+      </trans-unit>
+      <trans-unit id="yourMobilityBudgetPolicy" datatype="html">
+        <source>yourMobilityBudgetPolicy</source>
+        <target>Votre politique de budget mobilité</target>
+      </trans-unit>
+      <trans-unit id="documentStatus" datatype="html">
+        <source>documentStatus</source>
+        <target>Statut du document</target>
+      </trans-unit>
+      <trans-unit id="yourPolicyIsBeingReviewedBy" datatype="html">
+        <source>yourPolicyIsBeingReviewedBy</source>
+        <target>Votre politique est examinée par</target>
+      </trans-unit>
+      <trans-unit id="yourPolicyHasBeenApproved" datatype="html">
+        <source>yourPolicyHasBeenApproved</source>
+        <target>Votre politique a été approuvée !</target>
+      </trans-unit>
+      <trans-unit id="yourPolicyNeedsRevisions" datatype="html">
+        <source>yourPolicyNeedsRevisions</source>
+        <target>Votre politique nécessite des révisions.</target>
+      </trans-unit>
+      <trans-unit id="documentPreview" datatype="html">
+        <source>documentPreview</source>
+        <target>Aperçu du document</target>
+      </trans-unit>
+      <trans-unit id="editDocument" datatype="html">
+        <source>editDocument</source>
+        <target>Modifier le document</target>
+      </trans-unit>
+      <trans-unit id="saveChanges" datatype="html">
+        <source>saveChanges</source>
+        <target>Enregistrer les modifications</target>
+      </trans-unit>
+      <trans-unit id="cancel" datatype="html">
+        <source>cancel</source>
+        <target>Annuler</target>
+      </trans-unit>
+      <trans-unit id="editYourDocumentContentHere" datatype="html">
+        <source>editYourDocumentContentHere</source>
+        <target>Modifiez le contenu de votre document ici...</target>
+      </trans-unit>
+      <trans-unit id="noDocumentAvailableYet" datatype="html">
+        <source>noDocumentAvailableYet</source>
+        <target>Aucun document disponible pour le moment</target>
+      </trans-unit>
+      <trans-unit id="status" datatype="html">
+        <source>status</source>
+        <target>Statut</target>
+      </trans-unit>
+      <trans-unit id="generatingDocument" datatype="html">
+        <source>generatingDocument</source>
+        <target>Génération du document...</target>
+      </trans-unit>
+      <trans-unit id="pleaseWaitWhileWeCreateYourTcoDocument" datatype="html">
+        <source>pleaseWaitWhileWeCreateYourTcoDocument</source>
+        <target>Veuillez patienter pendant que nous créons votre document TCO</target>
+      </trans-unit>
+      <trans-unit id="approve" datatype="html">
+        <source>approve</source>
+        <target>Approuver</target>
+      </trans-unit>
+      <trans-unit id="reject" datatype="html">
+        <source>reject</source>
+        <target>Rejeter</target>
+      </trans-unit>
+      <trans-unit id="rejectAndResetToStep4" datatype="html">
+        <source>rejectAndResetToStep4</source>
+        <target>Rejeter et réinitialiser à l\</target>
+      </trans-unit>
+      <trans-unit id="download" datatype="html">
+        <source>download</source>
+        <target>Télécharger</target>
+      </trans-unit>
+      <trans-unit id="edit" datatype="html">
+        <source>edit</source>
+        <target>Modifier</target>
+      </trans-unit>
+      <trans-unit id="youCanNowDownloadYourDocumentInDifferentLanguages" datatype="html">
+        <source>youCanNowDownloadYourDocumentInDifferentLanguages</source>
+        <target>Vous pouvez maintenant télécharger votre document dans différentes langues.</target>
+      </trans-unit>
+      <trans-unit id="downloadEnglish" datatype="html">
+        <source>downloadEnglish</source>
+        <target>Télécharger (Anglais)</target>
+      </trans-unit>
+      <trans-unit id="downloadNederlands" datatype="html">
+        <source>downloadNederlands</source>
+        <target>Télécharger (Néerlandais)</target>
+      </trans-unit>
+      <trans-unit id="downloadFrancais" datatype="html">
+        <source>downloadFrancais</source>
+        <target>Télécharger (Français)</target>
+      </trans-unit>
+      <trans-unit id="yourPolicyIsBeingReviewedByPartner" datatype="html">
+        <source>yourPolicyIsBeingReviewedByPartner</source>
+        <target>Votre politique est examinée par</target>
+      </trans-unit>
+      <trans-unit id="onceReadyYouWillBeNotifiedByEmail" datatype="html">
+        <source>onceReadyYouWillBeNotifiedByEmail</source>
+        <target>Une fois prêt, vous serez notifié par e-mail.</target>
+      </trans-unit>
+      <trans-unit id="pleaseContactPartnerForMoreInformation" datatype="html">
+        <source>pleaseContactPartnerForMoreInformation</source>
+        <target>Veuillez contacter</target>
+      </trans-unit>
+      <trans-unit id="forMoreInformation" datatype="html">
+        <source>forMoreInformation</source>
+        <target>pour plus d\</target>
+      </trans-unit>
+      <trans-unit id="yourPolicyHasBeenSubmittedForReview" datatype="html">
+        <source>yourPolicyHasBeenSubmittedForReview</source>
+        <target>Votre politique a été soumise pour examen !</target>
+      </trans-unit>
+      <trans-unit id="itWillBeReviewedByPartnerAndYouWillBeNotifiedByEmail" datatype="html">
+        <source>itWillBeReviewedByPartnerAndYouWillBeNotifiedByEmail</source>
+        <target>Il sera examiné par</target>
+      </trans-unit>
+      <trans-unit id="onceReady" datatype="html">
+        <source>onceReady</source>
+        <target>et vous serez notifié par e-mail une fois prêt.</target>
+      </trans-unit>
+      <trans-unit id="yourPolicyHasBeenSubmittedForReviewComplete" datatype="html">
+        <source>yourPolicyHasBeenSubmittedForReviewComplete</source>
+        <target>Votre politique a été soumise pour examen ! Il sera examiné par</target>
+      </trans-unit>
+      <trans-unit id="andYouWillBeNotifiedByEmailOnceReady" datatype="html">
+        <source>andYouWillBeNotifiedByEmailOnceReady</source>
+        <target>et vous serez notifié par e-mail une fois prêt.</target>
+      </trans-unit>
+      <trans-unit id="yourPolicyIsBeingReviewedByPartnerComplete" datatype="html">
+        <source>yourPolicyIsBeingReviewedByPartnerComplete</source>
+        <target>Votre politique est examinée par</target>
+      </trans-unit>
+      <trans-unit id="onceReadyYouWillBeNotifiedByEmailComplete" datatype="html">
+        <source>onceReadyYouWillBeNotifiedByEmailComplete</source>
+        <target>Une fois prêt, vous serez notifié par e-mail.</target>
+      </trans-unit>
+      <trans-unit id="yourPolicyNeedsRevisionsComplete" datatype="html">
+        <source>yourPolicyNeedsRevisionsComplete</source>
+        <target>Votre politique nécessite des révisions. Veuillez contacter</target>
+      </trans-unit>
+      <trans-unit id="forMoreInformationComplete" datatype="html">
+        <source>forMoreInformationComplete</source>
+        <target>pour plus d\</target>
+      </trans-unit>
+      <trans-unit id="accessYourClientSessions" datatype="html">
+        <source>accessYourClientSessions</source>
+        <target>Accédez à vos sessions clients</target>
+      </trans-unit>
+      <trans-unit id="enterYourPartnerEmail" datatype="html">
+        <source>enterYourPartnerEmail</source>
+        <target>Entrez votre e-mail partenaire</target>
+      </trans-unit>
+      <trans-unit id="accessPartnerDashboard" datatype="html">
+        <source>accessPartnerDashboard</source>
+        <target>Accéder au tableau de bord partenaire</target>
+      </trans-unit>
+      <trans-unit id="loggingIn" datatype="html">
+        <source>loggingIn</source>
+        <target>Connexion...</target>
+      </trans-unit>
+      <trans-unit id="needHelpContactOurSupportTeam" datatype="html">
+        <source>needHelpContactOurSupportTeam</source>
+        <target>Besoin d\</target>
+      </trans-unit>
+      <trans-unit id="loggedInAs" datatype="html">
+        <source>loggedInAs</source>
+        <target>Connecté en tant que :</target>
+      </trans-unit>
+      <trans-unit id="clientPoliciesOverview" datatype="html">
+        <source>clientPoliciesOverview</source>
+        <target>Aperçu des politiques clients</target>
+      </trans-unit>
+      <trans-unit id="manageAndReviewAllYourClientsMobilityBudgetPolicies" datatype="html">
+        <source>manageAndReviewAllYourClientsMobilityBudgetPolicies</source>
+        <target>Gérez et examinez toutes les politiques de budget mobilité de vos clients</target>
+      </trans-unit>
+      <trans-unit id="loadingClientPolicies" datatype="html">
+        <source>loadingClientPolicies</source>
+        <target>Chargement des politiques clients...</target>
+      </trans-unit>
+      <trans-unit id="tryAgain" datatype="html">
+        <source>tryAgain</source>
+        <target>Réessayer</target>
+      </trans-unit>
+      <trans-unit id="filterByCompanyName" datatype="html">
+        <source>filterByCompanyName</source>
+        <target>Filtrer par nom d\</target>
+      </trans-unit>
+      <trans-unit id="unknownContact" datatype="html">
+        <source>unknownContact</source>
+        <target>Contact inconnu</target>
+      </trans-unit>
+      <trans-unit id="noEmail" datatype="html">
+        <source>noEmail</source>
+        <target>Aucun e-mail</target>
+      </trans-unit>
+      <trans-unit id="step" datatype="html">
+        <source>step</source>
+        <target>Étape</target>
+      </trans-unit>
+      <trans-unit id="categoryCount" datatype="html">
+        <source>categoryCount</source>
+        <target>catégories</target>
+      </trans-unit>
+      <trans-unit id="completed" datatype="html">
+        <source>completed</source>
+        <target>terminé</target>
+      </trans-unit>
+      <trans-unit id="openSession" datatype="html">
+        <source>openSession</source>
+        <target>Ouvrir la session</target>
+      </trans-unit>
+      <trans-unit id="delete" datatype="html">
+        <source>delete</source>
+        <target>Supprimer</target>
+      </trans-unit>
+      <trans-unit id="deleting" datatype="html">
+        <source>deleting</source>
+        <target>Suppression...</target>
+      </trans-unit>
+      <trans-unit id="policy" datatype="html">
+        <source>policy</source>
+        <target>Politique</target>
+      </trans-unit>
+      <trans-unit id="policies" datatype="html">
+        <source>policies</source>
+        <target>Politiques</target>
+      </trans-unit>
+      <trans-unit id="noClientPoliciesFound" datatype="html">
+        <source>noClientPoliciesFound</source>
+        <target>Aucune politique client trouvée</target>
+      </trans-unit>
+      <trans-unit id="youDontHaveAnyClientPoliciesYet" datatype="html">
+        <source>youDontHaveAnyClientPoliciesYet</source>
+        <target>Vous n\</target>
+      </trans-unit>
+      <trans-unit id="generatingPolicyDocuments" datatype="html">
+        <source>generatingPolicyDocuments</source>
+        <target>Génération des documents de politique...</target>
+      </trans-unit>
+      <trans-unit id="errorLoadingDocument" datatype="html">
+        <source>errorLoadingDocument</source>
+        <target>Erreur lors du chargement du document</target>
+      </trans-unit>
+      <trans-unit id="errorGeneratingDocument" datatype="html">
+        <source>errorGeneratingDocument</source>
+        <target>Erreur lors de la génération du document</target>
+      </trans-unit>
+      <trans-unit id="completedPolicy" datatype="html">
+        <source>completedPolicy</source>
+        <target>Politique terminée</target>
+      </trans-unit>
+      <trans-unit id="completedPolicies" datatype="html">
+        <source>completedPolicies</source>
+        <target>Politiques terminées</target>
+      </trans-unit>
+      <trans-unit id="inProgressPolicy" datatype="html">
+        <source>inProgressPolicy</source>
+        <target>Politique en cours</target>
+      </trans-unit>
+      <trans-unit id="inProgressPolicies" datatype="html">
+        <source>inProgressPolicies</source>
+        <target>Politiques en cours</target>
+      </trans-unit>
+      <trans-unit id="draftPolicy" datatype="html">
+        <source>draftPolicy</source>
+        <target>Politique brouillon</target>
+      </trans-unit>
+      <trans-unit id="draftPolicies" datatype="html">
+        <source>draftPolicies</source>
+        <target>Politiques brouillon</target>
+      </trans-unit>
+      <trans-unit id="nextStep" datatype="html">
+        <source>nextStep</source>
+        <target>Étape suivante</target>
+      </trans-unit>    </body>
+  </file>
+</xliff>

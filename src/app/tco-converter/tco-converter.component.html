@@ -22,7 +22,7 @@
           <svg class="sessions-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path d="M3 4H17V6H3V4ZM3 8H17V10H3V8ZM3 12H17V14H3V12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          <span>{{ translate('mySessions') }}</span>
+          <span>{{ 'mySessions' | i18n }}</span>
         </button>
         <div class="language-selector-container">
           <div class="language-selector">
@@ -54,7 +54,7 @@
               <svg class="signout-icon" width="18" height="18" viewBox="0 0 24 24" fill="none">
                 <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              <span>{{ translate('signOut') }}</span>
+              <span>{{ 'signOut' | i18n }}</span>
             </button>
           </div>
         </div>
@@ -136,7 +136,7 @@
       <!-- Step 1: General Information -->
       <div class="content-right" *ngIf="currentStep === 1">
         <div class="content-text">
-          <h1 class="content-title">{{ translate('generalInformation') }}</h1>
+          <h1 class="content-title">{{ 'generalInformation' | i18n }}</h1>
           <div class="content-body">
             <p>Lorem ipsum dolor sit amet consectetur. Mollis a adipiscing vitae vulputate. Sed hac enim eget netus eget egestas quis vitae ut. Vitae in bibendum dignissim pharetra ullamcorper fringilla molestie urna aliquam. Eu et sit tincidunt orci tellus. Sed enim vel quis est. Molestie ut tempus lobortis venenatis faucibus. Accumsan aliquet faucibus bibendum pellentesque purus. Tellus lectus aliquam varius morbi ultrices hendrerit est a. Massa hendrerit viverra orci arcu tellus pellentesque non.</p>
             
@@ -146,7 +146,7 @@
         
         <div class="content-actions">
           <button class="next-button" (click)="nextStep()">
-            <span>{{ translate('next') }}</span>
+            <span>{{ 'next' | i18n }}</span>
             <svg class="arrow-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M4.16666 10H15.8333M15.8333 10L10.8333 5M15.8333 10L10.8333 15" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -157,8 +157,8 @@
       <!-- Step 2: Upload Car Policy -->
       <div class="content-full" *ngIf="currentStep === 2">
         <div class="content-text-white">
-          <h1 class="content-title">{{ translate('uploadCarPolicy') }}</h1>
-          <p class="content-subtitle">{{ translate('addYourExistingCarPolicy') }}</p>
+          <h1 class="content-title">{{ 'uploadCarPolicy' | i18n }}</h1>
+          <p class="content-subtitle">{{ 'addYourExistingCarPolicy' | i18n }}</p>
           
           <!-- File Upload Area -->
           <div class="file-upload-area" 
@@ -171,9 +171,9 @@
                 <path d="M24 32V16M16 24L24 16L32 24" stroke="#F59100" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <rect x="8" y="8" width="32" height="32" rx="4" stroke="#F59100" stroke-width="2"/>
               </svg>
-              <p class="upload-text">{{ translate('dragAndDropFiles') }}</p>
-              <p class="upload-text-secondary">{{ translate('or') }}</p>
-              <button class="browse-button" (click)="fileInput.click()" [disabled]="isUploading">{{ translate('browseFiles') }}</button>
+              <p class="upload-text">{{ 'dragAndDropFiles' | i18n }}</p>
+              <p class="upload-text-secondary">{{ 'or' | i18n }}</p>
+              <button class="browse-button" (click)="fileInput.click()" [disabled]="isUploading">{{ 'browseFiles' | i18n }}</button>
               <input #fileInput type="file" (change)="onFileSelected($event)" style="display: none;" accept=".pdf,.doc,.docx">
             </div>
           </div>
@@ -220,8 +220,8 @@
 
         <!-- No Policy Info - Separate from white container -->
         <div class="no-policy-info">
-          <h3 class="no-policy-title">{{ translate('noCarPolicy') }}</h3>
-          <p class="no-policy-text">{{ translate('noCarPolicyDescription') }}</p>
+          <h3 class="no-policy-title">{{ 'noCarPolicy' | i18n }}</h3>
+          <p class="no-policy-text">{{ 'noCarPolicyDescription' | i18n }}</p>
         </div>
 
         <!-- Navigation Buttons - Outside containers, on gray background -->
@@ -230,10 +230,10 @@
             <svg class="arrow-icon-left" width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M15.8333 10H4.16666M4.16666 10L9.16666 5M4.16666 10L9.16666 15" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <span>{{ translate('previous') }}</span>
+            <span>{{ 'previous' | i18n }}</span>
           </button>
           <button class="next-button" (click)="nextStep()">
-            <span>{{ translate('next') }}</span>
+            <span>{{ 'next' | i18n }}</span>
             <svg class="arrow-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M4.16666 10H15.8333M15.8333 10L10.8333 5M15.8333 10L10.8333 15" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -244,18 +244,18 @@
       <!-- Step 3: Calculation Method -->
       <div class="content-full" *ngIf="currentStep === 3">
         <div class="content-text-white">
-          <h1 class="calculation-title">{{ translate('chooseCalculationMethod') }}</h1>
+          <h1 class="calculation-title">{{ 'chooseCalculationMethod' | i18n }}</h1>
           
           <div class="calculation-description">
-            <p>{{ translate('calculationMethodDescription1') }}</p>
-            <p>{{ translate('calculationMethodDescription2') }}</p>
+            <p>{{ 'calculationMethodDescription1' | i18n }}</p>
+            <p>{{ 'calculationMethodDescription2' | i18n }}</p>
           </div>
 
           <div class="calculation-options">
             <!-- Option 1: Legal formula -->
             <div class="calculation-option" [class.selected]="selectedCalculationMethod === 1" (click)="selectCalculationMethod(1)">
               <div class="option-header">
-                <h3 class="option-title">{{ translate('legalFormulaTitle') }}</h3>
+                <h3 class="option-title">{{ 'legalFormulaTitle' | i18n }}</h3>
                 <div class="option-radio">
                   <div class="radio-circle" [class.selected]="selectedCalculationMethod === 1"></div>
                 </div>
@@ -263,26 +263,26 @@
               <div class="option-content">
                 <div class="option-list">
                   <div class="option-item">
-                    <div class="label-bold">{{ translate('energyCost') }}</div>
-                    <div class="option-text">{{ translate('energyCostLegal') }}</div>
+                    <div class="label-bold">{{ 'energyCost' | i18n }}</div>
+                    <div class="option-text">{{ 'energyCostLegal' | i18n }}</div>
                   </div>
                   <div class="option-item">
-                    <div class="label-bold">{{ translate('professionalTravel') }}</div>
-                    <div class="option-text" [innerHTML]="translate('professionalTravelNotIncluded')"></div>
+                    <div class="label-bold">{{ 'professionalTravel' | i18n }}</div>
+                    <div class="option-text" [innerHTML]="'professionalTravelNotIncluded' | i18n"></div>
                   </div>
                   <div class="option-item">
-                    <div class="label-bold">{{ translate('mobilityBudget') }}</div>
-                    <div class="option-text">{{ translate('mobilityBudgetLegal') }}</div>
+                    <div class="label-bold">{{ 'mobilityBudget' | i18n }}</div>
+                    <div class="option-text">{{ 'mobilityBudgetLegal' | i18n }}</div>
                   </div>
                 </div>
-                <p class="option-recommendation">{{ translate('recommendationLegal') }}</p>
+                <p class="option-recommendation">{{ 'recommendationLegal' | i18n }}</p>
               </div>
             </div>
 
             <!-- Option 2: Fixed energy amount -->
             <div class="calculation-option" [class.selected]="selectedCalculationMethod === 2" (click)="selectCalculationMethod(2)">
               <div class="option-header">
-                <h3 class="option-title">{{ translate('fixedAmountTitle') }}</h3>
+                <h3 class="option-title">{{ 'fixedAmountTitle' | i18n }}</h3>
                 <div class="option-radio">
                   <div class="radio-circle" [class.selected]="selectedCalculationMethod === 2"></div>
                 </div>
@@ -290,26 +290,26 @@
               <div class="option-content">
                 <div class="option-list">
                   <div class="option-item">
-                    <div class="label-bold">{{ translate('energyCost') }}</div>
-                    <div class="option-text">{{ translate('energyCostFixed') }}</div>
+                    <div class="label-bold">{{ 'energyCost' | i18n }}</div>
+                    <div class="option-text">{{ 'energyCostFixed' | i18n }}</div>
                   </div>
                   <div class="option-item">
-                    <div class="label-bold">{{ translate('professionalTravel') }}</div>
-                    <div class="option-text" [innerHTML]="translate('professionalTravelIncluded')"></div>
+                    <div class="label-bold">{{ 'professionalTravel' | i18n }}</div>
+                    <div class="option-text" [innerHTML]="'professionalTravelIncluded' | i18n"></div>
                   </div>
                   <div class="option-item">
-                    <div class="label-bold">{{ translate('mobilityBudget') }}</div>
-                    <div class="option-text">{{ translate('mobilityBudgetFixed') }}</div>
+                    <div class="label-bold">{{ 'mobilityBudget' | i18n }}</div>
+                    <div class="option-text">{{ 'mobilityBudgetFixed' | i18n }}</div>
                   </div>
                 </div>
-                <p class="option-recommendation">{{ translate('recommendationFixed') }}</p>
+                <p class="option-recommendation">{{ 'recommendationFixed' | i18n }}</p>
               </div>
             </div>
 
             <!-- Option 3: Lease contract kilometers -->
             <div class="calculation-option" [class.selected]="selectedCalculationMethod === 3" (click)="selectCalculationMethod(3)">
               <div class="option-header">
-                <h3 class="option-title">{{ translate('leaseContractTitle') }}</h3>
+                <h3 class="option-title">{{ 'leaseContractTitle' | i18n }}</h3>
                 <div class="option-radio">
                   <div class="radio-circle" [class.selected]="selectedCalculationMethod === 3"></div>
                 </div>
@@ -317,19 +317,19 @@
               <div class="option-content">
                 <div class="option-list">
                   <div class="option-item">
-                    <div class="label-bold">{{ translate('energyCost') }}</div>
-                    <div class="option-text">{{ translate('energyCostLease') }}</div>
+                    <div class="label-bold">{{ 'energyCost' | i18n }}</div>
+                    <div class="option-text">{{ 'energyCostLease' | i18n }}</div>
                   </div>
                   <div class="option-item">
-                    <div class="label-bold">{{ translate('professionalTravel') }}</div>
-                    <div class="option-text" [innerHTML]="translate('professionalTravelLease')"></div>
+                    <div class="label-bold">{{ 'professionalTravel' | i18n }}</div>
+                    <div class="option-text" [innerHTML]="'professionalTravelLease' | i18n"></div>
                   </div>
                   <div class="option-item">
-                    <div class="label-bold">{{ translate('mobilityBudget') }}</div>
-                    <div class="option-text">{{ translate('mobilityBudgetLease') }}</div>
+                    <div class="label-bold">{{ 'mobilityBudget' | i18n }}</div>
+                    <div class="option-text">{{ 'mobilityBudgetLease' | i18n }}</div>
                   </div>
                 </div>
-                <p class="option-recommendation">{{ translate('recommendationLease') }}</p>
+                <p class="option-recommendation">{{ 'recommendationLease' | i18n }}</p>
               </div>
             </div>
           </div>
@@ -344,10 +344,10 @@
             <svg class="arrow-icon-left" width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M15.8333 10H4.16666M4.16666 10L9.16666 5M4.16666 10L9.16666 15" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <span>{{ translate('previous') }}</span>
+            <span>{{ 'previous' | i18n }}</span>
           </button>
           <button class="next-button" (click)="nextStep()" [disabled]="selectedCalculationMethod === 0">
-            <span>{{ translate('next') }}</span>
+            <span>{{ 'next' | i18n }}</span>
             <svg class="arrow-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M4.16666 10H15.8333M15.8333 10L10.8333 5M15.8333 10L10.8333 15" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -360,26 +360,26 @@
         <!-- Add Category Form (overlay) -->
         <div class="add-category-overlay" *ngIf="showAddCategoryForm">
           <div class="add-category-modal">
-            <h1 class="setup-title">{{ translate('newCarCategorySetup') }}</h1>
+            <h1 class="setup-title">{{ 'newCarCategorySetup' | i18n }}</h1>
             
             <div class="setup-container">
               <!-- Left side - Main form -->
               <div class="setup-form">
                 <div class="form-section">
-                  <h2 class="section-title">{{ translate('carCategoryParameters') }}</h2>
+                  <h2 class="section-title">{{ 'carCategoryParameters' | i18n }}</h2>
                   
                   <!-- Category Name -->
                   <div class="form-group">
-                    <label class="form-label">{{ translate('categoryName') }}</label>
-                    <input type="text" class="form-input" [placeholder]="translate('addYourCategoryName')" [(ngModel)]="newCategory.name">
+                    <label class="form-label">{{ 'categoryName' | i18n }}</label>
+                    <input type="text" class="form-input" [placeholder]="'addYourCategoryName' | i18n" [(ngModel)]="newCategory.name">
                   </div>
 
                   <!-- Dropdowns row -->
                   <div class="dropdowns-row">
                     <div class="form-group">
-                      <label class="form-label">{{ translate('annualKilometersAllowed') }}</label>
+                      <label class="form-label">{{ 'annualKilometersAllowed' | i18n }}</label>
                       <select class="form-select" [(ngModel)]="newCategory.annualKilometers" (ngModelChange)="onTopFieldsChange()">
-                        <option value="">{{ translate('kilometers') }}</option>
+                        <option value="">{{ 'kilometers' | i18n }}</option>
                         <option value="10000">10.000</option>
                         <option value="15000">15.000</option>
                         <option value="20000">20.000</option>
@@ -393,9 +393,9 @@
                     </div>
 
                     <div class="form-group">
-                      <label class="form-label">{{ translate('leasingDuration') }}</label>
+                      <label class="form-label">{{ 'leasingDuration' | i18n }}</label>
                       <select class="form-select" [(ngModel)]="newCategory.leasingDuration" (ngModelChange)="onTopFieldsChange()">
-                        <option value="">{{ translate('months') }}</option>
+                        <option value="">{{ 'months' | i18n }}</option>
                         <option value="36">36</option>
                         <option value="48">48</option>
                         <option value="60">60</option>
@@ -412,12 +412,12 @@
                           <input type="checkbox" id="employeeContribution" [(ngModel)]="newCategory.employeeContribution.enabled" (ngModelChange)="onToggleChange('employeeContribution', $event)">
                           <label for="employeeContribution" class="toggle-label"></label>
                         </div>
-                        <label class="toggle-text">{{ translate('employeeContribution') }}</label>
+                        <label class="toggle-text">{{ 'employeeContribution' | i18n }}</label>
                       </div>
                       <div class="input-section">
-                        <label class="form-label">{{ translate('contributionAmount') }}</label>
+                        <label class="form-label">{{ 'contributionAmount' | i18n }}</label>
                         <div class="input-with-euro">
-                          <input type="number" class="form-input" [placeholder]="translate('addAnAmount')" 
+                          <input type="number" class="form-input" [placeholder]="'addAnAmount' | i18n" 
                                  [(ngModel)]="newCategory.employeeContribution.amount"
                                  (ngModelChange)="onInputChange('employeeContribution', $event)"
                                  [disabled]="!newCategory.employeeContribution.enabled">
@@ -433,12 +433,12 @@
                           <input type="checkbox" id="cleaningCost" [(ngModel)]="newCategory.cleaningCost.enabled" (ngModelChange)="onToggleChange('cleaningCost', $event)">
                           <label for="cleaningCost" class="toggle-label"></label>
                         </div>
-                        <label class="toggle-text">{{ translate('vehicleCleaningCostContribution') }}</label>
+                        <label class="toggle-text">{{ 'vehicleCleaningCostContribution' | i18n }}</label>
                       </div>
                       <div class="input-section">
-                        <label class="form-label">{{ translate('contributionValue') }}</label>
+                        <label class="form-label">{{ 'contributionValue' | i18n }}</label>
                         <div class="input-with-euro">
-                          <input type="number" class="form-input" [placeholder]="translate('addAnAmount')" 
+                          <input type="number" class="form-input" [placeholder]="'addAnAmount' | i18n" 
                                  [(ngModel)]="newCategory.cleaningCost.amount"
                                  (ngModelChange)="onInputChange('cleaningCost', $event)"
                                  [disabled]="!newCategory.cleaningCost.enabled">
@@ -454,12 +454,12 @@
                           <input type="checkbox" id="parkingCost" [(ngModel)]="newCategory.parkingCost.enabled" (ngModelChange)="onToggleChange('parkingCost', $event)">
                           <label for="parkingCost" class="toggle-label"></label>
                         </div>
-                        <label class="toggle-text">{{ translate('parkingStorageCostContribution') }}</label>
+                        <label class="toggle-text">{{ 'parkingStorageCostContribution' | i18n }}</label>
                       </div>
                       <div class="input-section">
-                        <label class="form-label">{{ translate('contributionValue') }}</label>
+                        <label class="form-label">{{ 'contributionValue' | i18n }}</label>
                         <div class="input-with-euro">
-                          <input type="number" class="form-input" [placeholder]="translate('addAnAmount')" 
+                          <input type="number" class="form-input" [placeholder]="'addAnAmount' | i18n" 
                                  [(ngModel)]="newCategory.parkingCost.amount"
                                  (ngModelChange)="onInputChange('parkingCost', $event)"
                                  [disabled]="!newCategory.parkingCost.enabled">
@@ -475,12 +475,12 @@
                           <input type="checkbox" id="fuelCard" [(ngModel)]="newCategory.fuelCard.enabled" (ngModelChange)="onToggleChange('fuelCard', $event)">
                           <label for="fuelCard" class="toggle-label"></label>
                         </div>
-                        <label class="toggle-text">{{ translate('limitedFuelCard') }}</label>
+                        <label class="toggle-text">{{ 'limitedFuelCard' | i18n }}</label>
                       </div>
                       <div class="input-section">
-                        <label class="form-label">{{ translate('monthlyAmountProvision') }}</label>
+                        <label class="form-label">{{ 'monthlyAmountProvision' | i18n }}</label>
                         <div class="input-with-euro">
-                          <input type="number" class="form-input" [placeholder]="translate('addMaximumMonthlyAmountAllowed')" 
+                          <input type="number" class="form-input" [placeholder]="'addMaximumMonthlyAmountAllowed' | i18n" 
                                  [(ngModel)]="newCategory.fuelCard.amount"
                                  (ngModelChange)="onInputChange('fuelCard', $event)"
                                  [disabled]="!newCategory.fuelCard.enabled">
@@ -493,11 +493,11 @@
 
                 <!-- Reference Car Configuration -->
                 <div class="form-section" *ngIf="areTopFieldsFilled()">
-                  <h2 class="section-title">{{ translate('referenceCarConfiguration') }}</h2>
+                  <h2 class="section-title">{{ 'referenceCarConfiguration' | i18n }}</h2>
                   
                   <div class="tco-range">
                     <div class="range-header">
-                      <h3 class="range-title">{{ translate('monthlyTcoRange') }}</h3>
+                      <h3 class="range-title">{{ 'monthlyTcoRange' | i18n }}</h3>
                       <button class="info-button">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                           <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
@@ -524,11 +524,11 @@
                         </div>
                         <div class="chart-axis">
                           <div class="axis-label">
-                            <div class="axis-title">{{ translate('minimum') }}</div>
+                            <div class="axis-title">{{ 'minimum' | i18n }}</div>
                             <div class="axis-value">€{{ getMinTco() }}</div>
                           </div>
                           <div class="axis-label">
-                            <div class="axis-title">{{ translate('maximum') }}</div>
+                            <div class="axis-title">{{ 'maximum' | i18n }}</div>
                             <div class="axis-value">€{{ getMaxTco() }}</div>
                           </div>
                         </div>
@@ -556,15 +556,15 @@
                         </div>
                       </div>
                       <div class="chart-placeholder" *ngIf="tcoDistribution.length === 0 && !isLoadingTcoData">
-                        <p *ngIf="areTopFieldsFilled()">{{ translate('loadingTcoDistribution') }}</p>
-                        <p *ngIf="!areTopFieldsFilled()">{{ translate('pleaseFillInCarCategoryParameters') }}</p>
+                        <p *ngIf="areTopFieldsFilled()">{{ 'loadingTcoDistribution' | i18n }}</p>
+                        <p *ngIf="!areTopFieldsFilled()">{{ 'pleaseFillInCarCategoryParameters' | i18n }}</p>
                       </div>
                     </div>
                   </div>
 
                   <!-- Brands -->
                   <div class="brands-section">
-                    <h3 class="subsection-title">{{ translate('brands') }}</h3>
+                    <h3 class="subsection-title">{{ 'brands' | i18n }}</h3>
                     <div class="brands-grid">
                       <div class="brand-item" *ngFor="let brand of carBrands" 
                            [class.disabled]="!availableBrands.includes(brand)">
@@ -583,7 +583,7 @@
 
                   <!-- Fuel Types -->
                   <div class="fuel-types">
-                    <h3 class="subsection-title">{{ translate('fuelTypes') }}</h3>
+                    <h3 class="subsection-title">{{ 'fuelTypes' | i18n }}</h3>
                     <div class="fuel-buttons">
                       <button class="fuel-button" 
                               [class.active]="selectedFuelTypes.includes('diesel')" 
@@ -622,19 +622,19 @@
                 <!-- Reference Car List -->
                 <div class="form-section" *ngIf="areTopFieldsFilled()">
                   <div class="section-header">
-                    <h2 class="section-title">{{ translate('referenceCarList') }}</h2>
+                    <h2 class="section-title">{{ 'referenceCarList' | i18n }}</h2>
                     <div class="filter-buttons">
                       <button class="filter-button" (click)="openCarFilter()">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                           <path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
                         </svg>
-                        {{ translate('filter') }}
+                        {{ 'filter' | i18n }}
                       </button>
                       <button class="clear-filter-button" *ngIf="isCarFilterActive" (click)="clearCarFilter()">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                           <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
                         </svg>
-                        {{ translate('clearFilter') }}
+                        {{ 'clearFilter' | i18n }}
                       </button>
                     </div>
                   </div>
@@ -645,13 +645,13 @@
                       <thead>
                         <tr>
                           <th class="radio-header">
-                            {{ translate('select') }}
+                            {{ 'select' | i18n }}
                           </th>
-                          <th>{{ translate('brand') }}</th>
-                          <th>{{ translate('model') }}</th>
+                          <th>{{ 'brand' | i18n }}</th>
+                          <th>{{ 'model' | i18n }}</th>
                           <th class="sortable-header" (click)="sortByTco()">
                             <div class="header-content">
-                              <span>{{ translate('monthlyTco') }}</span>
+                              <span>{{ 'monthlyTco' | i18n }}</span>
                               <div class="sort-indicators">
                                 <svg class="sort-arrow" [class.active]="tcoSortDirection === 'asc'" width="12" height="12" viewBox="0 0 12 12" fill="none">
                                   <path d="M6 2L10 6H2L6 2Z" fill="currentColor"/>
@@ -687,8 +687,8 @@
                     <!-- Pagination -->
                     <div class="pagination-container">
                       <div class="pagination-info">
-                        <span class="showing-text">{{ translate('showing') }} {{ getShowingRange() }}</span>
-                        <span class="total-pages-text">{{ translate('of') }} {{ totalPages }} {{ translate('pages') }}</span>
+                        <span class="showing-text">{{ 'showing' | i18n }} {{ getShowingRange() }}</span>
+                        <span class="total-pages-text">{{ 'of' | i18n }} {{ totalPages }} {{ 'pages' | i18n }}</span>
                       </div>
                       <div class="pagination-controls">
                         <button 
@@ -720,14 +720,14 @@
                   <!-- Loading state -->
                   <div class="reference-car-loading" *ngIf="isLoadingReferenceCars">
                     <div class="loading-spinner"></div>
-                    <p>{{ translate('loadingReferenceCars') }}</p>
+                    <p>{{ 'loadingReferenceCars' | i18n }}</p>
                   </div>
                   
                   <!-- Empty state when no cars found -->
                   <div class="reference-car-placeholder" *ngIf="!isLoadingReferenceCars && referenceCars.length === 0">
                     <img src="assets/desert.svg" alt="No cars found" class="desert-image">
-                    <p>{{ translate('noReferenceCarsFound') }}</p>
-                    <button class="choose-car-button">{{ translate('tryAdjustingYourFilters') }}</button>
+                    <p>{{ 'noReferenceCarsFound' | i18n }}</p>
+                    <button class="choose-car-button">{{ 'tryAdjustingYourFilters' | i18n }}</button>
                   </div>
                 </div>
 
@@ -735,7 +735,7 @@
                 <div class="car-filter-overlay" *ngIf="showCarFilter">
                   <div class="car-filter-modal">
                     <div class="filter-header">
-                      <h3 class="filter-title">{{ translate('selectReferenceCars') }}</h3>
+                      <h3 class="filter-title">{{ 'selectReferenceCars' | i18n }}</h3>
                       <button class="close-button" (click)="closeCarFilter()">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                           <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -747,7 +747,7 @@
                       <input 
                         type="text" 
                         class="search-input" 
-                        [placeholder]="translate('searchCars')"
+                        [placeholder]="'searchCars' | i18n"
                         [(ngModel)]="carFilterSearch"
                         (input)="filterCars()"
                       >
@@ -758,7 +758,7 @@
                         <div class="car-group" *ngFor="let group of filteredCarGroups">
                           <div class="brand-header">
                             <h4 class="brand-name">{{ group.brand }}</h4>
-                            <span class="model-count">{{ group.models.length }} {{ translate('models') }}</span>
+                            <span class="model-count">{{ group.models.length }} {{ 'models' | i18n }}</span>
                           </div>
                           <div class="models-list">
                             <div 
@@ -785,17 +785,17 @@
                       </div>
                       
                       <div class="no-results" *ngIf="filteredCarGroups.length === 0 && carFilterSearch">
-                        <p>{{ translate('noCarsFound') }}</p>
+                        <p>{{ 'noCarsFound' | i18n }}</p>
                       </div>
                     </div>
                     
                     <div class="filter-actions">
                       <div class="selection-info" *ngIf="selectedCarsInFilter.length > 0">
-                        {{ selectedCarsInFilter.length }} {{ translate('carsSelected') }}
+                        {{ selectedCarsInFilter.length }} {{ 'carsSelected' | i18n }}
                       </div>
                       <div class="action-buttons">
-                        <button class="cancel-button" (click)="closeCarFilter()">{{ translate('cancel') }}</button>
-                        <button class="apply-button" (click)="applyCarFilter()" [disabled]="selectedCarsInFilter.length === 0">{{ translate('apply') }}</button>
+                        <button class="cancel-button" (click)="closeCarFilter()">{{ 'cancel' | i18n }}</button>
+                        <button class="apply-button" (click)="applyCarFilter()" [disabled]="selectedCarsInFilter.length === 0">{{ 'apply' | i18n }}</button>
                       </div>
                     </div>
                   </div>
@@ -803,10 +803,10 @@
 
                 <!-- Reference Car List Placeholder -->
                 <div class="form-section" *ngIf="!areTopFieldsFilled()">
-                  <h2 class="section-title">{{ translate('referenceCarList') }}</h2>
+                  <h2 class="section-title">{{ 'referenceCarList' | i18n }}</h2>
                   <div class="reference-config-placeholder">
                     <img src="assets/desert.svg" alt="Fill parameters" class="desert-image">
-                    <p>{{ translate('pleaseFillInCarCategoryParameters') }}</p>
+                    <p>{{ 'pleaseFillInCarCategoryParameters' | i18n }}</p>
                   </div>
                 </div>
 
@@ -816,7 +816,7 @@
               <!-- Right side - Preview -->
               <div class="setup-preview">
                 <button class="save-button" [disabled]="!isFormValid()" (click)="saveCategory()">
-                  {{ editingCategory ? translate('updateCarCategory') : translate('saveCarCategory') }}
+                  {{ editingCategory ? 'updateCarCategory' | i18n : 'saveCarCategory' | i18n }}
                 </button>
                 
                 <div class="preview-card">
@@ -825,45 +825,45 @@
                       <path d="M3 12L5 10H19L21 12M3 12V18A2 2 0 0 0 5 20H19A2 2 0 0 0 21 18V12M3 12L5 6H19L21 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <div>
-                      <h3 class="preview-title">{{ translate('carCategory') }}</h3>
-                      <p class="preview-subtitle">{{ translate('parameters') }}</p>
+                      <h3 class="preview-title">{{ 'carCategory' | i18n }}</h3>
+                      <p class="preview-subtitle">{{ 'parameters' | i18n }}</p>
                     </div>
                   </div>
                   
                   <div class="preview-content">
                     <div class="preview-item">
-                      <span class="preview-label">{{ translate('name') }}</span>
+                      <span class="preview-label">{{ 'name' | i18n }}</span>
                       <span class="preview-value">{{ newCategory.name || '--' }}</span>
                     </div>
                     <div class="preview-item">
-                      <span class="preview-label">{{ translate('employeeContribution') }}:</span>
-                      <span class="preview-value">{{ newCategory.employeeContribution.enabled ? translate('yes') : translate('no') }}</span>
+                      <span class="preview-label">{{ 'employeeContribution' | i18n }}:</span>
+                      <span class="preview-value">{{ newCategory.employeeContribution.enabled ? 'yes' | i18n : 'no' | i18n }}</span>
                     </div>
                     <div class="preview-item">
-                      <span class="preview-label">{{ translate('annualKilometer') }}</span>
+                      <span class="preview-label">{{ 'annualKilometer' | i18n }}</span>
                       <span class="preview-value">{{ newCategory.annualKilometers || '--' }}</span>
                     </div>
                     <div class="preview-item">
-                      <span class="preview-label">{{ translate('leasingDurationLabel') }}</span>
+                      <span class="preview-label">{{ 'leasingDurationLabel' | i18n }}</span>
                       <span class="preview-value">{{ newCategory.leasingDuration || '--' }}</span>
                     </div>
                     
                     <div class="preview-section">
-                      <h4 class="preview-section-title">{{ translate('referenceCar') }}</h4>
+                      <h4 class="preview-section-title">{{ 'referenceCar' | i18n }}</h4>
                       <div class="preview-item">
-                        <span class="preview-label">{{ translate('brand') }}:</span>
+                        <span class="preview-label">{{ 'brand' | i18n }}:</span>
                         <span class="preview-value">{{ selectedReferenceCarData?.brand || '--' }}</span>
                       </div>
                       <div class="preview-item">
-                        <span class="preview-label">{{ translate('model') }}:</span>
+                        <span class="preview-label">{{ 'model' | i18n }}:</span>
                         <span class="preview-value">{{ selectedReferenceCarData?.model || '--' }}</span>
                       </div>
                       <div class="preview-item">
-                        <span class="preview-label">{{ translate('fuelType') }}</span>
+                        <span class="preview-label">{{ 'fuelType' | i18n }}</span>
                         <span class="preview-value">{{ selectedReferenceCarData?.fuel_type || '--' }}</span>
                       </div>
                       <div class="preview-item">
-                        <span class="preview-label">{{ translate('monthlyTco') }}:</span>
+                        <span class="preview-label">{{ 'monthlyTco' | i18n }}:</span>
                         <span class="preview-value">{{ calculatedTco ? formatCurrency(calculatedTco) : '--' }}</span>
                       </div>
                     </div>
@@ -877,8 +877,8 @@
                       <path d="M9 7H6a2 2 0 0 0-2 2v10c0 1.1.9 2 2 2h10a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M9 7a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <div>
-                      <h3 class="tco-details-title">{{ translate('tcoCalculationDetails') }}</h3>
-                      <p class="tco-details-subtitle">{{ translate('parametersUsedInCalculation') }}</p>
+                      <h3 class="tco-details-title">{{ 'tcoCalculationDetails' | i18n }}</h3>
+                      <p class="tco-details-subtitle">{{ 'parametersUsedInCalculation' | i18n }}</p>
                     </div>
                   </div>
                   
@@ -911,7 +911,7 @@
 
         <!-- Original Step 4 Content -->
         <div class="content-text-white" *ngIf="!showAddCategoryForm">
-          <h1 class="content-title">{{ translate('carCategoriesAndTcos') }}</h1>
+          <h1 class="content-title">{{ 'carCategoriesAndTcos' | i18n }}</h1>
           
           <div class="content-description">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
@@ -927,13 +927,13 @@
                 <path d="M8 8L6 10L8 12L10 10L8 8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M4 14L2 16L4 18L6 16L4 14Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              <span>{{ translate('inspireMe') }}</span>
+              <span>{{ 'inspireMe' | i18n }}</span>
             </button>
             <button class="add-category-button" (click)="addCategory()">
               <svg class="plus-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <path d="M10 5V15M5 10H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              <span>{{ translate('addCategory') }}</span>
+              <span>{{ 'addCategory' | i18n }}</span>
             </button>
           </div>
 
@@ -942,8 +942,8 @@
             <div class="empty-categories-state" *ngIf="!hasCategories()">
               <div class="empty-state-content">
                 <img src="assets/desert.svg" alt="No categories" class="empty-state-image">
-                <h3 class="empty-state-title">{{ translate('noCarCategoriesYet') }}</h3>
-                <p class="empty-state-description">{{ translate('getStartedByAddingYourFirstCarCategory') }}</p>
+                <h3 class="empty-state-title">{{ 'noCarCategoriesYet' | i18n }}</h3>
+                <p class="empty-state-description">{{ 'getStartedByAddingYourFirstCarCategory' | i18n }}</p>
               </div>
             </div>
             
@@ -951,11 +951,11 @@
             <table class="categories-table" *ngIf="hasCategories()">
               <thead>
                 <tr>
-                  <th>{{ translate('name') }}</th>
-                  <th>{{ translate('referenceCar') }}</th>
-                  <th>{{ translate('annualKm') }}</th>
-                  <th>{{ translate('leasingDurationTable') }}</th>
-                  <th>{{ translate('monthlyTcoTable') }}</th>
+                  <th>{{ 'name' | i18n }}</th>
+                  <th>{{ 'referenceCar' | i18n }}</th>
+                  <th>{{ 'annualKm' | i18n }}</th>
+                  <th>{{ 'leasingDurationTable' | i18n }}</th>
+                  <th>{{ 'monthlyTcoTable' | i18n }}</th>
                   <th></th>
                 </tr>
               </thead>
@@ -1012,7 +1012,7 @@
             <svg class="arrow-icon-left" width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M15.8333 10H4.16666M4.16666 10L9.16666 5M4.16666 10L9.16666 15" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <span>{{ translate('previous') }}</span>
+            <span>{{ 'previous' | i18n }}</span>
           </button>
           <div class="review-button-container">
             <button 
@@ -1020,14 +1020,14 @@
               [class.disabled]="!canProceedToReview()"
               [disabled]="!canProceedToReview()"
               (click)="nextStep()">
-              <span>{{ translate('nextStep') }}</span>
+              <span>{{ 'nextStep' | i18n }}</span>
               <svg class="arrow-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <path d="M4.16666 10H15.8333M15.8333 10L10.8333 5M15.8333 10L10.8333 15" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </button>
             <div class="review-button-help" *ngIf="!canProceedToReview()">
-              <span *ngIf="carCategories.length === 0">{{ translate('pleaseAddAtLeastOneCarCategory') }}</span>
-              <span *ngIf="carCategories.length > 0 && hasCategoriesWithErrorStatus()">{{ translate('allCategoriesMustHaveReferenceCarAndTcoCalculation') }}</span>
+              <span *ngIf="carCategories.length === 0">{{ 'pleaseAddAtLeastOneCarCategory' | i18n }}</span>
+              <span *ngIf="carCategories.length > 0 && hasCategoriesWithErrorStatus()">{{ 'allCategoriesMustHaveReferenceCarAndTcoCalculation' | i18n }}</span>
             </div>
           </div>
         </div>
@@ -1037,15 +1037,15 @@
       <div class="content-full" *ngIf="currentStep === 5">
         <div class="content-text-white">
           <div class="review-header" *ngIf="isPartnerMode">
-            <h1 class="review-title">{{ translate('yourMobilityBudgetPolicy') }}</h1>
+            <h1 class="review-title">{{ 'yourMobilityBudgetPolicy' | i18n }}</h1>
             <button class="new-client-button" (click)="openNewClientModal()">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              <span>{{ translate('newClient') }}</span>
+              <span>{{ 'newClient' | i18n }}</span>
             </button>
           </div>
-          <h1 class="review-title" *ngIf="!isPartnerMode">{{ translate('yourMobilityBudgetPolicy') }}</h1>
+          <h1 class="review-title" *ngIf="!isPartnerMode">{{ 'yourMobilityBudgetPolicy' | i18n }}</h1>
           
           <div class="review-content">
             <!-- Document Status -->
@@ -1067,10 +1067,10 @@
 
                 </div>
                 <div class="status-text">
-                  <h3>{{ translate('documentStatus') }}: {{ documentStatus | titlecase }}</h3>
-                  <p *ngIf="documentStatus === 'pending'">{{ translate('yourPolicyIsBeingReviewedBy') }} {{ partner }}.</p>
-                  <p *ngIf="documentStatus === 'submitted'">{{ translate('yourPolicyHasBeenSubmittedForReview') }}</p>
-                  <p *ngIf="documentStatus === 'approved'">{{ translate('yourPolicyHasBeenApproved') }}</p>
+                  <h3>{{ 'documentStatus' | i18n }}: {{ documentStatus | titlecase }}</h3>
+                  <p *ngIf="documentStatus === 'pending'">{{ 'yourPolicyIsBeingReviewedBy' | i18n }} {{ partner }}.</p>
+                  <p *ngIf="documentStatus === 'submitted'">{{ 'yourPolicyHasBeenSubmittedForReview' | i18n }}</p>
+                  <p *ngIf="documentStatus === 'approved'">{{ 'yourPolicyHasBeenApproved' | i18n }}</p>
 
                 </div>
               </div>
@@ -1082,7 +1082,7 @@
               <div *ngIf="isPartnerMode" class="partner-document-actions">
                 <div class="document-viewer">
                   <div class="document-header">
-                    <h3>{{ translate('documentPreview') }}</h3>
+                    <h3>{{ 'documentPreview' | i18n }}</h3>
                     
                     <!-- Language Selection Buttons -->
                     <div class="language-buttons" *ngIf="getAvailableLanguages().length > 0">
@@ -1122,7 +1122,7 @@
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                           <path d="M8 1V15M1 8H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
                         </svg>
-                        <span>{{ translate('edit') }}</span>
+                        <span>{{ 'edit' | i18n }}</span>
                       </button>
                     </div>
                   </div>
@@ -1133,20 +1133,20 @@
                     </div>
                     <div class="document-editor" *ngIf="showDocumentEditor">
                       <div class="editor-header">
-                        <h4>{{ translate('editDocument') }}</h4>
+                        <h4>{{ 'editDocument' | i18n }}</h4>
                         <div class="editor-actions">
                           <button class="save-button" (click)="saveDocumentChanges()">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                               <path d="M13 3H3V13H13V3ZM11 11H5V5H11V11Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                               <path d="M7 7H9V9H7V7Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            <span>{{ translate('saveChanges') }}</span>
+                            <span>{{ 'saveChanges' | i18n }}</span>
                           </button>
                           <button class="cancel-button" (click)="closeDocumentEditor()">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                               <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            <span>{{ translate('cancel') }}</span>
+                            <span>{{ 'cancel' | i18n }}</span>
                           </button>
                         </div>
                       </div>
@@ -1156,7 +1156,7 @@
                           class="document-editor" 
                           contenteditable="true"
                           (input)="onEditorInput($event)"
-                          [attr.placeholder]="translate('editYourDocumentContentHere')">
+                          [attr.placeholder]="'editYourDocumentContentHere' | i18n">
                         </div>
                       </div>
                     </div>
@@ -1170,8 +1170,8 @@
                         <line x1="16" y1="17" x2="8" y2="17"/>
                         <polyline points="10,9 9,9 8,9"/>
                       </svg>
-                      <p>{{ translate('noDocumentAvailableYet') }}</p>
-                      <p class="document-status">{{ translate('status') }}: {{ documentStatus || 'draft' | titlecase }}</p>
+                      <p>{{ 'noDocumentAvailableYet' | i18n }}</p>
+                      <p class="document-status">{{ 'status' | i18n }}: {{ documentStatus || 'draft' | titlecase }}</p>
                     </div>
                     <div class="document-loading" *ngIf="isGeneratingDocument">
                       <div class="loading-spinner">
@@ -1182,8 +1182,8 @@
                           </path>
                         </svg>
                       </div>
-                      <p>{{ translate('generatingDocument') }}</p>
-                      <p class="loading-subtitle">{{ translate('pleaseWaitWhileWeCreateYourTcoDocument') }}</p>
+                      <p>{{ 'generatingDocument' | i18n }}</p>
+                      <p class="loading-subtitle">{{ 'pleaseWaitWhileWeCreateYourTcoDocument' | i18n }}</p>
                     </div>
                   </ng-template>
                 </div>
@@ -1194,13 +1194,13 @@
                     <svg class="approve-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
                       <path d="M16.6667 5L7.5 14.1667L3.33333 10" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <span>{{ translate('approve') }}</span>
+                    <span>{{ 'approve' | i18n }}</span>
                   </button>
                   <button class="reject-button" (click)="updateDocumentStatus('rejected')">
                     <svg class="reject-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
                       <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <span>{{ translate('reject') }}</span>
+                    <span>{{ 'reject' | i18n }}</span>
                   </button>
                 </div>
                 <div class="status-actions" *ngIf="documentStatus === 'approved'">
@@ -1239,26 +1239,26 @@
                     <img src="assets/thumbsup.svg" alt="Thumbs up" class="thumbs-up-icon">
                   </div>
                   <div class="review-message">
-                    <p><strong>{{ translate('yourPolicyHasBeenApproved') }}</strong> {{ translate('youCanNowDownloadYourDocumentInDifferentLanguages') }}</p>
+                    <p><strong>{{ 'yourPolicyHasBeenApproved' | i18n }}</strong> {{ 'youCanNowDownloadYourDocumentInDifferentLanguages' | i18n }}</p>
                   </div>
                   <div class="multi-language-downloads">
                     <button class="download-button" (click)="downloadDocument('en')" *ngIf="documentUrls.en">
                       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M3 17V19A2 2 0 0 0 5 21H15A2 2 0 0 0 17 19V17M10 11L10 3M10 11L7 8M10 11L13 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
-                      <span>{{ translate('downloadEnglish') }}</span>
+                      <span>{{ 'downloadEnglish' | i18n }}</span>
                     </button>
                     <button class="download-button" (click)="downloadDocument('nl')" *ngIf="documentUrls.nl">
                       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M3 17V19A2 2 0 0 0 5 21H15A2 2 0 0 0 17 19V17M10 11L10 3M10 11L7 8M10 11L13 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
-                      <span>{{ translate('downloadNederlands') }}</span>
+                      <span>{{ 'downloadNederlands' | i18n }}</span>
                     </button>
                     <button class="download-button" (click)="downloadDocument('fr')" *ngIf="documentUrls.fr">
                       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M3 17V19A2 2 0 0 0 5 21H15A2 2 0 0 0 17 19V17M10 11L10 3M10 11L7 8M10 11L13 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
-                      <span>{{ translate('downloadFrancais') }}</span>
+                      <span>{{ 'downloadFrancais' | i18n }}</span>
                     </button>
                   </div>
                 </div>
@@ -1267,7 +1267,7 @@
                     <img src="assets/thumbsup.svg" alt="Thumbs up" class="thumbs-up-icon">
                   </div>
                   <div class="review-message">
-                    <p><strong>{{ translate('yourPolicyIsBeingReviewedByPartnerComplete') }} {{ partner }}.</strong> {{ translate('onceReadyYouWillBeNotifiedByEmailComplete') }}</p>
+                    <p><strong>{{ 'yourPolicyIsBeingReviewedByPartnerComplete' | i18n }} {{ partner }}.</strong> {{ 'onceReadyYouWillBeNotifiedByEmailComplete' | i18n }}</p>
                   </div>
                 </div>
 
@@ -1279,11 +1279,11 @@
                     </svg>
                   </div>
                   <div class="rejected-message">
-                    <p><strong>{{ translate('yourPolicyHasBeenRejected') }}</strong> {{ translate('pleaseReviewAndResubmit') }}</p>
+                    <p><strong>{{ 'yourPolicyHasBeenRejected' | i18n }}</strong> {{ 'pleaseReviewAndResubmit' | i18n }}</p>
                   </div>
                   <div class="rejected-actions">
                     <button class="reset-button" (click)="resetToStep4()">
-                      <span>{{ translate('rejectAndResetToStep4') }}</span>
+                      <span>{{ 'rejectAndResetToStep4' | i18n }}</span>
                     </button>
                   </div>
                 </div>
@@ -1293,8 +1293,8 @@
                     <img src="assets/thumbsup.svg" alt="Thumbs up" class="thumbs-up-icon">
                   </div>
                   <div class="review-message">
-                    <p><strong>{{ translate('readyToSubmitForReview') }}</strong></p>
-                    <p>{{ translate('pleaseReviewYourCategoriesAndSubmit') }}</p>
+                    <p><strong>{{ 'readyToSubmitForReview' | i18n }}</strong></p>
+                    <p>{{ 'pleaseReviewYourCategoriesAndSubmit' | i18n }}</p>
                   </div>
                   <div class="submit-actions">
                     <button 
@@ -1306,11 +1306,11 @@
                         <path d="M10 1L13 4H11V9H9V4H7L10 1Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M19 10L16 7V9H11V11H16V13L19 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
-                      <span>{{ translate('submitForReview') }}</span>
+                      <span>{{ 'submitForReview' | i18n }}</span>
                     </button>
                     <div *ngIf="!canGenerateDocument()" class="submit-disabled-message">
-                      <p>{{ translate('completeAllCategoriesFirst') }}</p>
-                      <p>{{ translate('allCategoriesMustHaveValidTco') }}</p>
+                      <p>{{ 'completeAllCategoriesFirst' | i18n }}</p>
+                      <p>{{ 'allCategoriesMustHaveValidTco' | i18n }}</p>
                     </div>
                   </div>
                 </div>
@@ -1350,7 +1350,7 @@
 <div class="new-client-overlay" *ngIf="showNewClientModal">
   <div class="new-client-modal">
     <div class="modal-header">
-      <h2 class="modal-title">{{ translate('newClient') }}</h2>
+      <h2 class="modal-title">{{ 'newClient' | i18n }}</h2>
       <button class="close-button" (click)="closeNewClientModal()">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
           <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -1362,7 +1362,7 @@
       <form (ngSubmit)="submitNewClient()" #newClientForm="ngForm">
         <!-- Full Name -->
         <div class="form-group">
-          <label for="newClientFullName" class="form-label">{{ translate('fullName') }}</label>
+          <label for="newClientFullName" class="form-label">{{ 'fullName' | i18n }}</label>
           <div class="input-container" [class.valid]="newClientData.fullName && !newClientData.fullNameError">
             <input 
               type="text" 
@@ -1382,7 +1382,7 @@
 
         <!-- Email -->
         <div class="form-group">
-          <label for="newClientEmail" class="form-label">{{ translate('email') }}</label>
+          <label for="newClientEmail" class="form-label">{{ 'email' | i18n }}</label>
           <div class="input-container" [class.valid]="newClientData.email && !newClientData.emailError">
             <input 
               type="email" 
@@ -1402,7 +1402,7 @@
 
         <!-- Phone Number -->
         <div class="form-group">
-          <label for="newClientPhone" class="form-label">{{ translate('phoneNumber') }}</label>
+          <label for="newClientPhone" class="form-label">{{ 'phoneNumber' | i18n }}</label>
           <div class="phone-input-container">
             <select 
               class="country-select"
@@ -1422,7 +1422,7 @@
                 class="form-input"
                 [(ngModel)]="newClientData.phoneNumber"
                 (blur)="validateNewClientPhoneNumber()"
-                placeholder="{{ translate('phoneNumberPlaceholder') }}"
+                placeholder="{{ 'phoneNumberPlaceholder' | i18n }}"
                 required
               >
               <div class="validation-icon" *ngIf="newClientData.phoneNumber && !newClientData.phoneNumberError">
@@ -1435,7 +1435,7 @@
 
         <!-- Social Secretary (Disabled) -->
         <div class="form-group">
-          <label for="newClientSocialSecretary" class="form-label">{{ translate('socialSecretary') }}</label>
+          <label for="newClientSocialSecretary" class="form-label">{{ 'socialSecretary' | i18n }}</label>
           <div class="input-container disabled">
             <select 
               id="newClientSocialSecretary" 
@@ -1447,12 +1447,12 @@
               <option value="{{ partnerName }}">{{ partnerName }}</option>
             </select>
           </div>
-          <div class="help-text">{{ translate('socialSecretaryPreFilled') }}</div>
+          <div class="help-text">{{ 'socialSecretaryPreFilled' | i18n }}</div>
         </div>
 
         <!-- Company Number -->
         <div class="form-group">
-          <label for="newClientCompanyNumber" class="form-label">{{ translate('companyNumber') }}</label>
+          <label for="newClientCompanyNumber" class="form-label">{{ 'companyNumber' | i18n }}</label>
           <div class="input-container" [class.valid]="newClientData.companyNumber && !newClientData.companyNumberError">
             <input 
               type="text" 
@@ -1473,7 +1473,7 @@
 
         <!-- Company Name -->
         <div class="form-group" *ngIf="newClientData.showCompanyNameInput">
-          <label for="newClientCompanyName" class="form-label">{{ translate('companyName') }}</label>
+          <label for="newClientCompanyName" class="form-label">{{ 'companyName' | i18n }}</label>
           <div class="input-container" [class.valid]="newClientData.companyName && !newClientData.companyNameError">
             <input 
               type="text" 
@@ -1493,22 +1493,22 @@
 
         <!-- Company Info Display -->
         <div class="company-info" *ngIf="newClientData.companyInfo">
-          <h4>{{ translate('companyInformation') }}</h4>
-          <p><strong>{{ translate('companyName') }}:</strong> {{ newClientData.companyInfo.name }}</p>
-          <p *ngIf="newClientData.companyInfo.address"><strong>{{ translate('address') }}:</strong> {{ newClientData.companyInfo.address }}</p>
+          <h4>{{ 'companyInformation' | i18n }}</h4>
+          <p><strong>{{ 'companyName' | i18n }}:</strong> {{ newClientData.companyInfo.name }}</p>
+          <p *ngIf="newClientData.companyInfo.address"><strong>{{ 'address' | i18n }}:</strong> {{ newClientData.companyInfo.address }}</p>
         </div>
       </form>
     </div>
     
     <div class="modal-actions">
-      <button class="cancel-button" (click)="closeNewClientModal()">{{ translate('cancel') }}</button>
+      <button class="cancel-button" (click)="closeNewClientModal()">{{ 'cancel' | i18n }}</button>
       <button 
         class="submit-button" 
         (click)="submitNewClient()" 
         [disabled]="!isNewClientFormValid() || isSubmittingNewClient"
       >
-        <span *ngIf="!isSubmittingNewClient">{{ translate('createClient') }}</span>
-        <span *ngIf="isSubmittingNewClient">{{ translate('creating') }}...</span>
+        <span *ngIf="!isSubmittingNewClient">{{ 'createClient' | i18n }}</span>
+        <span *ngIf="isSubmittingNewClient">{{ 'creating' | i18n }}...</span>
       </button>
     </div>
   </div>

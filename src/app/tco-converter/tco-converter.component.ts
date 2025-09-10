@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TranslationService, Language } from '../services/translation.service';
+import { I18nPipe } from '../pipes/i18n.pipe';
 import { VehiclesService } from '../services/vehicles.service';
 import { TcoResultsComponent, TcoResult } from '../tco-results/tco-results.component';
 import { UserSessionService, UserSession } from '../services/user-session.service';

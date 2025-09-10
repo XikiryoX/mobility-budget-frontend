@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserSessionService, UserSession } from '../services/user-session.service';
 import { TranslationService, Language } from '../services/translation.service';
+import { I18nPipe } from '../pipes/i18n.pipe';
 
 @Component({
   selector: 'app-user-sessions',

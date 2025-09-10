@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslationService, Language } from '../services/translation.service';
+import { I18nPipe } from '../pipes/i18n.pipe';
 import { UserSessionService } from '../services/user-session.service';
 import { SocialSecretaryService } from '../services/social-secretary.service';
 

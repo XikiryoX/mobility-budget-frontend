@@ -6,11 +6,12 @@ import { Subscription } from 'rxjs';
 import { TranslationService, Language } from '../services/translation.service';
 import { SignupService, Signup } from '../services/signup.service';
 import { environment } from '../../environments/environment';
+import { I18nPipe } from '../pipes/i18n.pipe';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, I18nPipe],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

@@ -6,7 +6,7 @@
     </div>
     
     <div class="partner-info">
-      <h1 class="partner-title">{{ translate('loggedInAs') }} {{ partnerName }}</h1>
+      <h1 class="partner-title">{{ 'loggedInAs' | i18n }} {{ partnerName }}</h1>
     </div>
     
     <div class="header-actions">
@@ -33,7 +33,7 @@
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M6 12L2 8L6 4M2 8H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <span>{{ translate('signOut') }}</span>
+        <span>{{ 'signOut' | i18n }}</span>
       </button>
     </div>
   </div>
@@ -42,14 +42,14 @@
   <div class="main-content">
     <div class="content-container">
       <div class="dashboard-header">
-        <h2 class="dashboard-title">{{ translate('clientPoliciesOverview') }}</h2>
-        <p class="dashboard-subtitle">{{ translate('manageAndReviewAllYourClientsMobilityBudgetPolicies') }}</p>
+        <h2 class="dashboard-title">{{ 'clientPoliciesOverview' | i18n }}</h2>
+        <p class="dashboard-subtitle">{{ 'manageAndReviewAllYourClientsMobilityBudgetPolicies' | i18n }}</p>
       </div>
 
               <!-- Loading State -->
         <div class="loading-container" *ngIf="isLoading">
           <div class="loading-spinner"></div>
-          <p>{{ translate('loadingClientPolicies') }}</p>
+          <p>{{ 'loadingClientPolicies' | i18n }}</p>
         </div>
 
       <!-- Error State -->
@@ -61,14 +61,14 @@
           </svg>
           <span>{{ error }}</span>
         </div>
-        <button class="retry-button" (click)="loadPartnerSessions()">{{ translate('tryAgain') }}</button>
+        <button class="retry-button" (click)="loadPartnerSessions()">{{ 'tryAgain' | i18n }}</button>
       </div>
 
       <!-- Companies List -->
       <div class="companies-container" *ngIf="!isLoading && !error">
         <div class="companies-header">
           <div class="companies-title-section">
-            <h3>{{ translate('companies') }} ({{ filteredCompanySessions.length }})</h3>
+            <h3>{{ 'companies' | i18n }} ({{ filteredCompanySessions.length }})</h3>
           </div>
           <div class="companies-filter-section">
             <div class="filter-container">
@@ -78,7 +78,7 @@
               <input 
                 type="text" 
                 class="company-filter-input" 
-                [placeholder]="translate('filterByCompanyName')" 
+                [placeholder]="'filterByCompanyName' | i18n" 
                 [(ngModel)]="companyFilter"
                 (ngModelChange)="onCompanyFilterChange()"
               >
@@ -86,7 +86,7 @@
                 class="clear-filter-button" 
                 *ngIf="companyFilter"
                 (click)="clearCompanyFilter()"
-                [title]="translate('clearFilter')"
+                [title]="'clearFilter' | i18n"
               >
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                   <path d="M10.5 3.5L3.5 10.5M3.5 3.5L10.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -103,7 +103,7 @@
               <div class="company-info">
                 <div class="company-name">{{ company.signup.companyName }}</div>
                 <div class="company-details">
-                  <span class="company-contact">{{ translate('contact') }}: {{ company.signup.fullName }}</span>
+                  <span class="company-contact">{{ 'contact' | i18n }}: {{ company.signup.fullName }}</span>
                   <span class="company-email" *ngIf="company.signup.email">
                     • {{ company.signup.email }}
                   </span>
@@ -112,18 +112,18 @@
               
               <div class="company-stats">
                 <div class="session-count">
-                  {{ getSessionCount(company) }} {{ getSessionCount(company) === 1 ? translate('policy') : translate('policies') }}
+                  {{ getSessionCount(company) }} {{ getSessionCount(company) === 1 ? 'policy' | i18n : 'policies' | i18n }}
                 </div>
                 <div class="company-status-summary">
-                  <span class="status-dot completed" *ngIf="getCompletedSessions(company) > 0" [title]="getCompletedSessions(company) + ' ' + (getCompletedSessions(company) === 1 ? translate('completedPolicy') : translate('completedPolicies'))">{{ getCompletedSessions(company) }}</span>
-                  <span class="status-dot in-progress" *ngIf="getInProgressSessions(company) > 0" [title]="getInProgressSessions(company) + ' ' + (getInProgressSessions(company) === 1 ? translate('inProgressPolicy') : translate('inProgressPolicies'))">{{ getInProgressSessions(company) }}</span>
-                  <span class="status-dot pending" *ngIf="getPendingSessions(company) > 0" [title]="getPendingSessions(company) + ' ' + (getPendingSessions(company) === 1 ? translate('draftPolicy') : translate('draftPolicies'))">{{ getPendingSessions(company) }}</span>
+                  <span class="status-dot completed" *ngIf="getCompletedSessions(company) > 0" [title]="getCompletedSessions(company) + ' ' + (getCompletedSessions(company) === 1 ? 'completedPolicy' | i18n : 'completedPolicies' | i18n)">{{ getCompletedSessions(company) }}</span>
+                  <span class="status-dot in-progress" *ngIf="getInProgressSessions(company) > 0" [title]="getInProgressSessions(company) + ' ' + (getInProgressSessions(company) === 1 ? 'inProgressPolicy' | i18n : 'inProgressPolicies' | i18n)">{{ getInProgressSessions(company) }}</span>
+                  <span class="status-dot pending" *ngIf="getPendingSessions(company) > 0" [title]="getPendingSessions(company) + ' ' + (getPendingSessions(company) === 1 ? 'draftPolicy' | i18n : 'draftPolicies' | i18n)">{{ getPendingSessions(company) }}</span>
                 </div>
-                <button class="new-policy-button" (click)="startNewPolicy(company, $event)" title="{{ translate('startNewPolicy') }}">
+                <button class="new-policy-button" (click)="startNewPolicy(company, $event)" title="{{ 'startNewPolicy' | i18n }}">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                     <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
-                  <span>{{ translate('newPolicy') }}</span>
+                  <span>{{ 'newPolicy' | i18n }}</span>
                 </button>
                 <div class="expand-icon" [class.expanded]="company.expanded">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -139,20 +139,20 @@
                 <table>
                   <thead>
                     <tr>
-                      <th>{{ translate('contact') }}</th>
-                      <th>{{ translate('status') }}</th>
-                      <th>{{ translate('currentStep') }}</th>
-                      <th>{{ translate('categories') }}</th>
-                      <th>{{ translate('lastActivity') }}</th>
-                      <th>{{ translate('actions') }}</th>
+                      <th>{{ 'contact' | i18n }}</th>
+                      <th>{{ 'status' | i18n }}</th>
+                      <th>{{ 'currentStep' | i18n }}</th>
+                      <th>{{ 'categories' | i18n }}</th>
+                      <th>{{ 'lastActivity' | i18n }}</th>
+                      <th>{{ 'actions' | i18n }}</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let session of company.sessions">
                       <td class="user-cell">
                         <div class="user-info">
-                          <div class="user-name">{{ company.signup.fullName || translate('unknownContact') }}</div>
-                          <div class="user-email">{{ company.signup.email || translate('noEmail') }}</div>
+                          <div class="user-name">{{ company.signup.fullName || 'unknownContact' | i18n }}</div>
+                          <div class="user-email">{{ company.signup.email || 'noEmail' | i18n }}</div>
                         </div>
                       </td>
                       <td class="status-cell">
@@ -162,15 +162,15 @@
                       </td>
                       <td class="step-cell">
                         <div class="step-info">
-                          <div class="step-number">{{ translate('step') }} {{ getCurrentStep(session) }}</div>
+                          <div class="step-number">{{ 'step' | i18n }} {{ getCurrentStep(session) }}</div>
                           <div class="step-name">{{ getStepName(session) }}</div>
                         </div>
                       </td>
                       <td class="categories-cell">
                         <div class="categories-info">
-                          <div class="category-count">{{ getCategoryCount(session) }} {{ translate('categoryCount') }}</div>
+                          <div class="category-count">{{ getCategoryCount(session) }} {{ 'categoryCount' | i18n }}</div>
                           <div class="category-status" *ngIf="getCategoryCount(session) > 0">
-                            {{ getCompletedCategories(session) }} {{ translate('completed') }}
+                            {{ getCompletedCategories(session) }} {{ 'completed' | i18n }}
                           </div>
                         </div>
                       </td>
@@ -186,7 +186,7 @@
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                               <path d="M8 3H3V13H13V8M8 3L13 8M8 3V8H13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            <span>{{ translate('openSession') }}</span>
+                            <span>{{ 'openSession' | i18n }}</span>
                           </button>
                           <button 
                             class="delete-session-button" 
@@ -197,7 +197,7 @@
                               <path d="M2 4H3.33333H14M5.33333 4V2.66667C5.33333 2.31305 5.47381 1.97391 5.72386 1.72386C5.97391 1.47381 6.31305 1.33333 6.66667 1.33333H9.33333C9.68695 1.33333 10.0261 1.47381 10.2761 1.72386C10.5262 1.97391 10.6667 2.31305 10.6667 2.66667V4M12.6667 4V13.3333C12.6667 13.687 12.5262 14.0261 12.2761 14.2761C12.0261 14.5262 11.687 14.6667 11.3333 14.6667H4.66667C4.31305 14.6667 3.97391 14.5262 3.72386 14.2761C3.47381 14.0261 3.33333 13.687 3.33333 13.3333V4H12.6667Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                             <div *ngIf="isDeleting(session)" class="delete-spinner"></div>
-                            <span>{{ isDeleting(session) ? translate('deleting') : translate('delete') }}</span>
+                            <span>{{ isDeleting(session) ? 'deleting' | i18n : 'delete' | i18n }}</span>
                           </button>
                         </div>
                       </td>
@@ -218,8 +218,8 @@
               <path d="M32 24C28.6863 24 26 26.6863 26 30C26 33.3137 28.6863 36 32 36C35.3137 36 38 33.3137 38 30C38 26.6863 35.3137 24 32 24ZM32 34C30.3431 34 29 32.6569 29 31C29 29.3431 30.3431 28 32 28C33.6569 28 35 29.3431 35 31C35 32.6569 33.6569 34 32 34Z" fill="#9CA3AF"/>
             </svg>
           </div>
-          <h3>{{ translate('noClientPoliciesFound') }}</h3>
-          <p>{{ translate('youDontHaveAnyClientPoliciesYet') }}</p>
+          <h3>{{ 'noClientPoliciesFound' | i18n }}</h3>
+          <p>{{ 'youDontHaveAnyClientPoliciesYet' | i18n }}</p>
         </div>
       </div>
     </div>

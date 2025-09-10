@@ -2,7 +2,7 @@
   <div class="signup-image-col">
     <img src="assets/shutterstock-1976973020-1@2x.png" alt="Sign up visual" class="signup-image" />
     <div class="image-overlay-text">
-      <p [innerHTML]="translate('imageText')"></p>
+      <p [innerHTML]="'imageText' | i18n"></p>
     </div>
   </div>
   <div class="signup-form-col">
@@ -35,25 +35,25 @@
         <!-- Back button -->
         <button class="back-button" (click)="goBack()">
           <span class="back-arrow">←</span>
-          {{ translate('back') }}
+          {{ 'back' | i18n }}
         </button>
 
         <!-- Title section -->
-        <h2 class="sign-up-title">{{ translate('signUpToContinue') }}</h2>
+        <h2 class="sign-up-title">{{ 'signUpToContinue' | i18n }}</h2>
         <h1 class="tco-converter-title">TCO Converter</h1>
 
         <!-- Signup form -->
         <form class="signup-form" (ngSubmit)="onSubmit()">
           <!-- Full Name -->
           <div class="form-group">
-            <label for="fullName" class="form-label">{{ translate('fullName') }}</label>
+            <label for="fullName" class="form-label">{{ 'fullName' | i18n }}</label>
             <div class="input-container" [class.valid]="fullName && !fullNameError">
               <input 
                 type="text" 
                 id="fullName" 
                 name="fullName"
                 class="form-input"
-                [placeholder]="translate('addYourFullName')"
+                [placeholder]="'addYourFullName' | i18n"
                 [(ngModel)]="fullName"
                 (input)="onFullNameChange()"
                 required
@@ -69,14 +69,14 @@
 
           <!-- Email Address -->
           <div class="form-group">
-            <label for="email" class="form-label">{{ translate('emailAddress') }}</label>
+            <label for="email" class="form-label">{{ 'emailAddress' | i18n }}</label>
             <div class="input-container" [class.valid]="email && !emailError">
               <input 
                 type="email" 
                 id="email" 
                 name="email"
                 class="form-input"
-                [placeholder]="translate('addYourEmailAddress')"
+                [placeholder]="'addYourEmailAddress' | i18n"
                 [(ngModel)]="email"
                 (input)="onEmailChange()"
                 required
@@ -92,7 +92,7 @@
 
           <!-- Phone Number -->
           <div class="form-group">
-            <label for="phone" class="form-label">{{ translate('phoneNumber') }}</label>
+            <label for="phone" class="form-label">{{ 'phoneNumber' | i18n }}</label>
             <div class="phone-input-container">
               <div class="country-selector">
                 <select class="country-dropdown" name="selectedCountry" [(ngModel)]="selectedCountry">
@@ -108,7 +108,7 @@
                   id="phone" 
                   name="phone"
                   class="form-input phone-input"
-                  [placeholder]="translate('addYourPhoneNumber')"
+                  [placeholder]="'addYourPhoneNumber' | i18n"
                   [(ngModel)]="phoneNumber"
                   (input)="onPhoneNumberChange()"
                   required
@@ -125,7 +125,7 @@
 
           <!-- Social Secretary -->
           <div class="form-group">
-            <label for="socialSecretary" class="form-label">{{ translate('socialSecretary') }}</label>
+            <label for="socialSecretary" class="form-label">{{ 'socialSecretary' | i18n }}</label>
             <div class="input-container" [class.valid]="socialSecretary && !socialSecretaryError">
               <select 
                 id="socialSecretary" 
@@ -135,7 +135,7 @@
                 (change)="onSocialSecretaryChange()"
                 required
               >
-                <option value="" disabled [selected]="!socialSecretary">{{ translate('chooseYourSocialSecretary') }}</option>
+                <option value="" disabled [selected]="!socialSecretary">{{ 'chooseYourSocialSecretary' | i18n }}</option>
                 <option value="acerta">Acerta</option>
                 <option value="liantis">Liantis</option>
                 <option value="partena">Partena Professional</option>
@@ -150,14 +150,14 @@
 
           <!-- Company Number -->
           <div class="form-group">
-            <label for="companyNumber" class="form-label">{{ translate('companyNumber') }}</label>
+            <label for="companyNumber" class="form-label">{{ 'companyNumber' | i18n }}</label>
             <div class="input-container" [class.valid]="companyNumber && !companyNumberError">
               <input 
                 type="text" 
                 id="companyNumber" 
                 name="companyNumber"
                 class="form-input"
-                [placeholder]="translate('addYourCompanyNumber')"
+                [placeholder]="'addYourCompanyNumber' | i18n"
                 [(ngModel)]="companyNumber"
                 (input)="onCompanyNumberChange()"
                 required
@@ -174,7 +174,7 @@
             <div class="company-info" *ngIf="companyInfo && !companyNumberError">
               <div class="company-info-header">
                 <span class="company-info-icon">🏢</span>
-                <span class="company-info-title">{{ translate('companyFound') }}</span>
+                <span class="company-info-title">{{ 'companyFound' | i18n }}</span>
               </div>
               <div class="company-info-content">
                 <div class="company-name">{{ companyInfo.name }}</div>
@@ -185,14 +185,14 @@
 
             <!-- Company Name Input (when VIES lookup fails or returns invalid data) -->
             <div class="company-name-input" *ngIf="showCompanyNameInput">
-              <label for="companyName" class="form-label">{{ translate('companyName') }}</label>
+              <label for="companyName" class="form-label">{{ 'companyName' | i18n }}</label>
               <div class="input-container" [class.valid]="companyName && !companyNameError">
                 <input 
                   type="text" 
                   id="companyName" 
                   name="companyName"
                   class="form-input"
-                  [placeholder]="translate('addYourCompanyName')"
+                  [placeholder]="'addYourCompanyName' | i18n"
                   [(ngModel)]="companyName"
                   (input)="onCompanyNameChange()"
                   required
@@ -209,7 +209,7 @@
             <!-- Loading indicator -->
             <div class="loading-indicator" *ngIf="isLookingUpCompany">
               <span class="loading-spinner">⏳</span>
-              <span class="loading-text">{{ translate('lookingUpCompany') }}</span>
+              <span class="loading-text">{{ 'lookingUpCompany' | i18n }}</span>
             </div>
           </div>
 
@@ -219,8 +219,8 @@
             class="submit-button"
             [disabled]="!isFormValid() || isSubmitting"
           >
-            <span *ngIf="!isSubmitting">{{ translate('signUp') }}</span>
-            <span *ngIf="isSubmitting">{{ translate('sending') }}</span>
+            <span *ngIf="!isSubmitting">{{ 'signUp' | i18n }}</span>
+            <span *ngIf="isSubmitting">{{ 'sending' | i18n }}</span>
           </button>
         </form>
       </div>

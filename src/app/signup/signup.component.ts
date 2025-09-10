@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { TranslationService, Language } from '../services/translation.service';
+import { I18nPipe } from '../pipes/i18n.pipe';
 import { ViesServiceFactory, ViesServiceInterface } from '../services/vies.service.factory';
 import { ViesResponse } from '../services/vies.service';
 import { SignupService } from '../services/signup.service';

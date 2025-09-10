@@ -1,0 +1,1054 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="signInToContinue" datatype="html">
+        <source>signInToContinue</source>
+        <target>Meld je aan om door te gaan naar</target>
+      </trans-unit>
+      <trans-unit id="emailAddress" datatype="html">
+        <source>emailAddress</source>
+        <target>E-mailadres</target>
+      </trans-unit>
+      <trans-unit id="addYourEmailAddress" datatype="html">
+        <source>addYourEmailAddress</source>
+        <target>Voeg je e-mailadres toe</target>
+      </trans-unit>
+      <trans-unit id="signIn" datatype="html">
+        <source>signIn</source>
+        <target>Aanmelden</target>
+      </trans-unit>
+      <trans-unit id="signUp" datatype="html">
+        <source>signUp</source>
+        <target>Registreren</target>
+      </trans-unit>
+      <trans-unit id="wantToJoinPartner" datatype="html">
+        <source>wantToJoinPartner</source>
+        <target>Wil je ons platform als partner vervoegen?</target>
+      </trans-unit>
+      <trans-unit id="becomePartner" datatype="html">
+        <source>becomePartner</source>
+        <target>Word partner</target>
+      </trans-unit>
+      <trans-unit id="viewPreviousSessions" datatype="html">
+        <source>viewPreviousSessions</source>
+        <target>Bekijk eerdere sessies</target>
+      </trans-unit>
+      <trans-unit id="partnerLogin" datatype="html">
+        <source>partnerLogin</source>
+        <target>Partner login</target>
+      </trans-unit>
+      <trans-unit id="emailRequired" datatype="html">
+        <source>emailRequired</source>
+        <target>E-mail is verplicht</target>
+      </trans-unit>
+      <trans-unit id="invalidEmail" datatype="html">
+        <source>invalidEmail</source>
+        <target>Voer een geldig e-mailadres in</target>
+      </trans-unit>
+      <trans-unit id="sending" datatype="html">
+        <source>sending</source>
+        <target>Versturen...</target>
+      </trans-unit>
+      <trans-unit id="imageText" datatype="html">
+        <source>imageText</source>
+        <target>De &lt;b&gt;100% Belgische&lt;/b&gt; oplossing voor werkgevers en werknemers.</target>
+      </trans-unit>
+      <trans-unit id="back" datatype="html">
+        <source>back</source>
+        <target>Terug</target>
+      </trans-unit>
+      <trans-unit id="signUpToContinue" datatype="html">
+        <source>signUpToContinue</source>
+        <target>Registreer om door te gaan naar</target>
+      </trans-unit>
+      <trans-unit id="fullName" datatype="html">
+        <source>fullName</source>
+        <target>Volledige naam</target>
+      </trans-unit>
+      <trans-unit id="addYourFullName" datatype="html">
+        <source>addYourFullName</source>
+        <target>Voeg je volledige naam toe</target>
+      </trans-unit>
+      <trans-unit id="phoneNumber" datatype="html">
+        <source>phoneNumber</source>
+        <target>Telefoonnummer</target>
+      </trans-unit>
+      <trans-unit id="addYourPhoneNumber" datatype="html">
+        <source>addYourPhoneNumber</source>
+        <target>Voeg je telefoonnummer toe</target>
+      </trans-unit>
+      <trans-unit id="socialSecretary" datatype="html">
+        <source>socialSecretary</source>
+        <target>Sociaal secretariaat</target>
+      </trans-unit>
+      <trans-unit id="chooseYourSocialSecretary" datatype="html">
+        <source>chooseYourSocialSecretary</source>
+        <target>Kies je sociaal secretariaat</target>
+      </trans-unit>
+      <trans-unit id="companyNumber" datatype="html">
+        <source>companyNumber</source>
+        <target>Ondernemingsnummer</target>
+      </trans-unit>
+      <trans-unit id="addYourCompanyNumber" datatype="html">
+        <source>addYourCompanyNumber</source>
+        <target>Voeg je ondernemingsnummer toe</target>
+      </trans-unit>
+      <trans-unit id="invalidCompanyNumber" datatype="html">
+        <source>invalidCompanyNumber</source>
+        <target>Voer een geldig ondernemingsnummer in</target>
+      </trans-unit>
+      <trans-unit id="companyName" datatype="html">
+        <source>companyName</source>
+        <target>Bedrijfsnaam</target>
+      </trans-unit>
+      <trans-unit id="addYourCompanyName" datatype="html">
+        <source>addYourCompanyName</source>
+        <target>Voeg je bedrijfsnaam toe</target>
+      </trans-unit>
+      <trans-unit id="companyNameRequired" datatype="html">
+        <source>companyNameRequired</source>
+        <target>Bedrijfsnaam is verplicht</target>
+      </trans-unit>
+      <trans-unit id="companyNameTooShort" datatype="html">
+        <source>companyNameTooShort</source>
+        <target>Bedrijfsnaam moet minimaal 2 karakters bevatten</target>
+      </trans-unit>
+      <trans-unit id="invalidPhoneNumber" datatype="html">
+        <source>invalidPhoneNumber</source>
+        <target>Voer een geldig telefoonnummer in</target>
+      </trans-unit>
+      <trans-unit id="fullNameRequired" datatype="html">
+        <source>fullNameRequired</source>
+        <target>Volledige naam is verplicht</target>
+      </trans-unit>
+      <trans-unit id="companyLookupError" datatype="html">
+        <source>companyLookupError</source>
+        <target>Fout bij het opzoeken van bedrijfsinformatie</target>
+      </trans-unit>
+      <trans-unit id="companyFound" datatype="html">
+        <source>companyFound</source>
+        <target>Bedrijf gevonden</target>
+      </trans-unit>
+      <trans-unit id="lookingUpCompany" datatype="html">
+        <source>lookingUpCompany</source>
+        <target>Bedrijfsinformatie opzoeken...</target>
+      </trans-unit>
+      <trans-unit id="testModeInfo" datatype="html">
+        <source>testModeInfo</source>
+        <target>Test modus - Bedrijfsvalidatie uitgeschakeld</target>
+      </trans-unit>
+      <trans-unit id="testModeDescription" datatype="html">
+        <source>testModeDescription</source>
+        <target>Gebruik productie API voor echte validatie</target>
+      </trans-unit>
+      <trans-unit id="corsError" datatype="html">
+        <source>corsError</source>
+        <target>CORS fout - Gebruik backend proxy voor productie</target>
+      </trans-unit>
+      <trans-unit id="productionTestVat" datatype="html">
+        <source>productionTestVat</source>
+        <target>Dit BTW nummer is gereserveerd voor productie testing met echte EU VIES API</target>
+      </trans-unit>
+      <trans-unit id="mySessions" datatype="html">
+        <source>mySessions</source>
+        <target>Mijn policies</target>
+      </trans-unit>
+      <trans-unit id="manageYourSessions" datatype="html">
+        <source>manageYourSessions</source>
+        <target>Beheer je policies en ga verder waar je gebleven was</target>
+      </trans-unit>
+      <trans-unit id="loadingSessions" datatype="html">
+        <source>loadingSessions</source>
+        <target>Policies laden...</target>
+      </trans-unit>
+      <trans-unit id="retry" datatype="html">
+        <source>retry</source>
+        <target>Opnieuw proberen</target>
+      </trans-unit>
+      <trans-unit id="createNewSession" datatype="html">
+        <source>createNewSession</source>
+        <target>Nieuwe policy maken</target>
+      </trans-unit>
+      <trans-unit id="session" datatype="html">
+        <source>session</source>
+        <target>Policy</target>
+      </trans-unit>
+      <trans-unit id="currentStep" datatype="html">
+        <source>currentStep</source>
+        <target>Huidige stap</target>
+      </trans-unit>
+      <trans-unit id="lastActivity" datatype="html">
+        <source>lastActivity</source>
+        <target>Laatste activiteit</target>
+      </trans-unit>
+      <trans-unit id="submitted" datatype="html">
+        <source>submitted</source>
+        <target>Ingediend</target>
+      </trans-unit>
+      <trans-unit id="continue" datatype="html">
+        <source>continue</source>
+        <target>Doorgaan</target>
+      </trans-unit>
+      <trans-unit id="noSessionsYet" datatype="html">
+        <source>noSessionsYet</source>
+        <target>Nog geen policies</target>
+      </trans-unit>
+      <trans-unit id="createYourFirstSession" datatype="html">
+        <source>createYourFirstSession</source>
+        <target>Maak je eerste policy aan om te beginnen</target>
+      </trans-unit>
+      <trans-unit id="createFirstSession" datatype="html">
+        <source>createFirstSession</source>
+        <target>Eerste policy maken</target>
+      </trans-unit>
+      <trans-unit id="backToLogin" datatype="html">
+        <source>backToLogin</source>
+        <target>Terug naar login</target>
+      </trans-unit>
+      <trans-unit id="partnerDashboard" datatype="html">
+        <source>partnerDashboard</source>
+        <target>Partner Dashboard</target>
+      </trans-unit>
+      <trans-unit id="partnerImageText" datatype="html">
+        <source>partnerImageText</source>
+        <target>De &lt;b&gt;100% Belgische&lt;/b&gt; oplossing voor sociale secretariaten.</target>
+      </trans-unit>
+      <trans-unit id="userLogin" datatype="html">
+        <source>userLogin</source>
+        <target>Gebruiker login</target>
+      </trans-unit>
+      <trans-unit id="partnerInfo" datatype="html">
+        <source>partnerInfo</source>
+        <target>Voor sociale secretariaten en partners</target>
+      </trans-unit>
+      <trans-unit id="partnerNotFound" datatype="html">
+        <source>partnerNotFound</source>
+        <target>Partner niet gevonden</target>
+      </trans-unit>
+      <trans-unit id="manageCompanyDossiers" datatype="html">
+        <source>manageCompanyDossiers</source>
+        <target>Beheer dossiers van alle bedrijven</target>
+      </trans-unit>
+      <trans-unit id="loadingCompanies" datatype="html">
+        <source>loadingCompanies</source>
+        <target>Bedrijven laden...</target>
+      </trans-unit>
+      <trans-unit id="companies" datatype="html">
+        <source>companies</source>
+        <target>Bedrijven</target>
+      </trans-unit>
+      <trans-unit id="totalCompanies" datatype="html">
+        <source>totalCompanies</source>
+        <target>Totaal bedrijven</target>
+      </trans-unit>
+      <trans-unit id="totalSessions" datatype="html">
+        <source>totalSessions</source>
+        <target>Totaal policies</target>
+      </trans-unit>
+      <trans-unit id="pendingSessions" datatype="html">
+        <source>pendingSessions</source>
+        <target>Wachtende policies</target>
+      </trans-unit>
+      <trans-unit id="completedSessions" datatype="html">
+        <source>completedSessions</source>
+        <target>Voltooide policies</target>
+      </trans-unit>
+      <trans-unit id="registered" datatype="html">
+        <source>registered</source>
+        <target>Geregistreerd</target>
+      </trans-unit>
+      <trans-unit id="noSessionsForCompany" datatype="html">
+        <source>noSessionsForCompany</source>
+        <target>Geen policies voor dit bedrijf</target>
+      </trans-unit>
+      <trans-unit id="noCompaniesYet" datatype="html">
+        <source>noCompaniesYet</source>
+        <target>Nog geen bedrijven</target>
+      </trans-unit>
+      <trans-unit id="noCompaniesDescription" datatype="html">
+        <source>noCompaniesDescription</source>
+        <target>Er zijn nog geen bedrijven geregistreerd voor dit sociale secretariaat</target>
+      </trans-unit>
+      <trans-unit id="logout" datatype="html">
+        <source>logout</source>
+        <target>Uitloggen</target>
+      </trans-unit>
+      <trans-unit id="signOut" datatype="html">
+        <source>signOut</source>
+        <target>Uitloggen</target>
+      </trans-unit>
+      <trans-unit id="backToTcoConverter" datatype="html">
+        <source>backToTcoConverter</source>
+        <target>Terug naar TCO Converter</target>
+      </trans-unit>
+      <trans-unit id="generalInformation" datatype="html">
+        <source>generalInformation</source>
+        <target>Algemene informatie</target>
+      </trans-unit>
+      <trans-unit id="uploadCarPolicy" datatype="html">
+        <source>uploadCarPolicy</source>
+        <target>Upload auto policy</target>
+      </trans-unit>
+      <trans-unit id="calculationMethod" datatype="html">
+        <source>calculationMethod</source>
+        <target>Berekeningsmethode</target>
+      </trans-unit>
+      <trans-unit id="carCategories" datatype="html">
+        <source>carCategories</source>
+        <target>Autocategorieën</target>
+      </trans-unit>
+      <trans-unit id="mobilityBudgetPolicy" datatype="html">
+        <source>mobilityBudgetPolicy</source>
+        <target>Mobiliteitsbudget policy</target>
+      </trans-unit>
+      <trans-unit id="next" datatype="html">
+        <source>next</source>
+        <target>Volgende</target>
+      </trans-unit>
+      <trans-unit id="previous" datatype="html">
+        <source>previous</source>
+        <target>Vorige</target>
+      </trans-unit>
+      <trans-unit id="addYourExistingCarPolicy" datatype="html">
+        <source>addYourExistingCarPolicy</source>
+        <target>Voeg je bestaande auto policy toe</target>
+      </trans-unit>
+      <trans-unit id="dragAndDropFiles" datatype="html">
+        <source>dragAndDropFiles</source>
+        <target>Sleep bestanden hierheen of klik om te bladeren</target>
+      </trans-unit>
+      <trans-unit id="or" datatype="html">
+        <source>or</source>
+        <target>of</target>
+      </trans-unit>
+      <trans-unit id="browseFiles" datatype="html">
+        <source>browseFiles</source>
+        <target>Blader door bestanden</target>
+      </trans-unit>
+      <trans-unit id="noCarPolicy" datatype="html">
+        <source>noCarPolicy</source>
+        <target>Geen auto policy?</target>
+      </trans-unit>
+      <trans-unit id="noCarPolicyDescription" datatype="html">
+        <source>noCarPolicyDescription</source>
+        <target>Je hebt geen auto policy? Geen zorgen! Ga gewoon naar de volgende stap en je kunt de informatie zelf invoeren.</target>
+      </trans-unit>
+      <trans-unit id="chooseCalculationMethod" datatype="html">
+        <source>chooseCalculationMethod</source>
+        <target>Kies je energiekosten berekeningsmethode</target>
+      </trans-unit>
+      <trans-unit id="calculationMethodDescription1" datatype="html">
+        <source>calculationMethodDescription1</source>
+        <target>Selecteer hoe je de energiekosten (brandstof/elektriciteit) in het mobiliteitsbudget wilt schatten.</target>
+      </trans-unit>
+      <trans-unit id="calculationMethodDescription2" datatype="html">
+        <source>calculationMethodDescription2</source>
+        <target>Alle methoden gebruiken dezelfde Total Cost of Ownership (TCO) per werknemerscategorie, maar verschillen in hoe energie wordt geschat en of professionele reizen zijn inbegrepen.</target>
+      </trans-unit>
+      <trans-unit id="legalFormulaTitle" datatype="html">
+        <source>legalFormulaTitle</source>
+        <target>Wettelijke formule gebaseerd op thuis-werk afstand</target>
+      </trans-unit>
+      <trans-unit id="energyCost" datatype="html">
+        <source>energyCost</source>
+        <target>Energiekosten:</target>
+      </trans-unit>
+      <trans-unit id="energyCostLegal" datatype="html">
+        <source>energyCostLegal</source>
+        <target>Individueel berekend met de wettelijke formule, gebaseerd op de woon-werkafstand.</target>
+      </trans-unit>
+      <trans-unit id="professionalTravel" datatype="html">
+        <source>professionalTravel</source>
+        <target>Professionele reizen:</target>
+      </trans-unit>
+      <trans-unit id="professionalTravelNotIncluded" datatype="html">
+        <source>professionalTravelNotIncluded</source>
+        <target>❌ Niet inbegrepen in het budget. Moet apart worden terugbetaald (bijv. via onkostenverklaringen).</target>
+      </trans-unit>
+      <trans-unit id="mobilityBudget" datatype="html">
+        <source>mobilityBudget</source>
+        <target>Mobiliteitsbudget:</target>
+      </trans-unit>
+      <trans-unit id="mobilityBudgetLegal" datatype="html">
+        <source>mobilityBudgetLegal</source>
+        <target>Verschilt per werknemer afhankelijk van hun woon-werkafstand.</target>
+      </trans-unit>
+      <trans-unit id="recommendationLegal" datatype="html">
+        <source>recommendationLegal</source>
+        <target>Aanbevolen voor werkgevers die een strikt regelgevingsgebaseerde, gepersonaliseerde aanpak willen voor energiekosten schatting.</target>
+      </trans-unit>
+      <trans-unit id="fixedAmountTitle" datatype="html">
+        <source>fixedAmountTitle</source>
+        <target>Vast energiekostenbedrag per categorie</target>
+      </trans-unit>
+      <trans-unit id="energyCostFixed" datatype="html">
+        <source>energyCostFixed</source>
+        <target>Vast bedrag ingesteld per werknemerscategorie. Kan gebaseerd zijn op een standaard energiekostenkaart voorziening, of een gemiddelde van historische energiekosten.</target>
+      </trans-unit>
+      <trans-unit id="professionalTravelIncluded" datatype="html">
+        <source>professionalTravelIncluded</source>
+        <target>✅ Inbegrepen in het forfait (voor autoreizen)&lt;br&gt;❌ Trein, vlucht en andere vervoerswijzen moeten apart worden terugbetaald.</target>
+      </trans-unit>
+      <trans-unit id="mobilityBudgetFixed" datatype="html">
+        <source>mobilityBudgetFixed</source>
+        <target>Uniform voor alle werknemers in dezelfde categorie.</target>
+      </trans-unit>
+      <trans-unit id="recommendationFixed" datatype="html">
+        <source>recommendationFixed</source>
+        <target>Aanbevolen voor bedrijven die eenvoud en budgetvoorspelbaarheid zoeken over werknemerscategorieën.</target>
+      </trans-unit>
+      <trans-unit id="leaseContractTitle" datatype="html">
+        <source>leaseContractTitle</source>
+        <target>Schatting gebaseerd op leasecontract kilometers</target>
+      </trans-unit>
+      <trans-unit id="energyCostLease" datatype="html">
+        <source>energyCostLease</source>
+        <target>Gebaseerd op de jaarlijkse kilometers toegestaan in het leasecontract van de auto, gebruikmakend van het brandstof- of elektriciteitsverbruik van de auto, en een aangenomen energieprijs (€/L of €/kWh).</target>
+      </trans-unit>
+      <trans-unit id="professionalTravelLease" datatype="html">
+        <source>professionalTravelLease</source>
+        <target>✅ Inbegrepen in het budget (voor autoreizen)&lt;br&gt;❌ Andere vervoerswijzen (trein, vlucht, etc.) moeten apart worden terugbetaald.</target>
+      </trans-unit>
+      <trans-unit id="mobilityBudgetLease" datatype="html">
+        <source>mobilityBudgetLease</source>
+        <target>Consistent binnen categorieën, afgestemd op daadwerkelijk autogebruik en policy regels.</target>
+      </trans-unit>
+      <trans-unit id="recommendationLease" datatype="html">
+        <source>recommendationLease</source>
+        <target>Aanbevolen voor bedrijven die een realistische, datagedreven aanpak willen die zowel gebruik als interne auto policy weerspiegelt.</target>
+      </trans-unit>
+      <trans-unit id="newCarCategorySetup" datatype="html">
+        <source>newCarCategorySetup</source>
+        <target>Nieuwe autocategorie instellen</target>
+      </trans-unit>
+      <trans-unit id="carCategoryParameters" datatype="html">
+        <source>carCategoryParameters</source>
+        <target>Autocategorie parameters</target>
+      </trans-unit>
+      <trans-unit id="categoryName" datatype="html">
+        <source>categoryName</source>
+        <target>Categorienaam</target>
+      </trans-unit>
+      <trans-unit id="addYourCategoryName" datatype="html">
+        <source>addYourCategoryName</source>
+        <target>Voeg je categorienaam toe</target>
+      </trans-unit>
+      <trans-unit id="annualKilometersAllowed" datatype="html">
+        <source>annualKilometersAllowed</source>
+        <target>Jaarlijkse kilometers toegestaan</target>
+      </trans-unit>
+      <trans-unit id="kilometers" datatype="html">
+        <source>kilometers</source>
+        <target>-- Kilometers</target>
+      </trans-unit>
+      <trans-unit id="leasingDuration" datatype="html">
+        <source>leasingDuration</source>
+        <target>Lease duur</target>
+      </trans-unit>
+      <trans-unit id="months" datatype="html">
+        <source>months</source>
+        <target>-- maanden</target>
+      </trans-unit>
+      <trans-unit id="employeeContribution" datatype="html">
+        <source>employeeContribution</source>
+        <target>Werknemersbijdrage</target>
+      </trans-unit>
+      <trans-unit id="contributionAmount" datatype="html">
+        <source>contributionAmount</source>
+        <target>Bijdragebedrag</target>
+      </trans-unit>
+      <trans-unit id="addAnAmount" datatype="html">
+        <source>addAnAmount</source>
+        <target>Voeg een bedrag toe</target>
+      </trans-unit>
+      <trans-unit id="vehicleCleaningCostContribution" datatype="html">
+        <source>vehicleCleaningCostContribution</source>
+        <target>Voertuigreiniging kostenbijdrage</target>
+      </trans-unit>
+      <trans-unit id="contributionValue" datatype="html">
+        <source>contributionValue</source>
+        <target>Bijdragewaarde</target>
+      </trans-unit>
+      <trans-unit id="parkingStorageCostContribution" datatype="html">
+        <source>parkingStorageCostContribution</source>
+        <target>Parkeren / Opslag kostenbijdrage</target>
+      </trans-unit>
+      <trans-unit id="limitedFuelCard" datatype="html">
+        <source>limitedFuelCard</source>
+        <target>Beperkte brandstofkaart</target>
+      </trans-unit>
+      <trans-unit id="monthlyAmountProvision" datatype="html">
+        <source>monthlyAmountProvision</source>
+        <target>Maandelijks bedrag voorziening</target>
+      </trans-unit>
+      <trans-unit id="addMaximumMonthlyAmountAllowed" datatype="html">
+        <source>addMaximumMonthlyAmountAllowed</source>
+        <target>Voeg maximaal maandelijks toegestaan bedrag toe</target>
+      </trans-unit>
+      <trans-unit id="referenceCarConfiguration" datatype="html">
+        <source>referenceCarConfiguration</source>
+        <target>Referentieauto configuratie</target>
+      </trans-unit>
+      <trans-unit id="monthlyTcoRange" datatype="html">
+        <source>monthlyTcoRange</source>
+        <target>Maandelijkse TCO bereik</target>
+      </trans-unit>
+      <trans-unit id="loadingTcoDistribution" datatype="html">
+        <source>loadingTcoDistribution</source>
+        <target>TCO verdeling laden...</target>
+      </trans-unit>
+      <trans-unit id="brands" datatype="html">
+        <source>brands</source>
+        <target>Merken</target>
+      </trans-unit>
+      <trans-unit id="fuelTypes" datatype="html">
+        <source>fuelTypes</source>
+        <target>Brandstoftypes</target>
+      </trans-unit>
+      <trans-unit id="pleaseFillInCarCategoryParameters" datatype="html">
+        <source>pleaseFillInCarCategoryParameters</source>
+        <target>Vul de autocategorie parameters in om referentieauto configuraties te vinden.</target>
+      </trans-unit>
+      <trans-unit id="referenceCarList" datatype="html">
+        <source>referenceCarList</source>
+        <target>Referentieauto lijst</target>
+      </trans-unit>
+      <trans-unit id="select" datatype="html">
+        <source>select</source>
+        <target>Selecteren</target>
+      </trans-unit>
+      <trans-unit id="brand" datatype="html">
+        <source>brand</source>
+        <target>Merk</target>
+      </trans-unit>
+      <trans-unit id="model" datatype="html">
+        <source>model</source>
+        <target>Model</target>
+      </trans-unit>
+      <trans-unit id="monthlyTco" datatype="html">
+        <source>monthlyTco</source>
+        <target>Maandelijkse TCO</target>
+      </trans-unit>
+      <trans-unit id="showing" datatype="html">
+        <source>showing</source>
+        <target>Toont</target>
+      </trans-unit>
+      <trans-unit id="of" datatype="html">
+        <source>of</source>
+        <target>van</target>
+      </trans-unit>
+      <trans-unit id="pages" datatype="html">
+        <source>pages</source>
+        <target>pagina\</target>
+      </trans-unit>
+      <trans-unit id="loadingReferenceCars" datatype="html">
+        <source>loadingReferenceCars</source>
+        <target>Referentieauto\</target>
+      </trans-unit>
+      <trans-unit id="noReferenceCarsFound" datatype="html">
+        <source>noReferenceCarsFound</source>
+        <target>Geen referentieauto\</target>
+      </trans-unit>
+      <trans-unit id="tryAdjustingYourFilters" datatype="html">
+        <source>tryAdjustingYourFilters</source>
+        <target>Probeer je filters aan te passen</target>
+      </trans-unit>
+      <trans-unit id="filter" datatype="html">
+        <source>filter</source>
+        <target>Filter</target>
+      </trans-unit>
+      <trans-unit id="clearFilter" datatype="html">
+        <source>clearFilter</source>
+        <target>Filter wissen</target>
+      </trans-unit>
+      <trans-unit id="newClient" datatype="html">
+        <source>newClient</source>
+        <target>Nieuwe Klant</target>
+      </trans-unit>
+      <trans-unit id="createClient" datatype="html">
+        <source>createClient</source>
+        <target>Klant Aanmaken</target>
+      </trans-unit>
+      <trans-unit id="creating" datatype="html">
+        <source>creating</source>
+        <target>Aanmaken</target>
+      </trans-unit>
+      <trans-unit id="clientCreatedSuccessfully" datatype="html">
+        <source>clientCreatedSuccessfully</source>
+        <target>Klant succesvol aangemaakt!</target>
+      </trans-unit>
+      <trans-unit id="socialSecretaryPreFilled" datatype="html">
+        <source>socialSecretaryPreFilled</source>
+        <target>Sociaal secretariaat is automatisch ingevuld</target>
+      </trans-unit>
+      <trans-unit id="fullNameMinLength" datatype="html">
+        <source>fullNameMinLength</source>
+        <target>Volledige naam moet minimaal 2 karakters bevatten</target>
+      </trans-unit>
+      <trans-unit id="emailInvalid" datatype="html">
+        <source>emailInvalid</source>
+        <target>Ongeldig e-mailadres</target>
+      </trans-unit>
+      <trans-unit id="phoneNumberRequired" datatype="html">
+        <source>phoneNumberRequired</source>
+        <target>Telefoonnummer is verplicht</target>
+      </trans-unit>
+      <trans-unit id="phoneNumberInvalid" datatype="html">
+        <source>phoneNumberInvalid</source>
+        <target>Ongeldig telefoonnummer</target>
+      </trans-unit>
+      <trans-unit id="companyNumberRequired" datatype="html">
+        <source>companyNumberRequired</source>
+        <target>Ondernemingsnummer is verplicht</target>
+      </trans-unit>
+      <trans-unit id="companyNumberInvalid" datatype="html">
+        <source>companyNumberInvalid</source>
+        <target>Ongeldig ondernemingsnummer (formaat: BE0123456789)</target>
+      </trans-unit>
+      <trans-unit id="companyInformation" datatype="html">
+        <source>companyInformation</source>
+        <target>Bedrijfsinformatie</target>
+      </trans-unit>
+      <trans-unit id="address" datatype="html">
+        <source>address</source>
+        <target>Adres</target>
+      </trans-unit>
+      <trans-unit id="newPolicy" datatype="html">
+        <source>newPolicy</source>
+        <target>Nieuwe Policy</target>
+      </trans-unit>
+      <trans-unit id="startNewPolicy" datatype="html">
+        <source>startNewPolicy</source>
+        <target>Start een nieuwe policy voor deze klant</target>
+      </trans-unit>
+      <trans-unit id="errorCreatingSession" datatype="html">
+        <source>errorCreatingSession</source>
+        <target>Fout bij het aanmaken van een nieuwe sessie. Probeer opnieuw.</target>
+      </trans-unit>
+      <trans-unit id="searchCars" datatype="html">
+        <source>searchCars</source>
+        <target>Zoek auto\</target>
+      </trans-unit>
+      <trans-unit id="selectReferenceCar" datatype="html">
+        <source>selectReferenceCar</source>
+        <target>Selecteer referentieauto</target>
+      </trans-unit>
+      <trans-unit id="selectReferenceCars" datatype="html">
+        <source>selectReferenceCars</source>
+        <target>Selecteer referentieauto\</target>
+      </trans-unit>
+      <trans-unit id="carsSelected" datatype="html">
+        <source>carsSelected</source>
+        <target>auto\</target>
+      </trans-unit>
+      <trans-unit id="models" datatype="html">
+        <source>models</source>
+        <target>modellen</target>
+      </trans-unit>
+      <trans-unit id="noCarsFound" datatype="html">
+        <source>noCarsFound</source>
+        <target>Geen auto\</target>
+      </trans-unit>
+      <trans-unit id="updateCarCategory" datatype="html">
+        <source>updateCarCategory</source>
+        <target>Autocategorie bijwerken</target>
+      </trans-unit>
+      <trans-unit id="saveCarCategory" datatype="html">
+        <source>saveCarCategory</source>
+        <target>Autocategorie opslaan</target>
+      </trans-unit>
+      <trans-unit id="carCategory" datatype="html">
+        <source>carCategory</source>
+        <target>Autocategorie</target>
+      </trans-unit>
+      <trans-unit id="parameters" datatype="html">
+        <source>parameters</source>
+        <target>Parameters</target>
+      </trans-unit>
+      <trans-unit id="name" datatype="html">
+        <source>name</source>
+        <target>Naam:</target>
+      </trans-unit>
+      <trans-unit id="yes" datatype="html">
+        <source>yes</source>
+        <target>Ja</target>
+      </trans-unit>
+      <trans-unit id="no" datatype="html">
+        <source>no</source>
+        <target>Nee</target>
+      </trans-unit>
+      <trans-unit id="annualKilometer" datatype="html">
+        <source>annualKilometer</source>
+        <target>Jaarlijkse kilometer:</target>
+      </trans-unit>
+      <trans-unit id="leasingDurationLabel" datatype="html">
+        <source>leasingDurationLabel</source>
+        <target>Lease duur:</target>
+      </trans-unit>
+      <trans-unit id="fuelType" datatype="html">
+        <source>fuelType</source>
+        <target>Brandstoftype:</target>
+      </trans-unit>
+      <trans-unit id="minimum" datatype="html">
+        <source>minimum</source>
+        <target>Minimum</target>
+      </trans-unit>
+      <trans-unit id="maximum" datatype="html">
+        <source>maximum</source>
+        <target>Maximum</target>
+      </trans-unit>
+      <trans-unit id="tcoCalculationDetails" datatype="html">
+        <source>tcoCalculationDetails</source>
+        <target>TCO berekening details</target>
+      </trans-unit>
+      <trans-unit id="parametersUsedInCalculation" datatype="html">
+        <source>parametersUsedInCalculation</source>
+        <target>Parameters gebruikt in berekening</target>
+      </trans-unit>
+      <trans-unit id="carCategoriesAndTcos" datatype="html">
+        <source>carCategoriesAndTcos</source>
+        <target>Autocategorieën en TCO\</target>
+      </trans-unit>
+      <trans-unit id="inspireMe" datatype="html">
+        <source>inspireMe</source>
+        <target>Inspireer me</target>
+      </trans-unit>
+      <trans-unit id="addCategory" datatype="html">
+        <source>addCategory</source>
+        <target>Categorie toevoegen</target>
+      </trans-unit>
+      <trans-unit id="noCarCategoriesYet" datatype="html">
+        <source>noCarCategoriesYet</source>
+        <target>Nog geen autocategorieën</target>
+      </trans-unit>
+      <trans-unit id="getStartedByAddingYourFirstCarCategory" datatype="html">
+        <source>getStartedByAddingYourFirstCarCategory</source>
+        <target>Begin door je eerste autocategorie toe te voegen of laat je inspireren door enkele suggesties.</target>
+      </trans-unit>
+      <trans-unit id="referenceCar" datatype="html">
+        <source>referenceCar</source>
+        <target>Referentieauto</target>
+      </trans-unit>
+      <trans-unit id="annualKm" datatype="html">
+        <source>annualKm</source>
+        <target>Jaarlijkse km</target>
+      </trans-unit>
+      <trans-unit id="leasingDurationTable" datatype="html">
+        <source>leasingDurationTable</source>
+        <target>Lease duur</target>
+      </trans-unit>
+      <trans-unit id="monthlyTcoTable" datatype="html">
+        <source>monthlyTcoTable</source>
+        <target>Maandelijkse TCO</target>
+      </trans-unit>
+      <trans-unit id="pleaseAddAtLeastOneCarCategory" datatype="html">
+        <source>pleaseAddAtLeastOneCarCategory</source>
+        <target>Voeg ten minste één autocategorie toe om door te gaan</target>
+      </trans-unit>
+      <trans-unit id="allCategoriesMustHaveReferenceCarAndTcoCalculation" datatype="html">
+        <source>allCategoriesMustHaveReferenceCarAndTcoCalculation</source>
+        <target>Alle categorieën moeten een referentieauto en TCO berekening hebben om door te gaan</target>
+      </trans-unit>
+      <trans-unit id="sendForReview" datatype="html">
+        <source>sendForReview</source>
+        <target>Versturen voor beoordeling</target>
+      </trans-unit>
+      <trans-unit id="readyToSubmitForReview" datatype="html">
+        <source>readyToSubmitForReview</source>
+        <target>Klaar om in te dienen voor beoordeling</target>
+      </trans-unit>
+      <trans-unit id="submitForReview" datatype="html">
+        <source>submitForReview</source>
+        <target>Indienen voor beoordeling</target>
+      </trans-unit>
+      <trans-unit id="pleaseReviewYourCategoriesAndSubmit" datatype="html">
+        <source>pleaseReviewYourCategoriesAndSubmit</source>
+        <target>Controleer je categorieën en dien in voor beoordeling</target>
+      </trans-unit>
+      <trans-unit id="completeAllCategoriesFirst" datatype="html">
+        <source>completeAllCategoriesFirst</source>
+        <target>Voltooi eerst alle categorieën</target>
+      </trans-unit>
+      <trans-unit id="allCategoriesMustHaveValidTco" datatype="html">
+        <source>allCategoriesMustHaveValidTco</source>
+        <target>Alle categorieën moeten een geldige TCO hebben</target>
+      </trans-unit>
+      <trans-unit id="yourMobilityBudgetPolicy" datatype="html">
+        <source>yourMobilityBudgetPolicy</source>
+        <target>Je mobiliteitsbudget policy</target>
+      </trans-unit>
+      <trans-unit id="documentStatus" datatype="html">
+        <source>documentStatus</source>
+        <target>Document status</target>
+      </trans-unit>
+      <trans-unit id="yourPolicyIsBeingReviewedBy" datatype="html">
+        <source>yourPolicyIsBeingReviewedBy</source>
+        <target>Je policy wordt beoordeeld door</target>
+      </trans-unit>
+      <trans-unit id="yourPolicyHasBeenApproved" datatype="html">
+        <source>yourPolicyHasBeenApproved</source>
+        <target>Je policy is goedgekeurd!</target>
+      </trans-unit>
+      <trans-unit id="yourPolicyNeedsRevisions" datatype="html">
+        <source>yourPolicyNeedsRevisions</source>
+        <target>Je policy heeft revisies nodig.</target>
+      </trans-unit>
+      <trans-unit id="documentPreview" datatype="html">
+        <source>documentPreview</source>
+        <target>Document voorvertoning</target>
+      </trans-unit>
+      <trans-unit id="editDocument" datatype="html">
+        <source>editDocument</source>
+        <target>Document bewerken</target>
+      </trans-unit>
+      <trans-unit id="saveChanges" datatype="html">
+        <source>saveChanges</source>
+        <target>Wijzigingen opslaan</target>
+      </trans-unit>
+      <trans-unit id="cancel" datatype="html">
+        <source>cancel</source>
+        <target>Annuleren</target>
+      </trans-unit>
+      <trans-unit id="editYourDocumentContentHere" datatype="html">
+        <source>editYourDocumentContentHere</source>
+        <target>Bewerk je document inhoud hier...</target>
+      </trans-unit>
+      <trans-unit id="noDocumentAvailableYet" datatype="html">
+        <source>noDocumentAvailableYet</source>
+        <target>Nog geen document beschikbaar</target>
+      </trans-unit>
+      <trans-unit id="status" datatype="html">
+        <source>status</source>
+        <target>Status</target>
+      </trans-unit>
+      <trans-unit id="generatingDocument" datatype="html">
+        <source>generatingDocument</source>
+        <target>Document genereren...</target>
+      </trans-unit>
+      <trans-unit id="pleaseWaitWhileWeCreateYourTcoDocument" datatype="html">
+        <source>pleaseWaitWhileWeCreateYourTcoDocument</source>
+        <target>Even geduld terwijl we je TCO document maken</target>
+      </trans-unit>
+      <trans-unit id="approve" datatype="html">
+        <source>approve</source>
+        <target>Goedkeuren</target>
+      </trans-unit>
+      <trans-unit id="reject" datatype="html">
+        <source>reject</source>
+        <target>Afwijzen</target>
+      </trans-unit>
+      <trans-unit id="rejectAndResetToStep4" datatype="html">
+        <source>rejectAndResetToStep4</source>
+        <target>Afwijzen en resetten naar stap 4</target>
+      </trans-unit>
+      <trans-unit id="download" datatype="html">
+        <source>download</source>
+        <target>Downloaden</target>
+      </trans-unit>
+      <trans-unit id="edit" datatype="html">
+        <source>edit</source>
+        <target>Bewerken</target>
+      </trans-unit>
+      <trans-unit id="youCanNowDownloadYourDocumentInDifferentLanguages" datatype="html">
+        <source>youCanNowDownloadYourDocumentInDifferentLanguages</source>
+        <target>Je kunt nu je document downloaden in verschillende talen.</target>
+      </trans-unit>
+      <trans-unit id="downloadEnglish" datatype="html">
+        <source>downloadEnglish</source>
+        <target>Downloaden (Engels)</target>
+      </trans-unit>
+      <trans-unit id="downloadNederlands" datatype="html">
+        <source>downloadNederlands</source>
+        <target>Downloaden (Nederlands)</target>
+      </trans-unit>
+      <trans-unit id="downloadFrancais" datatype="html">
+        <source>downloadFrancais</source>
+        <target>Downloaden (Frans)</target>
+      </trans-unit>
+      <trans-unit id="yourPolicyIsBeingReviewedByPartner" datatype="html">
+        <source>yourPolicyIsBeingReviewedByPartner</source>
+        <target>Je policy wordt beoordeeld door</target>
+      </trans-unit>
+      <trans-unit id="onceReadyYouWillBeNotifiedByEmail" datatype="html">
+        <source>onceReadyYouWillBeNotifiedByEmail</source>
+        <target>Zodra klaar, krijg je een e-mailmelding.</target>
+      </trans-unit>
+      <trans-unit id="pleaseContactPartnerForMoreInformation" datatype="html">
+        <source>pleaseContactPartnerForMoreInformation</source>
+        <target>Neem contact op met</target>
+      </trans-unit>
+      <trans-unit id="forMoreInformation" datatype="html">
+        <source>forMoreInformation</source>
+        <target>voor meer informatie.</target>
+      </trans-unit>
+      <trans-unit id="yourPolicyHasBeenSubmittedForReview" datatype="html">
+        <source>yourPolicyHasBeenSubmittedForReview</source>
+        <target>Je policy is ingediend voor beoordeling!</target>
+      </trans-unit>
+      <trans-unit id="itWillBeReviewedByPartnerAndYouWillBeNotifiedByEmail" datatype="html">
+        <source>itWillBeReviewedByPartnerAndYouWillBeNotifiedByEmail</source>
+        <target>Het wordt beoordeeld door</target>
+      </trans-unit>
+      <trans-unit id="onceReady" datatype="html">
+        <source>onceReady</source>
+        <target>en je krijgt een e-mailmelding zodra het klaar is.</target>
+      </trans-unit>
+      <trans-unit id="yourPolicyHasBeenSubmittedForReviewComplete" datatype="html">
+        <source>yourPolicyHasBeenSubmittedForReviewComplete</source>
+        <target>Je policy is ingediend voor beoordeling! Het wordt beoordeeld door</target>
+      </trans-unit>
+      <trans-unit id="andYouWillBeNotifiedByEmailOnceReady" datatype="html">
+        <source>andYouWillBeNotifiedByEmailOnceReady</source>
+        <target>en je krijgt een e-mailmelding zodra het klaar is.</target>
+      </trans-unit>
+      <trans-unit id="yourPolicyIsBeingReviewedByPartnerComplete" datatype="html">
+        <source>yourPolicyIsBeingReviewedByPartnerComplete</source>
+        <target>Je policy wordt beoordeeld door</target>
+      </trans-unit>
+      <trans-unit id="onceReadyYouWillBeNotifiedByEmailComplete" datatype="html">
+        <source>onceReadyYouWillBeNotifiedByEmailComplete</source>
+        <target>Zodra klaar, krijg je een e-mailmelding.</target>
+      </trans-unit>
+      <trans-unit id="yourPolicyNeedsRevisionsComplete" datatype="html">
+        <source>yourPolicyNeedsRevisionsComplete</source>
+        <target>Je policy heeft revisies nodig. Neem contact op met</target>
+      </trans-unit>
+      <trans-unit id="forMoreInformationComplete" datatype="html">
+        <source>forMoreInformationComplete</source>
+        <target>voor meer informatie.</target>
+      </trans-unit>
+      <trans-unit id="accessYourClientSessions" datatype="html">
+        <source>accessYourClientSessions</source>
+        <target>Toegang tot je klant sessies</target>
+      </trans-unit>
+      <trans-unit id="enterYourPartnerEmail" datatype="html">
+        <source>enterYourPartnerEmail</source>
+        <target>Voer je partner e-mail in</target>
+      </trans-unit>
+      <trans-unit id="accessPartnerDashboard" datatype="html">
+        <source>accessPartnerDashboard</source>
+        <target>Toegang tot Partner Dashboard</target>
+      </trans-unit>
+      <trans-unit id="loggingIn" datatype="html">
+        <source>loggingIn</source>
+        <target>Inloggen...</target>
+      </trans-unit>
+      <trans-unit id="needHelpContactOurSupportTeam" datatype="html">
+        <source>needHelpContactOurSupportTeam</source>
+        <target>Hulp nodig? Neem contact op met ons support team op support&amp;#64;mobility.be</target>
+      </trans-unit>
+      <trans-unit id="loggedInAs" datatype="html">
+        <source>loggedInAs</source>
+        <target>Ingelogd als:</target>
+      </trans-unit>
+      <trans-unit id="clientPoliciesOverview" datatype="html">
+        <source>clientPoliciesOverview</source>
+        <target>Klant Policy Overzicht</target>
+      </trans-unit>
+      <trans-unit id="manageAndReviewAllYourClientsMobilityBudgetPolicies" datatype="html">
+        <source>manageAndReviewAllYourClientsMobilityBudgetPolicies</source>
+        <target>Beheer en beoordeel alle mobiliteitsbudget policies van je klanten</target>
+      </trans-unit>
+      <trans-unit id="loadingClientPolicies" datatype="html">
+        <source>loadingClientPolicies</source>
+        <target>Klant policies laden...</target>
+      </trans-unit>
+      <trans-unit id="tryAgain" datatype="html">
+        <source>tryAgain</source>
+        <target>Opnieuw proberen</target>
+      </trans-unit>
+      <trans-unit id="filterByCompanyName" datatype="html">
+        <source>filterByCompanyName</source>
+        <target>Filter op bedrijfsnaam...</target>
+      </trans-unit>
+      <trans-unit id="unknownContact" datatype="html">
+        <source>unknownContact</source>
+        <target>Onbekend Contact</target>
+      </trans-unit>
+      <trans-unit id="noEmail" datatype="html">
+        <source>noEmail</source>
+        <target>Geen e-mail</target>
+      </trans-unit>
+      <trans-unit id="step" datatype="html">
+        <source>step</source>
+        <target>Stap</target>
+      </trans-unit>
+      <trans-unit id="categoryCount" datatype="html">
+        <source>categoryCount</source>
+        <target>categorieën</target>
+      </trans-unit>
+      <trans-unit id="completed" datatype="html">
+        <source>completed</source>
+        <target>voltooid</target>
+      </trans-unit>
+      <trans-unit id="openSession" datatype="html">
+        <source>openSession</source>
+        <target>Sessie Openen</target>
+      </trans-unit>
+      <trans-unit id="delete" datatype="html">
+        <source>delete</source>
+        <target>Verwijderen</target>
+      </trans-unit>
+      <trans-unit id="deleting" datatype="html">
+        <source>deleting</source>
+        <target>Verwijderen...</target>
+      </trans-unit>
+      <trans-unit id="policy" datatype="html">
+        <source>policy</source>
+        <target>Policy</target>
+      </trans-unit>
+      <trans-unit id="policies" datatype="html">
+        <source>policies</source>
+        <target>Policies</target>
+      </trans-unit>
+      <trans-unit id="noClientPoliciesFound" datatype="html">
+        <source>noClientPoliciesFound</source>
+        <target>Geen Klant Policies Gevonden</target>
+      </trans-unit>
+      <trans-unit id="youDontHaveAnyClientPoliciesYet" datatype="html">
+        <source>youDontHaveAnyClientPoliciesYet</source>
+        <target>Je hebt nog geen klant policies. Policies verschijnen hier zodra je klanten beginnen met het maken van mobiliteitsbudget policies.</target>
+      </trans-unit>
+      <trans-unit id="generatingPolicyDocuments" datatype="html">
+        <source>generatingPolicyDocuments</source>
+        <target>Policy documenten worden gegenereerd...</target>
+      </trans-unit>
+      <trans-unit id="errorLoadingDocument" datatype="html">
+        <source>errorLoadingDocument</source>
+        <target>Fout bij het laden van het document</target>
+      </trans-unit>
+      <trans-unit id="errorGeneratingDocument" datatype="html">
+        <source>errorGeneratingDocument</source>
+        <target>Fout bij het genereren van het document</target>
+      </trans-unit>
+      <trans-unit id="completedPolicy" datatype="html">
+        <source>completedPolicy</source>
+        <target>Voltooide policy</target>
+      </trans-unit>
+      <trans-unit id="completedPolicies" datatype="html">
+        <source>completedPolicies</source>
+        <target>Voltooide policies</target>
+      </trans-unit>
+      <trans-unit id="inProgressPolicy" datatype="html">
+        <source>inProgressPolicy</source>
+        <target>Policy in uitvoering</target>
+      </trans-unit>
+      <trans-unit id="inProgressPolicies" datatype="html">
+        <source>inProgressPolicies</source>
+        <target>Policies in uitvoering</target>
+      </trans-unit>
+      <trans-unit id="draftPolicy" datatype="html">
+        <source>draftPolicy</source>
+        <target>Concept policy</target>
+      </trans-unit>
+      <trans-unit id="draftPolicies" datatype="html">
+        <source>draftPolicies</source>
+        <target>Concept policies</target>
+      </trans-unit>
+      <trans-unit id="nextStep" datatype="html">
+        <source>nextStep</source>
+        <target>Volgende stap</target>
+      </trans-unit>    </body>
+  </file>
+</xliff>

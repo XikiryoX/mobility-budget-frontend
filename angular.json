@@ -63,6 +63,27 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "nl": {
+              "aot": true,
+              "outputPath": "dist/mobility-app/nl/",
+              "i18nFile": "src/locale/messages.nl.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "nl"
+            },
+            "fr": {
+              "aot": true,
+              "outputPath": "dist/mobility-app/fr/",
+              "i18nFile": "src/locale/messages.fr.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "fr"
+            },
+            "en": {
+              "aot": true,
+              "outputPath": "dist/mobility-app/en/",
+              "i18nFile": "src/locale/messages.en.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "en"
             }
           },
           "defaultConfiguration": "production"
@@ -75,6 +96,15 @@
             },
             "development": {
               "buildTarget": "mobility-app:build:development"
+            },
+            "nl": {
+              "buildTarget": "mobility-app:build:nl"
+            },
+            "fr": {
+              "buildTarget": "mobility-app:build:fr"
+            },
+            "en": {
+              "buildTarget": "mobility-app:build:en"
             }
           },
           "defaultConfiguration": "development"

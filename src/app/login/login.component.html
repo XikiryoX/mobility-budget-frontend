@@ -2,7 +2,7 @@
   <div class="login-image-col">
     <img src="assets/shutterstock-1976973020-1@2x.png" alt="Sign in visual" class="login-image" />
     <div class="image-overlay-text">
-      <p [innerHTML]="translate('imageText')"></p>
+      <p [innerHTML]="'imageText' | i18n"></p>
     </div>
   </div>
   <div class="login-form-col">
@@ -31,19 +31,19 @@
     </div>
     <div class="login-card">
       <div class="login-card-content">
-                <h2 class="sign-in-title">{{ translate('signInToContinue') }}</h2>
+                <h2 class="sign-in-title">{{ 'signInToContinue' | i18n }}</h2>
         <h1 class="tco-converter-title">TCO Converter</h1>
 
         <form class="login-form" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <label for="email" class="form-label">{{ translate('emailAddress') }}</label>
+            <label for="email" class="form-label">{{ 'emailAddress' | i18n }}</label>
             <div class="input-container" [class.valid]="email && !emailError">
               <input 
                 type="email" 
                 id="email" 
                 name="email"
                 class="form-input"
-                [placeholder]="translate('addYourEmailAddress')"
+                [placeholder]="'addYourEmailAddress' | i18n"
                 [(ngModel)]="email"
                 (input)="onEmailChange()"
                 required
@@ -62,8 +62,8 @@
             class="submit-button"
             [disabled]="!email || isSubmitting"
           >
-            <span *ngIf="!isSubmitting">{{ translate('signIn') }}</span>
-            <span *ngIf="isSubmitting">{{ translate('sending') }}</span>
+            <span *ngIf="!isSubmitting">{{ 'signIn' | i18n }}</span>
+            <span *ngIf="isSubmitting">{{ 'sending' | i18n }}</span>
           </button>
           
           <button 
@@ -71,7 +71,7 @@
             class="signup-button"
             (click)="goToSignup()"
           >
-            {{ translate('signUp') }}
+            {{ 'signUp' | i18n }}
           </button>
 
                               <div class="divider-container">
@@ -79,14 +79,14 @@
           </div>
           
           <div class="partner-text">
-            <p>{{ translate('wantToJoinPartner') }}</p>
+            <p>{{ 'wantToJoinPartner' | i18n }}</p>
           </div>
           
           <button 
             type="button" 
             class="partner-button"
           >
-            {{ translate('becomePartner') }}
+            {{ 'becomePartner' | i18n }}
           </button>
 
           <button 
@@ -94,7 +94,7 @@
             class="partner-login-link"
             (click)="goToPartnerLogin()"
           >
-            {{ translate('partnerLogin') }}
+            {{ 'partnerLogin' | i18n }}
           </button>
         </form>
 
