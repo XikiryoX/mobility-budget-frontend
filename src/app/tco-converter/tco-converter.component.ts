@@ -25,7 +25,7 @@ export interface Step {
 @Component({
   selector: 'app-tco-converter',
   standalone: true,
-  imports: [CommonModule, FormsModule, TcoResultsComponent, AiAnalysisPopupComponent, SafePipe],
+  imports: [CommonModule, FormsModule, TcoResultsComponent, AiAnalysisPopupComponent, SafePipe, I18nPipe],
   templateUrl: './tco-converter.component.html',
   styleUrls: ['./tco-converter.component.scss']
 })
@@ -172,6 +172,7 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
   // User management
   userEmail: string | null = null;
   showUserMenu: boolean = false;
+  showLanguageMenu: boolean = false;
 
   constructor(
     private router: Router,
@@ -2377,6 +2378,23 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
 
   toggleUserMenu(): void {
     this.showUserMenu = !this.showUserMenu;
+    this.showLanguageMenu = false; // Close language menu when opening user menu
+  }
+
+  toggleLanguageMenu(): void {
+    this.showLanguageMenu = !this.showLanguageMenu;
+    this.showUserMenu = false; // Close user menu when opening language menu
+  }
+
+  getCurrentLanguageName(): string {
+    const currentLang = this.availableLanguages.find(lang => lang.code === this.selectedLanguage);
+    return currentLang ? currentLang.name : 'English';
+  }
+
+  selectLanguage(languageCode: Language): void {
+    this.selectedLanguage = languageCode;
+    this.onLanguageChange();
+    this.showLanguageMenu = false; // Close dropdown after selection
   }
 
   signOut(): void {
