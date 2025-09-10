@@ -753,10 +753,10 @@
   .option-content {
     color: var(--Text-text, #37403F);
     font-family: var(--Body-font-family, Roboto);
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
     font-weight: var(--Body-Regular, 400);
-    line-height: 20px;
+    line-height: 24px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -768,7 +768,7 @@
   .option-item .label-bold {
     font-weight: 700 !important;
     color: #37403F !important;
-    font-size: 14px !important;
+    font-size: 16px !important;
   }
 
   .option-list {
@@ -796,20 +796,20 @@
     font-weight: 700 !important;
     color: #37403F !important;
     margin-bottom: 0.5rem;
-    font-size: 14px !important;
+    font-size: 16px !important;
   }
 
   .option-text {
     color: var(--Text-text, #37403F);
     font-family: var(--Body-font-family, Roboto);
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400 !important;
-    line-height: 20px;
+    line-height: 24px;
   }
 
   .option-recommendation {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 700;
     color: #37403F;
     margin: 0;
