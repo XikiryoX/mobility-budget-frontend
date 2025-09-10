@@ -1292,6 +1292,12 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
         this.totalCars = data.total;
         this.isLoadingReferenceCars = false;
         
+        // Update allReferenceCars if not filtered (for clear filter functionality)
+        if (!this.isCarFilterActive) {
+          // Load all cars to populate allReferenceCars for filtering
+          this.loadAllReferenceCarsForFilter();
+        }
+        
         // Update available filters after loading reference cars
         this.updateAvailableFilters();
         // Reload TCO distribution to show filtered data
@@ -1331,7 +1337,18 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
   clearCarFilter(): void {
     // Reset the reference cars to show all cars again
     this.isCarFilterActive = false;
-    this.loadReferenceCars();
+    this.selectedCarsInFilter = [];
+    
+    // Restore the original reference cars list
+    this.referenceCars = [...this.allReferenceCars];
+    
+    // Update pagination info for unfiltered results
+    this.totalCars = this.referenceCars.length;
+    this.totalPages = Math.ceil(this.totalCars / 10);
+    this.currentPage = 1; // Reset to first page
+    
+    // Reload TCO distribution to show unfiltered data
+    this.loadTcoDistribution();
   }
 
   loadAllReferenceCars(): void {
@@ -1360,6 +1377,36 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         console.error('Error loading all reference cars:', error);
+        this.allReferenceCars = [];
+      }
+    });
+  }
+
+  loadAllReferenceCarsForFilter(): void {
+    // Load all reference cars without pagination for the filter (background loading)
+    const filters = {
+      yearlyKm: this.newCategory.annualKilometers && this.newCategory.annualKilometers !== '' ? parseInt(this.newCategory.annualKilometers, 10) : undefined,
+      duration: this.newCategory.leasingDuration && this.newCategory.leasingDuration !== '' ? parseInt(this.newCategory.leasingDuration, 10) : undefined,
+      brands: this.selectedBrands,
+      fuelTypes: this.selectedFuelTypes.map(type => {
+        switch(type) {
+          case 'diesel': return 'Diesel';
+          case 'electric': return 'Électrique';
+          case 'hybrid': return 'Hybride';
+          case 'petrol': return 'Essence';
+          default: return type;
+        }
+      }).filter((value, index, self) => self.indexOf(value) === index),
+      minTco: this.tcoRangeMin,
+      maxTco: this.tcoRangeMax
+    };
+
+    this.vehiclesService.getReferenceCars(1, 1000, filters).subscribe({
+      next: (data) => {
+        this.allReferenceCars = data.cars;
+      },
+      error: (error) => {
+        console.error('Error loading all reference cars for filter:', error);
         this.allReferenceCars = [];
       }
     });
