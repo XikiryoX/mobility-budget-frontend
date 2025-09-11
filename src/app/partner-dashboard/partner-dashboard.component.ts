@@ -287,16 +287,12 @@ export class PartnerDashboardComponent implements OnInit {
     event.stopPropagation(); // Prevent company expansion
     
     // Create a new session for this company
+    // Only send signupId as required by the backend API
     const newSessionData = {
-      signupId: company.signup.id,
-      companyName: company.signup.companyName,
-      fullName: company.signup.fullName,
-      email: company.signup.email,
-      socialSecretary: company.signup.socialSecretary,
-      companyNumber: company.signup.companyNumber,
-      phoneNumber: company.signup.phoneNumber,
-      phoneCountryCode: company.signup.phoneCountryCode
+      signupId: company.signup.id
     };
+
+    console.log('Creating new session with data:', newSessionData);
 
     // Create new session
     this.userSessionService.create(newSessionData).subscribe({
