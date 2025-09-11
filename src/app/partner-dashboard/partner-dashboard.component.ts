@@ -39,6 +39,19 @@ export class PartnerDashboardComponent implements OnInit {
   availableLanguages: { code: Language; name: string; flag: string }[] = [];
   showLanguageMenu: boolean = false;
 
+  // New Client Modal
+  showNewClientModal: boolean = false;
+  isSubmittingNewClient: boolean = false;
+  newClientData: any = {
+    fullName: '',
+    email: '',
+    companyName: '',
+    companyNumber: '',
+    phoneNumber: '',
+    phoneCountryCode: '+32',
+    socialSecretary: ''
+  };
+
   constructor(
     private router: Router,
     private translationService: TranslationService,
@@ -342,6 +355,104 @@ export class PartnerDashboardComponent implements OnInit {
         company.signup.email.toLowerCase().includes(filterValue)
       );
     }
+  }
+
+  // New Client Modal Methods
+  openNewClientModal(): void {
+    this.showNewClientModal = true;
+    this.resetNewClientData();
+    // Pre-fill social secretary with partner name
+    this.newClientData.socialSecretary = this.partnerName;
+  }
+
+  closeNewClientModal(): void {
+    this.showNewClientModal = false;
+    this.resetNewClientData();
+  }
+
+  resetNewClientData(): void {
+    this.newClientData = {
+      fullName: '',
+      email: '',
+      companyName: '',
+      companyNumber: '',
+      phoneNumber: '',
+      phoneCountryCode: '+32',
+      socialSecretary: this.partnerName
+    };
+  }
+
+  // Validation methods
+  validateNewClientFullName(): boolean {
+    return this.newClientData.fullName && this.newClientData.fullName.trim().length > 0;
+  }
+
+  validateNewClientEmail(): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return this.newClientData.email && emailRegex.test(this.newClientData.email);
+  }
+
+  validateNewClientCompanyName(): boolean {
+    return this.newClientData.companyName && this.newClientData.companyName.trim().length > 0;
+  }
+
+  validateNewClientCompanyNumber(): boolean {
+    return this.newClientData.companyNumber && this.newClientData.companyNumber.trim().length > 0;
+  }
+
+  validateNewClientPhoneNumber(): boolean {
+    return this.newClientData.phoneNumber && this.newClientData.phoneNumber.trim().length > 0;
+  }
+
+  isNewClientFormValid(): boolean {
+    return this.validateNewClientFullName() &&
+           this.validateNewClientEmail() &&
+           this.validateNewClientCompanyName() &&
+           this.validateNewClientCompanyNumber() &&
+           this.validateNewClientPhoneNumber();
+  }
+
+  lookupCompanyInfo(): void {
+    // This could be implemented to auto-fill company name based on company number
+    // For now, it's a placeholder
+  }
+
+  submitNewClient(): void {
+    if (!this.isNewClientFormValid()) {
+      return;
+    }
+
+    this.isSubmittingNewClient = true;
+
+    // Create the signup data
+    const signupData = {
+      fullName: this.newClientData.fullName.trim(),
+      email: this.newClientData.email.trim(),
+      companyName: this.newClientData.companyName.trim(),
+      companyNumber: this.newClientData.companyNumber.trim(),
+      phoneNumber: this.newClientData.phoneNumber.trim(),
+      phoneCountryCode: this.newClientData.phoneCountryCode,
+      socialSecretary: this.newClientData.socialSecretary
+    };
+
+    console.log('Creating new client:', signupData);
+
+    // Use the signup service to create the new client
+    this.socialSecretaryService.createSignup(signupData).subscribe({
+      next: (newSignup: any) => {
+        console.log('New client created successfully:', newSignup);
+        alert(this.translate('clientCreatedSuccessfully'));
+        
+        // Close modal and refresh the company list
+        this.closeNewClientModal();
+        this.loadCompanySessions();
+      },
+      error: (error: any) => {
+        console.error('Error creating new client:', error);
+        alert('Error creating new client. Please try again.');
+        this.isSubmittingNewClient = false;
+      }
+    });
   }
 
 }

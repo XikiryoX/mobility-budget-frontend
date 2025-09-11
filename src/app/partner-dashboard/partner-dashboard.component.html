@@ -41,8 +41,18 @@
   <div class="main-content">
     <div class="content-container">
       <div class="dashboard-header">
-        <h2 class="dashboard-title">{{ 'clientPoliciesOverview' | i18n }}</h2>
-        <p class="dashboard-subtitle">{{ 'manageAndReviewAllYourClientsMobilityBudgetPolicies' | i18n }}</p>
+        <div class="header-content">
+          <div class="header-text">
+            <h2 class="dashboard-title">{{ 'clientPoliciesOverview' | i18n }}</h2>
+            <p class="dashboard-subtitle">{{ 'manageAndReviewAllYourClientsMobilityBudgetPolicies' | i18n }}</p>
+          </div>
+          <button class="new-client-button" (click)="openNewClientModal()">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M8 3V13M3 8H13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>{{ 'newClient' | i18n }}</span>
+          </button>
+        </div>
       </div>
 
               <!-- Loading State -->
@@ -220,6 +230,143 @@
           <h3>{{ 'noClientPoliciesFound' | i18n }}</h3>
           <p>{{ 'youDontHaveAnyClientPoliciesYet' | i18n }}</p>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Client Modal -->
+  <div class="new-client-overlay" *ngIf="showNewClientModal" (click)="closeNewClientModal()">
+    <div class="new-client-modal" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3 class="modal-title">{{ 'createClient' | i18n }}</h3>
+        <button class="close-button" (click)="closeNewClientModal()">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="modal-content">
+        <form (ngSubmit)="submitNewClient()" #newClientForm="ngForm">
+          <!-- Full Name -->
+          <div class="form-group">
+            <label for="newClientFullName" class="form-label">{{ 'fullName' | i18n }} *</label>
+            <input 
+              type="text" 
+              id="newClientFullName"
+              name="fullName"
+              [(ngModel)]="newClientData.fullName"
+              class="form-input"
+              [class.error]="!validateNewClientFullName()"
+              required>
+            <div class="error-message" *ngIf="!validateNewClientFullName()">
+              {{ 'fullNameRequired' | i18n }}
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label for="newClientEmail" class="form-label">{{ 'email' | i18n }} *</label>
+            <input 
+              type="email" 
+              id="newClientEmail"
+              name="email"
+              [(ngModel)]="newClientData.email"
+              class="form-input"
+              [class.error]="!validateNewClientEmail()"
+              required>
+            <div class="error-message" *ngIf="!validateNewClientEmail()">
+              {{ 'emailRequired' | i18n }}
+            </div>
+          </div>
+
+          <!-- Company Name -->
+          <div class="form-group">
+            <label for="newClientCompanyName" class="form-label">{{ 'companyName' | i18n }} *</label>
+            <input 
+              type="text" 
+              id="newClientCompanyName"
+              name="companyName"
+              [(ngModel)]="newClientData.companyName"
+              class="form-input"
+              [class.error]="!validateNewClientCompanyName()"
+              required>
+            <div class="error-message" *ngIf="!validateNewClientCompanyName()">
+              {{ 'companyNameRequired' | i18n }}
+            </div>
+          </div>
+
+          <!-- Company Number -->
+          <div class="form-group">
+            <label for="newClientCompanyNumber" class="form-label">{{ 'companyNumber' | i18n }} *</label>
+            <input 
+              type="text" 
+              id="newClientCompanyNumber"
+              name="companyNumber"
+              [(ngModel)]="newClientData.companyNumber"
+              class="form-input"
+              [class.error]="!validateNewClientCompanyNumber()"
+              (blur)="lookupCompanyInfo()"
+              required>
+            <div class="error-message" *ngIf="!validateNewClientCompanyNumber()">
+              {{ 'companyNumberRequired' | i18n }}
+            </div>
+          </div>
+
+          <!-- Phone Number -->
+          <div class="form-group">
+            <label for="newClientPhoneNumber" class="form-label">{{ 'phoneNumber' | i18n }} *</label>
+            <div class="phone-input-group">
+              <select 
+                name="phoneCountryCode"
+                [(ngModel)]="newClientData.phoneCountryCode"
+                class="country-code-select">
+                <option value="+32">+32 (BE)</option>
+                <option value="+31">+31 (NL)</option>
+                <option value="+33">+33 (FR)</option>
+                <option value="+49">+49 (DE)</option>
+              </select>
+              <input 
+                type="tel" 
+                id="newClientPhoneNumber"
+                name="phoneNumber"
+                [(ngModel)]="newClientData.phoneNumber"
+                class="form-input phone-input"
+                [class.error]="!validateNewClientPhoneNumber()"
+                required>
+            </div>
+            <div class="error-message" *ngIf="!validateNewClientPhoneNumber()">
+              {{ 'phoneNumberRequired' | i18n }}
+            </div>
+          </div>
+
+          <!-- Social Secretary (Pre-filled and disabled) -->
+          <div class="form-group">
+            <label for="newClientSocialSecretary" class="form-label">{{ 'socialSecretary' | i18n }} *</label>
+            <input 
+              type="text" 
+              id="newClientSocialSecretary"
+              name="socialSecretary"
+              [(ngModel)]="newClientData.socialSecretary"
+              class="form-input disabled"
+              disabled>
+            <div class="help-text">{{ 'socialSecretaryPreFilled' | i18n }}</div>
+          </div>
+        </form>
+      </div>
+      
+      <div class="modal-actions">
+        <button type="button" class="cancel-button" (click)="closeNewClientModal()">
+          {{ 'cancel' | i18n }}
+        </button>
+        <button 
+          type="button" 
+          class="submit-button" 
+          [disabled]="!isNewClientFormValid() || isSubmittingNewClient"
+          (click)="submitNewClient()">
+          <span *ngIf="!isSubmittingNewClient">{{ 'createClient' | i18n }}</span>
+          <span *ngIf="isSubmittingNewClient">{{ 'creating' | i18n }}...</span>
+        </button>
       </div>
     </div>
   </div>
