@@ -808,10 +808,32 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
         const midSegmentCar = sortedCars[Math.floor(sortedCars.length * 0.5)]; // Middle segment (50th percentile)
         const highSegmentCar = sortedCars[Math.floor(sortedCars.length * 0.8)]; // High segment (80th percentile)
         
+        // Ensure we have three different cars
+        const selectedCars = [lowSegmentCar, midSegmentCar, highSegmentCar];
+        const uniqueCars = selectedCars.filter((car, index, self) => 
+          index === self.findIndex(c => c.id === car.id)
+        );
+        
+        // Determine final car selection
+        let finalLowCar, finalMidCar, finalHighCar;
+        
+        if (uniqueCars.length < 3) {
+          console.warn('Not enough unique cars, selecting from different price ranges');
+          // If we don't have 3 unique cars, select from different price ranges
+          const step = Math.floor(sortedCars.length / 3);
+          finalLowCar = sortedCars[0];
+          finalMidCar = sortedCars[step];
+          finalHighCar = sortedCars[Math.min(step * 2, sortedCars.length - 1)];
+        } else {
+          finalLowCar = lowSegmentCar;
+          finalMidCar = midSegmentCar;
+          finalHighCar = highSegmentCar;
+        }
+        
         console.log('Selected cars for segments:');
-        console.log('Low segment:', lowSegmentCar.brand, lowSegmentCar.model, 'Price:', lowSegmentCar.price);
-        console.log('Mid segment:', midSegmentCar.brand, midSegmentCar.model, 'Price:', midSegmentCar.price);
-        console.log('High segment:', highSegmentCar.brand, highSegmentCar.model, 'Price:', highSegmentCar.price);
+        console.log('Low segment:', finalLowCar.brand, finalLowCar.model, 'Price:', finalLowCar.price);
+        console.log('Mid segment:', finalMidCar.brand, finalMidCar.model, 'Price:', finalMidCar.price);
+        console.log('High segment:', finalHighCar.brand, finalHighCar.model, 'Price:', finalHighCar.price);
 
         // Create three categories with descriptive names
         const categories = [
@@ -823,13 +845,13 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
             cleaningCost: { enabled: false, amount: 0 },
             parkingCost: { enabled: false, amount: 0 },
             fuelCard: { enabled: false, amount: 0 },
-            selectedFuelTypes: [lowSegmentCar.fuel_type?.toLowerCase() || 'petrol'],
-            selectedBrands: [lowSegmentCar.brand],
+            selectedFuelTypes: [finalLowCar.fuel_type?.toLowerCase() || 'petrol'],
+            selectedBrands: [finalLowCar.brand],
             referenceCar: {
-              id: lowSegmentCar.id,
-              brand: lowSegmentCar.brand,
-              model: lowSegmentCar.model,
-              fuelType: lowSegmentCar.fuel_type
+              id: finalLowCar.id,
+              brand: finalLowCar.brand,
+              model: finalLowCar.model,
+              fuelType: finalLowCar.fuel_type
             },
             monthlyTco: null,
             tcoBreakdown: null,
@@ -843,13 +865,13 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
             cleaningCost: { enabled: false, amount: 0 },
             parkingCost: { enabled: false, amount: 0 },
             fuelCard: { enabled: false, amount: 0 },
-            selectedFuelTypes: [midSegmentCar.fuel_type?.toLowerCase() || 'petrol'],
-            selectedBrands: [midSegmentCar.brand],
+            selectedFuelTypes: [finalMidCar.fuel_type?.toLowerCase() || 'petrol'],
+            selectedBrands: [finalMidCar.brand],
             referenceCar: {
-              id: midSegmentCar.id,
-              brand: midSegmentCar.brand,
-              model: midSegmentCar.model,
-              fuelType: midSegmentCar.fuel_type
+              id: finalMidCar.id,
+              brand: finalMidCar.brand,
+              model: finalMidCar.model,
+              fuelType: finalMidCar.fuel_type
             },
             monthlyTco: null,
             tcoBreakdown: null,
@@ -863,13 +885,13 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
             cleaningCost: { enabled: false, amount: 0 },
             parkingCost: { enabled: false, amount: 0 },
             fuelCard: { enabled: false, amount: 0 },
-            selectedFuelTypes: [highSegmentCar.fuel_type?.toLowerCase() || 'petrol'],
-            selectedBrands: [highSegmentCar.brand],
+            selectedFuelTypes: [finalHighCar.fuel_type?.toLowerCase() || 'petrol'],
+            selectedBrands: [finalHighCar.brand],
             referenceCar: {
-              id: highSegmentCar.id,
-              brand: highSegmentCar.brand,
-              model: highSegmentCar.model,
-              fuelType: highSegmentCar.fuel_type
+              id: finalHighCar.id,
+              brand: finalHighCar.brand,
+              model: finalHighCar.model,
+              fuelType: finalHighCar.fuel_type
             },
             monthlyTco: null,
             tcoBreakdown: null,
@@ -887,35 +909,35 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
   }
 
   private addInspireMeCategories(categories: any[]): void {
-    let addedCount = 0;
-    let errorCount = 0;
-    
     console.log('Starting to add inspire me categories:', categories.length);
     
-    categories.forEach((category, index) => {
-      console.log(`Adding category ${index + 1}:`, category.name, 'with car:', category.referenceCar);
-      
-      this.userSessionService.addCarCategory(this.currentSessionId!, category).subscribe({
-        next: (updatedSession) => {
-          addedCount++;
-          console.log(`Successfully added inspire me category ${index + 1}:`, category.name);
-          
-          // Update local car categories after all are added
-          if (addedCount + errorCount === categories.length) {
-            this.carCategories = updatedSession.carCategories || [];
-            console.log('All inspire me categories processed. Added:', addedCount, 'Errors:', errorCount);
-          }
-        },
-        error: (error) => {
-          errorCount++;
-          console.error(`Error adding inspire me category ${index + 1}:`, error);
-          
-          // Update local car categories even if some failed
-          if (addedCount + errorCount === categories.length) {
-            console.log('All inspire me categories processed. Added:', addedCount, 'Errors:', errorCount);
-          }
-        }
-      });
+    // Add categories sequentially to avoid race conditions
+    this.addCategorySequentially(categories, 0);
+  }
+
+  private addCategorySequentially(categories: any[], index: number): void {
+    if (index >= categories.length) {
+      console.log('All inspire me categories processed successfully');
+      return;
+    }
+
+    const category = categories[index];
+    console.log(`Adding category ${index + 1}:`, category.name, 'with car:', category.referenceCar);
+    
+    this.userSessionService.addCarCategory(this.currentSessionId!, category).subscribe({
+      next: (updatedSession) => {
+        console.log(`Successfully added inspire me category ${index + 1}:`, category.name);
+        this.carCategories = updatedSession.carCategories || [];
+        
+        // Add next category
+        this.addCategorySequentially(categories, index + 1);
+      },
+      error: (error) => {
+        console.error(`Error adding inspire me category ${index + 1}:`, error);
+        
+        // Continue with next category even if this one failed
+        this.addCategorySequentially(categories, index + 1);
+      }
     });
   }
 
