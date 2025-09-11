@@ -500,6 +500,12 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
     // Show the form
     this.showAddCategoryForm = true;
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Ensure the reference car list is loaded with the correct filters
+    // This will make sure the selected car is visible in the list
+    setTimeout(() => {
+      this.loadReferenceCars();
+    }, 100);
   }
 
   deleteCategory(category: any): void {
@@ -891,32 +897,38 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
       return;
     }
     
-    // Select cars from different segments - ensure good distribution
-    const lowSegmentCar = sortedCars[0]; // Cheapest (low segment)
-    const midSegmentCar = sortedCars[Math.floor(sortedCars.length * 0.5)]; // Middle segment (50th percentile)
-    const highSegmentCar = sortedCars[Math.floor(sortedCars.length * 0.8)]; // High segment (80th percentile)
+    // Group cars by brand to ensure variety
+    const carsByBrand = new Map<string, any[]>();
+    sortedCars.forEach(car => {
+      const brand = car.brand || 'Unknown';
+      if (!carsByBrand.has(brand)) {
+        carsByBrand.set(brand, []);
+      }
+      carsByBrand.get(brand)!.push(car);
+    });
+
+    // Select cars from different segments with brand variety
+    const availableBrands = Array.from(carsByBrand.keys());
+    console.log('Available brands:', availableBrands);
+
+    // Define price segments
+    const lowSegmentEnd = Math.floor(sortedCars.length * 0.33);
+    const midSegmentEnd = Math.floor(sortedCars.length * 0.66);
     
-    // Ensure we have three different cars
-    const selectedCars = [lowSegmentCar, midSegmentCar, highSegmentCar];
-    const uniqueCars = selectedCars.filter((car, index, self) => 
-      index === self.findIndex(c => c.id === car.id)
-    );
-    
-    // Determine final car selection
+    // Select one car from each segment, trying to get different brands
     let finalLowCar, finalMidCar, finalHighCar;
     
-    if (uniqueCars.length < 3) {
-      console.warn('Not enough unique cars, selecting from different price ranges');
-      // If we don't have 3 unique cars, select from different price ranges
-      const step = Math.floor(sortedCars.length / 3);
-      finalLowCar = sortedCars[0];
-      finalMidCar = sortedCars[step];
-      finalHighCar = sortedCars[Math.min(step * 2, sortedCars.length - 1)];
-    } else {
-      finalLowCar = lowSegmentCar;
-      finalMidCar = midSegmentCar;
-      finalHighCar = highSegmentCar;
-    }
+    // Low segment (cheapest 33%)
+    const lowSegmentCars = sortedCars.slice(0, lowSegmentEnd);
+    finalLowCar = this.selectRandomCarFromSegment(lowSegmentCars, []);
+    
+    // Mid segment (middle 33%)
+    const midSegmentCars = sortedCars.slice(lowSegmentEnd, midSegmentEnd);
+    finalMidCar = this.selectRandomCarFromSegment(midSegmentCars, [finalLowCar.brand]);
+    
+    // High segment (most expensive 33%)
+    const highSegmentCars = sortedCars.slice(midSegmentEnd);
+    finalHighCar = this.selectRandomCarFromSegment(highSegmentCars, [finalLowCar.brand, finalMidCar.brand]);
     
     console.log('Selected cars for segments:');
     console.log('Low segment:', finalLowCar.brand, finalLowCar.model, 'Price:', finalLowCar.price);
@@ -989,6 +1001,21 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
 
     // Add all categories to the session
     this.addInspireMeCategories(categories);
+  }
+
+  private selectRandomCarFromSegment(segmentCars: any[], excludeBrands: string[]): any {
+    // First try to find a car from a brand not in the exclude list
+    const availableCars = segmentCars.filter(car => !excludeBrands.includes(car.brand));
+    
+    if (availableCars.length > 0) {
+      // Randomly select from available cars
+      const randomIndex = Math.floor(Math.random() * availableCars.length);
+      return availableCars[randomIndex];
+    } else {
+      // If no cars from different brands, just select randomly from the segment
+      const randomIndex = Math.floor(Math.random() * segmentCars.length);
+      return segmentCars[randomIndex];
+    }
   }
 
   private addInspireMeCategories(categories: any[]): void {
