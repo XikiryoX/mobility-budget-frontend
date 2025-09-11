@@ -312,6 +312,8 @@
               class="form-input"
               [class.error]="!validateNewClientCompanyNumber()"
               (blur)="lookupCompanyInfo()"
+              (input)="onCompanyNumberInput()"
+              placeholder="BE0123456789"
               required>
             <div class="error-message" *ngIf="!validateNewClientCompanyNumber()">
               {{ 'companyNumberRequired' | i18n }}

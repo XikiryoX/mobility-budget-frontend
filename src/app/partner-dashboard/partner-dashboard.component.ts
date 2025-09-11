@@ -7,6 +7,7 @@ import { I18nPipe } from '../pipes/i18n.pipe';
 import { UserSessionService } from '../services/user-session.service';
 import { SocialSecretaryService } from '../services/social-secretary.service';
 import { SignupService } from '../services/signup.service';
+import { ViesService } from '../services/vies.service';
 
 interface CompanySessions {
   signup: any;
@@ -58,7 +59,8 @@ export class PartnerDashboardComponent implements OnInit {
     private translationService: TranslationService,
     private userSessionService: UserSessionService,
     private socialSecretaryService: SocialSecretaryService,
-    private signupService: SignupService
+    private signupService: SignupService,
+    private viesService: ViesService
   ) {}
 
   ngOnInit(): void {
@@ -414,9 +416,53 @@ export class PartnerDashboardComponent implements OnInit {
            this.validateNewClientPhoneNumber();
   }
 
+  onCompanyNumberInput(): void {
+    // Format the company number as user types
+    let value = this.newClientData.companyNumber.replace(/[^0-9]/g, '');
+    
+    if (value.length > 0) {
+      // Add BE prefix if not present
+      if (!value.startsWith('BE')) {
+        value = 'BE' + value;
+      }
+      
+      // Format with dots: BE0123.456.789
+      if (value.length > 4) {
+        value = value.substring(0, 4) + '.' + value.substring(4);
+      }
+      if (value.length > 8) {
+        value = value.substring(0, 8) + '.' + value.substring(8);
+      }
+    }
+    
+    this.newClientData.companyNumber = value;
+  }
+
   lookupCompanyInfo(): void {
-    // This could be implemented to auto-fill company name based on company number
-    // For now, it's a placeholder
+    if (!this.newClientData.companyNumber || this.newClientData.companyNumber.length < 8) {
+      return;
+    }
+
+    // Clean the company number (remove spaces, dots, etc.)
+    const cleanCompanyNumber = this.newClientData.companyNumber.replace(/[^0-9]/g, '');
+    
+    if (cleanCompanyNumber.length < 8) {
+      return;
+    }
+
+    // Call VIES API to validate and get company info
+    this.viesService.validateVatNumber(cleanCompanyNumber).subscribe({
+      next: (response: any) => {
+        if (response.valid && response.name) {
+          // Auto-fill company name if available
+          this.newClientData.companyName = response.name;
+        }
+      },
+      error: (error) => {
+        console.log('VIES validation failed:', error);
+        // Don't show error to user, just log it
+      }
+    });
   }
 
   submitNewClient(): void {
