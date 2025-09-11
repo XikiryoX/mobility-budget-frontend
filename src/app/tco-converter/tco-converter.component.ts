@@ -766,7 +766,6 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
   inspireMe(): void {
     console.log('Inspire me button clicked');
     console.log('Current session ID:', this.currentSessionId);
-    console.log('Current session:', this.currentSession);
     
     if (!this.currentSessionId) {
       console.error('No session ID available for inspire me');
