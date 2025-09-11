@@ -99,6 +99,7 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
   filteredCarGroups: any[] = [];
   selectedCarsInFilter: string[] = [];
   isCarFilterActive: boolean = false;
+  isTcoRangeFilterActive: boolean = false;
 
   // Sorting
   tcoSortDirection: 'asc' | 'desc' | null = null;
@@ -1358,12 +1359,18 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
 
   getMinTco(): number {
     if (this.tcoDistribution.length === 0) return 0;
-    return this.tcoDistribution[0].globalMinTco;
+    const minTco = this.tcoDistribution[0].globalMinTco;
+    // Subtract 50 euros and round down to nearest 10
+    const adjustedMin = minTco - 50;
+    return Math.floor(adjustedMin / 10) * 10;
   }
 
   getMaxTco(): number {
     if (this.tcoDistribution.length === 0) return 0;
-    return this.tcoDistribution[0].globalMaxTco;
+    const maxTco = this.tcoDistribution[0].globalMaxTco;
+    // Add 50 euros and round up to nearest 10
+    const adjustedMax = maxTco + 50;
+    return Math.ceil(adjustedMax / 10) * 10;
   }
 
   getAllTcoRanges(): number[] {
@@ -2120,6 +2127,7 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
     
     // Mark that user has adjusted the slider
     this.userHasAdjustedSlider = true;
+    this.isTcoRangeFilterActive = true;
     
     // Reset car filter when TCO range changes
     this.isCarFilterActive = false;
