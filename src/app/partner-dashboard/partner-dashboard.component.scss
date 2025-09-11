@@ -407,6 +407,37 @@
   gap: 0.5rem;
 }
 
+.company-status-summary {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.status-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+  min-width: 20px;
+  
+  &.completed {
+    background: #10B981;
+  }
+  
+  &.in-progress {
+    background: #3B82F6;
+  }
+  
+  &.pending {
+    background: #F59E0B;
+  }
+}
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
