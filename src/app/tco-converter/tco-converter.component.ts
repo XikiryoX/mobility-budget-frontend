@@ -79,6 +79,7 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
   tcoRangeMax: number = 0;
   isDraggingSlider: boolean = false;
   activeSlider: 'min' | 'max' | null = null;
+  userHasAdjustedSlider: boolean = false;
   
   // TCO Calculation Details
   tcoCalculationDetails: any[] = [];
@@ -1524,6 +1525,24 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
     this.loadTcoDistribution();
   }
 
+  clearTcoRangeFilter(): void {
+    // Reset the TCO range filter
+    this.userHasAdjustedSlider = false;
+    this.isTcoRangeFilterActive = false;
+    
+    // Reset to full range
+    if (this.tcoDistribution.length > 0) {
+      this.tcoRangeMin = this.getMinTco();
+      this.tcoRangeMax = this.getMaxTco();
+    }
+    
+    // Reload reference cars without TCO range filter
+    this.currentPage = 1;
+    this.loadReferenceCars();
+    
+    console.log('TCO range filter cleared, reset to full range');
+  }
+
   loadAllReferenceCars(): void {
     // Load all reference cars without pagination for the filter
     const filters = {
@@ -2099,6 +2118,9 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
     // Filter reference cars based on TCO range
     console.log(`Applying TCO range filter: €${this.tcoRangeMin} - €${this.tcoRangeMax}`);
     
+    // Mark that user has adjusted the slider
+    this.userHasAdjustedSlider = true;
+    
     // Reset car filter when TCO range changes
     this.isCarFilterActive = false;
     
@@ -2129,12 +2151,15 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
       const newMin = this.getMinTco();
       const newMax = this.getMaxTco();
       
-      // Always initialize sliders to show the full range when distribution changes
-      // This ensures the slider reflects the current filtered data
-      this.tcoRangeMin = newMin;
-      this.tcoRangeMax = newMax;
-      
-      console.log(`Initialized TCO range: €${newMin} - €${newMax}`);
+      // Only initialize sliders to show the full range if user hasn't adjusted them
+      // This preserves user's slider position when other filters change
+      if (!this.userHasAdjustedSlider) {
+        this.tcoRangeMin = newMin;
+        this.tcoRangeMax = newMax;
+        console.log(`Initialized TCO range: €${newMin} - €${newMax}`);
+      } else {
+        console.log(`Preserving user's TCO range: €${this.tcoRangeMin} - €${this.tcoRangeMax}`);
+      }
     }
   }
 
