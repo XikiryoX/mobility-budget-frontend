@@ -982,7 +982,13 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
     console.log(`Calculating TCO for ${categoryName}:`, car.brand, car.model);
 
     // Call the TCO calculation API
-    this.vehiclesService.calculateVehicleTCO(car.id, yearlyKm, duration, [], []).subscribe({
+    this.vehiclesService.calculateVehicleTCO({
+      vehicleId: car.id,
+      yearlyKm: yearlyKm,
+      duration: duration,
+      additionalCosts: [],
+      monthlyAdjustments: []
+    }).subscribe({
       next: (tcoResult) => {
         console.log(`TCO calculated for ${categoryName}:`, tcoResult);
         
