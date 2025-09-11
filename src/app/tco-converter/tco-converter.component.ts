@@ -787,7 +787,7 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
 
         // Extract unique combinations of yearlyKm and duration
         const combinations = new Set<string>();
-        allCars.forEach(car => {
+        allCars.forEach((car: any) => {
           if (car.yearly_km && car.duration) {
             combinations.add(`${car.yearly_km}-${car.duration}`);
           }
