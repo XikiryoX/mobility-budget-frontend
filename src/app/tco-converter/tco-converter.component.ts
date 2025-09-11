@@ -1755,10 +1755,26 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
 
   applyCarFilter(): void {
     if (this.selectedCarsInFilter.length > 0) {
+      console.log('Applying car filter with', this.selectedCarsInFilter.length, 'selected cars');
+      console.log('allReferenceCars length before filter:', this.allReferenceCars.length);
+      
+      // Ensure allReferenceCars is loaded
+      if (this.allReferenceCars.length === 0) {
+        console.log('allReferenceCars is empty, loading it first...');
+        this.loadAllReferenceCarsForFilter();
+        // Wait for the data to load, then retry
+        setTimeout(() => {
+          this.applyCarFilter();
+        }, 500);
+        return;
+      }
+      
       // Get the selected cars from allReferenceCars
       const selectedCars = this.allReferenceCars.filter((car: any) => 
         this.selectedCarsInFilter.includes(car.id.toString())
       );
+      
+      console.log('Selected cars found:', selectedCars.length);
       
       // For each selected car, find all variants (same brand + model)
       const filteredCars: any[] = [];
@@ -1776,6 +1792,8 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
           }
         });
       });
+      
+      console.log('Total filtered cars (all variants):', filteredCars.length);
       
       // Set the filtered reference cars
       this.referenceCars = filteredCars;
@@ -1800,12 +1818,26 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
 
   private applyLocalCarFilter(): void {
     console.log('Applying local car filter with', this.selectedCarsInFilter.length, 'selected cars');
+    console.log('allReferenceCars length:', this.allReferenceCars.length);
     
     if (this.selectedCarsInFilter.length > 0) {
+      // Ensure allReferenceCars is loaded
+      if (this.allReferenceCars.length === 0) {
+        console.log('allReferenceCars is empty, loading it first...');
+        this.loadAllReferenceCarsForFilter();
+        // Wait for the data to load, then retry
+        setTimeout(() => {
+          this.applyLocalCarFilter();
+        }, 500);
+        return;
+      }
+      
       // Get the selected cars from allReferenceCars
       const selectedCars = this.allReferenceCars.filter((car: any) => 
         this.selectedCarsInFilter.includes(car.id.toString())
       );
+      
+      console.log('Selected cars found:', selectedCars.length);
       
       // For each selected car, find all variants (same brand + model)
       const filteredCars: any[] = [];
@@ -1824,6 +1856,8 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
         });
       });
       
+      console.log('Total filtered cars (all variants):', filteredCars.length);
+      
       // Apply pagination to filtered results
       const startIndex = (this.currentPage - 1) * 10;
       const endIndex = startIndex + 10;
@@ -1837,7 +1871,9 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
         totalFilteredCars: filteredCars.length,
         currentPage: this.currentPage,
         carsOnPage: this.referenceCars.length,
-        totalPages: this.totalPages
+        totalPages: this.totalPages,
+        startIndex: startIndex,
+        endIndex: endIndex
       });
     } else {
       // No filter applied, restore original behavior
