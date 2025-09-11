@@ -129,82 +129,90 @@ div.partner-login-image-col div.image-overlay-text b {
   width: auto;
 }
 
-.language-selector-container {
-  display: flex !important;
-  align-items: center !important;
-  padding: 8px 16px !important;
-  border: 1px solid #D2D9D8 !important;
-  border-radius: 6px !important;
-  background: transparent !important;
-  transition: all 0.3s ease !important;
+// Language Menu
+.language-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
-.language-selector-container:hover {
-  border-color: #999 !important;
-  background: #F5F5F5 !important;
+.language-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: transparent;
+  color: #666;
+  border: 1px solid #D2D9D8;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 40px;
+  min-width: 120px;
+  justify-content: center;
+
+  &:hover {
+    background: #F5F5F5;
+    color: #333;
+  }
 }
 
-.language-selector {
-  display: flex !important;
-  align-items: center !important;
-  position: relative !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  background: transparent !important;
-  border: none !important;
-  gap: 8px !important;
+.language-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: inherit;
+}
+
+.dropdown-icon {
+  width: 16px;
+  height: 16px;
+  color: inherit;
+  transition: transform 0.3s ease;
+}
+
+.language-button:hover .dropdown-icon {
+  transform: rotate(180deg);
 }
 
 .language-dropdown {
-  /* Force complete transparency */
-  background: transparent !important;
-  background-color: transparent !important;
-  background-image: none !important;
-  -webkit-background-image: none !important;
-  -moz-background-image: none !important;
-  
-  /* Remove all borders and outlines */
-  border: none !important;
-  border-radius: 0 !important;
-  outline: none !important;
-  box-shadow: none !important;
-  
-  /* Remove all browser default styling */
-  -webkit-appearance: none !important;
-  -moz-appearance: none !important;
-  appearance: none !important;
-  
-  /* Typography */
-  font-size: 1rem !important;
-  font-weight: 500 !important;
-  color: #333 !important;
-  font-family: inherit !important;
-  
-  /* Layout */
-  padding: 0 !important;
-  margin: 0 !important;
-  min-width: 60px !important;
-  width: auto !important;
-  height: auto !important;
-  line-height: 1 !important;
-  
-  /* Cursor */
-  cursor: pointer !important;
-  
-  /* Remove any transforms or animations */
-  transform: none !important;
-  transition: none !important;
-  animation: none !important;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 6px;
+  background: white;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  min-width: 120px;
+  overflow: hidden;
 }
 
-.dropdown-arrow {
-  flex-shrink: 0 !important;
-  pointer-events: none !important;
-  transition: transform 0.3s ease !important;
-}
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: #37403F;
+  transition: background-color 0.2s ease;
 
-.language-selector-container:hover .dropdown-arrow {
-  transform: translateY(1px) !important;
+  &:hover {
+    background: #F3F4F6;
+  }
+
+  &:first-child {
+    border-radius: 10px 10px 0 0;
+  }
+
+  &:last-child {
+    border-radius: 0 0 10px 10px;
+  }
 }
 
 .user-login-button {
