@@ -772,14 +772,57 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // Get top-level parameters for TCO calculation
-    const yearlyKm = this.newCategory.annualKilometers ? parseInt(this.newCategory.annualKilometers, 10) : 15000;
-    const duration = this.newCategory.leasingDuration ? parseInt(this.newCategory.leasingDuration, 10) : 60;
-    
-    console.log('Using parameters - yearlyKm:', yearlyKm, 'duration:', duration);
+    // First, get all available parameter combinations from the database
+    console.log('Loading available parameter combinations...');
+    this.vehiclesService.getReferenceCars(1, 1000, {}).subscribe({
+      next: (data) => {
+        console.log('Received all cars data:', data);
+        const allCars = data.cars;
+        console.log('Total cars found:', allCars.length);
+        
+        if (allCars.length === 0) {
+          console.error('No cars available in database');
+          return;
+        }
 
-    // Load cars from database and create three categories
-    console.log('Loading cars from database...');
+        // Extract unique combinations of yearlyKm and duration
+        const combinations = new Set<string>();
+        allCars.forEach(car => {
+          if (car.yearly_km && car.duration) {
+            combinations.add(`${car.yearly_km}-${car.duration}`);
+          }
+        });
+
+        const availableCombinations = Array.from(combinations).map(combo => {
+          const [yearlyKm, duration] = combo.split('-').map(Number);
+          return { yearlyKm, duration };
+        });
+
+        console.log('Available combinations:', availableCombinations);
+
+        if (availableCombinations.length === 0) {
+          console.error('No valid parameter combinations found');
+          return;
+        }
+
+        // Select a random combination
+        const randomIndex = Math.floor(Math.random() * availableCombinations.length);
+        const selectedCombination = availableCombinations[randomIndex];
+        
+        console.log('Selected random combination - yearlyKm:', selectedCombination.yearlyKm, 'duration:', selectedCombination.duration);
+
+        // Now load cars with the selected combination
+        this.loadCarsForInspireMe(selectedCombination.yearlyKm, selectedCombination.duration);
+      },
+      error: (error) => {
+        console.error('Error loading parameter combinations:', error);
+      }
+    });
+  }
+
+  private loadCarsForInspireMe(yearlyKm: number, duration: number): void {
+    console.log('Loading cars for inspire me with parameters - yearlyKm:', yearlyKm, 'duration:', duration);
+    
     this.vehiclesService.getReferenceCars(1, 100, {
       yearlyKm: yearlyKm,
       duration: duration
@@ -839,8 +882,8 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
         const categories = [
           {
             name: 'Budget Segment',
-            annualKilometers: yearlyKm,
-            leasingDuration: duration,
+            annualKilometers: yearlyKm.toString(),
+            leasingDuration: duration.toString(),
             employeeContribution: { enabled: false, amount: 0 },
             cleaningCost: { enabled: false, amount: 0 },
             parkingCost: { enabled: false, amount: 0 },
@@ -859,8 +902,8 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
           },
           {
             name: 'Mid-Range Segment',
-            annualKilometers: yearlyKm,
-            leasingDuration: duration,
+            annualKilometers: yearlyKm.toString(),
+            leasingDuration: duration.toString(),
             employeeContribution: { enabled: false, amount: 0 },
             cleaningCost: { enabled: false, amount: 0 },
             parkingCost: { enabled: false, amount: 0 },
@@ -879,8 +922,8 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
           },
           {
             name: 'Premium Segment',
-            annualKilometers: yearlyKm,
-            leasingDuration: duration,
+            annualKilometers: yearlyKm.toString(),
+            leasingDuration: duration.toString(),
             employeeContribution: { enabled: false, amount: 0 },
             cleaningCost: { enabled: false, amount: 0 },
             parkingCost: { enabled: false, amount: 0 },
