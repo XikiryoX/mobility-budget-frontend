@@ -1957,6 +1957,11 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Helper method to round values to nearest 10 for display
+  roundToTens(value: number): number {
+    return Math.round(value / 10) * 10;
+  }
+
   goToSessions(): void {
     this.router.navigate(['/user-sessions']);
   }
