@@ -513,12 +513,12 @@
 // Sessions List
 .sessions-container {
   border-top: 1px solid #E5E7EB;
-  background: #F8F9FA;
+  background: #FAFBFC;
 }
 
 .sessions-header {
   padding: 1rem 1.5rem;
-  background: #F3F4F6;
+  background: #F8F9FA;
   border-bottom: 1px solid #E5E7EB;
   display: flex;
   justify-content: space-between;
@@ -534,6 +534,159 @@
 
 .sessions-list {
   padding: 1.5rem;
+}
+
+.sessions-table {
+  overflow-x: auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  margin: 0 1.5rem 1.5rem 1.5rem;
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    min-width: 800px; // Ensure table doesn't get too compressed
+    
+    th, td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #F3F4F6;
+      white-space: nowrap;
+    }
+    
+    th {
+      background: #F8F9FA;
+      font-weight: 600;
+      color: #37403F;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid #E5E7EB;
+    }
+    
+    td {
+      vertical-align: top;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+    
+    tr:hover {
+      background: #F8F9FA;
+    }
+    
+    tr:last-child td {
+      border-bottom: none;
+    }
+  }
+}
+
+// Table cell styling
+.user-cell {
+  min-width: 180px;
+  
+  .user-info {
+    .user-name {
+      font-weight: 600;
+      color: #37403F;
+      margin-bottom: 0.25rem;
+    }
+    
+    .user-email {
+      font-size: 0.75rem;
+      color: #6B7280;
+    }
+  }
+}
+
+.status-cell {
+  min-width: 120px;
+  
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    
+    &.completed {
+      background: #D1FAE5;
+      color: #065F46;
+    }
+    
+    &.in-progress {
+      background: #FEF3C7;
+      color: #92400E;
+    }
+    
+    &.pending {
+      background: #F3F4F6;
+      color: #37403F;
+    }
+  }
+}
+
+.step-cell {
+  min-width: 140px;
+  
+  .step-info {
+    .step-number {
+      font-weight: 600;
+      color: #37403F;
+      margin-bottom: 0.25rem;
+    }
+    
+    .step-name {
+      font-size: 0.75rem;
+      color: #6B7280;
+    }
+  }
+}
+
+.categories-cell {
+  min-width: 120px;
+  
+  .categories-info {
+    .category-count {
+      font-weight: 600;
+      color: #37403F;
+      margin-bottom: 0.25rem;
+    }
+    
+    .category-status {
+      font-size: 0.75rem;
+      color: #6B7280;
+    }
+  }
+}
+
+.activity-cell {
+  min-width: 120px;
+  
+  .activity-info {
+    .activity-date {
+      font-weight: 500;
+      color: #37403F;
+      margin-bottom: 0.25rem;
+    }
+    
+    .activity-time {
+      font-size: 0.75rem;
+      color: #6B7280;
+    }
+  }
+}
+
+.actions-cell {
+  min-width: 200px;
+  
+  .action-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
 }
 
 .session-item {
