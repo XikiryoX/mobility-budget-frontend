@@ -789,8 +789,12 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
         // Extract unique combinations of yearlyKm and duration
         const combinations = new Set<string>();
         allCars.forEach((car: any) => {
-          if (car.yearly_km && car.duration) {
-            combinations.add(`${car.yearly_km}-${car.duration}`);
+          // Try different possible field names
+          const yearlyKm = car.yearly_km || car.yearlyKm || car.annual_km || car.annualKm;
+          const duration = car.duration || car.leasing_duration || car.leasingDuration;
+          
+          if (yearlyKm && duration) {
+            combinations.add(`${yearlyKm}-${duration}`);
           }
         });
 
@@ -800,10 +804,17 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
         });
 
         console.log('Available combinations:', availableCombinations);
+        console.log('Sample car data:', allCars[0]); // Log first car to see structure
 
+        // If no combinations found, use default values
         if (availableCombinations.length === 0) {
-          console.error('No valid parameter combinations found');
-          return;
+          console.warn('No valid parameter combinations found, using default values');
+          const defaultCombinations = [
+            { yearlyKm: 15000, duration: 60 },
+            { yearlyKm: 20000, duration: 48 },
+            { yearlyKm: 25000, duration: 36 }
+          ];
+          availableCombinations.push(...defaultCombinations);
         }
 
         // Select a random combination
@@ -835,123 +846,149 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
         console.log('Available cars found:', availableCars.length);
         
         if (availableCars.length < 3) {
-          console.error('Not enough cars available for inspire me');
+          console.warn('Not enough cars available for inspire me with these parameters, trying without filters');
+          // Try to get cars without parameter filters
+          this.vehiclesService.getReferenceCars(1, 100, {}).subscribe({
+            next: (fallbackData) => {
+              console.log('Fallback data received:', fallbackData);
+              const fallbackCars = fallbackData.cars;
+              console.log('Fallback cars found:', fallbackCars.length);
+              
+              if (fallbackCars.length < 3) {
+                console.error('Not enough cars available even without filters');
+                alert('Not enough cars available in the database for inspire me functionality.');
+                return;
+              }
+              
+              // Use fallback cars with the selected parameters
+              this.createInspireMeCategories(fallbackCars, yearlyKm, duration);
+            },
+            error: (fallbackError) => {
+              console.error('Error loading fallback cars:', fallbackError);
+              alert('Error loading car data. Please try again.');
+            }
+          });
           return;
         }
 
-        // Sort cars by price to determine segments
-        const sortedCars = availableCars.sort((a: any, b: any) => (a.price || 0) - (b.price || 0));
-        
-        // Ensure we have at least 3 cars and select from different segments
-        if (sortedCars.length < 3) {
-          console.error('Not enough cars available for inspire me (need at least 3)');
-          return;
-        }
-        
-        // Select cars from different segments - ensure good distribution
-        const lowSegmentCar = sortedCars[0]; // Cheapest (low segment)
-        const midSegmentCar = sortedCars[Math.floor(sortedCars.length * 0.5)]; // Middle segment (50th percentile)
-        const highSegmentCar = sortedCars[Math.floor(sortedCars.length * 0.8)]; // High segment (80th percentile)
-        
-        // Ensure we have three different cars
-        const selectedCars = [lowSegmentCar, midSegmentCar, highSegmentCar];
-        const uniqueCars = selectedCars.filter((car, index, self) => 
-          index === self.findIndex(c => c.id === car.id)
-        );
-        
-        // Determine final car selection
-        let finalLowCar, finalMidCar, finalHighCar;
-        
-        if (uniqueCars.length < 3) {
-          console.warn('Not enough unique cars, selecting from different price ranges');
-          // If we don't have 3 unique cars, select from different price ranges
-          const step = Math.floor(sortedCars.length / 3);
-          finalLowCar = sortedCars[0];
-          finalMidCar = sortedCars[step];
-          finalHighCar = sortedCars[Math.min(step * 2, sortedCars.length - 1)];
-        } else {
-          finalLowCar = lowSegmentCar;
-          finalMidCar = midSegmentCar;
-          finalHighCar = highSegmentCar;
-        }
-        
-        console.log('Selected cars for segments:');
-        console.log('Low segment:', finalLowCar.brand, finalLowCar.model, 'Price:', finalLowCar.price);
-        console.log('Mid segment:', finalMidCar.brand, finalMidCar.model, 'Price:', finalMidCar.price);
-        console.log('High segment:', finalHighCar.brand, finalHighCar.model, 'Price:', finalHighCar.price);
-
-        // Create three categories with descriptive names
-        const categories = [
-          {
-            name: 'Budget Segment',
-            annualKilometers: yearlyKm.toString(),
-            leasingDuration: duration.toString(),
-            employeeContribution: { enabled: false, amount: 0 },
-            cleaningCost: { enabled: false, amount: 0 },
-            parkingCost: { enabled: false, amount: 0 },
-            fuelCard: { enabled: false, amount: 0 },
-            selectedFuelTypes: [finalLowCar.fuel_type?.toLowerCase() || 'petrol'],
-            selectedBrands: [finalLowCar.brand],
-            referenceCar: {
-              id: finalLowCar.id,
-              brand: finalLowCar.brand,
-              model: finalLowCar.model,
-              fuelType: finalLowCar.fuel_type
-            },
-            monthlyTco: null,
-            tcoBreakdown: null,
-            status: 'pending' // Red dot - needs TCO calculation
-          },
-          {
-            name: 'Mid-Range Segment',
-            annualKilometers: yearlyKm.toString(),
-            leasingDuration: duration.toString(),
-            employeeContribution: { enabled: false, amount: 0 },
-            cleaningCost: { enabled: false, amount: 0 },
-            parkingCost: { enabled: false, amount: 0 },
-            fuelCard: { enabled: false, amount: 0 },
-            selectedFuelTypes: [finalMidCar.fuel_type?.toLowerCase() || 'petrol'],
-            selectedBrands: [finalMidCar.brand],
-            referenceCar: {
-              id: finalMidCar.id,
-              brand: finalMidCar.brand,
-              model: finalMidCar.model,
-              fuelType: finalMidCar.fuel_type
-            },
-            monthlyTco: null,
-            tcoBreakdown: null,
-            status: 'pending' // Red dot - needs TCO calculation
-          },
-          {
-            name: 'Premium Segment',
-            annualKilometers: yearlyKm.toString(),
-            leasingDuration: duration.toString(),
-            employeeContribution: { enabled: false, amount: 0 },
-            cleaningCost: { enabled: false, amount: 0 },
-            parkingCost: { enabled: false, amount: 0 },
-            fuelCard: { enabled: false, amount: 0 },
-            selectedFuelTypes: [finalHighCar.fuel_type?.toLowerCase() || 'petrol'],
-            selectedBrands: [finalHighCar.brand],
-            referenceCar: {
-              id: finalHighCar.id,
-              brand: finalHighCar.brand,
-              model: finalHighCar.model,
-              fuelType: finalHighCar.fuel_type
-            },
-            monthlyTco: null,
-            tcoBreakdown: null,
-            status: 'pending' // Red dot - needs TCO calculation
-          }
-        ];
-
-        // Add all categories to the session
-        this.addInspireMeCategories(categories);
+        // Use the cars to create categories
+        this.createInspireMeCategories(availableCars, yearlyKm, duration);
       },
       error: (error) => {
         console.error('Error loading electric cars for inspire me:', error);
         alert('Error loading cars for the selected parameters. Please try again.');
       }
     });
+  }
+
+  private createInspireMeCategories(availableCars: any[], yearlyKm: number, duration: number): void {
+    // Sort cars by price to determine segments
+    const sortedCars = availableCars.sort((a: any, b: any) => (a.price || 0) - (b.price || 0));
+    
+    // Ensure we have at least 3 cars and select from different segments
+    if (sortedCars.length < 3) {
+      console.error('Not enough cars available for inspire me (need at least 3)');
+      return;
+    }
+    
+    // Select cars from different segments - ensure good distribution
+    const lowSegmentCar = sortedCars[0]; // Cheapest (low segment)
+    const midSegmentCar = sortedCars[Math.floor(sortedCars.length * 0.5)]; // Middle segment (50th percentile)
+    const highSegmentCar = sortedCars[Math.floor(sortedCars.length * 0.8)]; // High segment (80th percentile)
+    
+    // Ensure we have three different cars
+    const selectedCars = [lowSegmentCar, midSegmentCar, highSegmentCar];
+    const uniqueCars = selectedCars.filter((car, index, self) => 
+      index === self.findIndex(c => c.id === car.id)
+    );
+    
+    // Determine final car selection
+    let finalLowCar, finalMidCar, finalHighCar;
+    
+    if (uniqueCars.length < 3) {
+      console.warn('Not enough unique cars, selecting from different price ranges');
+      // If we don't have 3 unique cars, select from different price ranges
+      const step = Math.floor(sortedCars.length / 3);
+      finalLowCar = sortedCars[0];
+      finalMidCar = sortedCars[step];
+      finalHighCar = sortedCars[Math.min(step * 2, sortedCars.length - 1)];
+    } else {
+      finalLowCar = lowSegmentCar;
+      finalMidCar = midSegmentCar;
+      finalHighCar = highSegmentCar;
+    }
+    
+    console.log('Selected cars for segments:');
+    console.log('Low segment:', finalLowCar.brand, finalLowCar.model, 'Price:', finalLowCar.price);
+    console.log('Mid segment:', finalMidCar.brand, finalMidCar.model, 'Price:', finalMidCar.price);
+    console.log('High segment:', finalHighCar.brand, finalHighCar.model, 'Price:', finalHighCar.price);
+
+    // Create three categories with descriptive names
+    const categories = [
+      {
+        name: 'Budget Segment',
+        annualKilometers: yearlyKm.toString(),
+        leasingDuration: duration.toString(),
+        employeeContribution: { enabled: false, amount: 0 },
+        cleaningCost: { enabled: false, amount: 0 },
+        parkingCost: { enabled: false, amount: 0 },
+        fuelCard: { enabled: false, amount: 0 },
+        selectedFuelTypes: [finalLowCar.fuel_type?.toLowerCase() || 'petrol'],
+        selectedBrands: [finalLowCar.brand],
+        referenceCar: {
+          id: finalLowCar.id,
+          brand: finalLowCar.brand,
+          model: finalLowCar.model,
+          fuelType: finalLowCar.fuel_type
+        },
+        monthlyTco: null,
+        tcoBreakdown: null,
+        status: 'pending' // Red dot - needs TCO calculation
+      },
+      {
+        name: 'Mid-Range Segment',
+        annualKilometers: yearlyKm.toString(),
+        leasingDuration: duration.toString(),
+        employeeContribution: { enabled: false, amount: 0 },
+        cleaningCost: { enabled: false, amount: 0 },
+        parkingCost: { enabled: false, amount: 0 },
+        fuelCard: { enabled: false, amount: 0 },
+        selectedFuelTypes: [finalMidCar.fuel_type?.toLowerCase() || 'petrol'],
+        selectedBrands: [finalMidCar.brand],
+        referenceCar: {
+          id: finalMidCar.id,
+          brand: finalMidCar.brand,
+          model: finalMidCar.model,
+          fuelType: finalMidCar.fuel_type
+        },
+        monthlyTco: null,
+        tcoBreakdown: null,
+        status: 'pending' // Red dot - needs TCO calculation
+      },
+      {
+        name: 'Premium Segment',
+        annualKilometers: yearlyKm.toString(),
+        leasingDuration: duration.toString(),
+        employeeContribution: { enabled: false, amount: 0 },
+        cleaningCost: { enabled: false, amount: 0 },
+        parkingCost: { enabled: false, amount: 0 },
+        fuelCard: { enabled: false, amount: 0 },
+        selectedFuelTypes: [finalHighCar.fuel_type?.toLowerCase() || 'petrol'],
+        selectedBrands: [finalHighCar.brand],
+        referenceCar: {
+          id: finalHighCar.id,
+          brand: finalHighCar.brand,
+          model: finalHighCar.model,
+          fuelType: finalHighCar.fuel_type
+        },
+        monthlyTco: null,
+        tcoBreakdown: null,
+        status: 'pending' // Red dot - needs TCO calculation
+      }
+    ];
+
+    // Add all categories to the session
+    this.addInspireMeCategories(categories);
   }
 
   private addInspireMeCategories(categories: any[]): void {
