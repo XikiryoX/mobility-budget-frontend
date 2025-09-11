@@ -973,11 +973,11 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
     console.log('High segment:', finalHighCar.brand, finalHighCar.model, 'Price:', finalHighCar.price);
 
     // Create three categories with descriptive names and calculate TCO for each
-    const selectedCars = [finalLowCar, finalMidCar, finalHighCar];
+    const finalSelectedCars = [finalLowCar, finalMidCar, finalHighCar];
     const categoryNames = ['Budget Segment', 'Mid-Range Segment', 'Premium Segment'];
     
     // Calculate TCO for each selected car
-    this.calculateTcoForInspireMeCars(selectedCars, categoryNames, yearlyKm, duration);
+    this.calculateTcoForInspireMeCars(finalSelectedCars, categoryNames, yearlyKm, duration);
   }
 
   private calculateTcoForInspireMeCars(selectedCars: any[], categoryNames: string[], yearlyKm: number, duration: number): void {
