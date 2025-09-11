@@ -535,13 +535,13 @@
                                    [style.left]="getMinSliderPosition() + '%'"
                                    (mousedown)="startSliderDrag('min', $event)"
                                    (touchstart)="startSliderDrag('min', $event)">
-                                <div class="slider-value">€{{ tcoRangeMin }}</div>
+                                <div class="slider-value">€{{ Math.round(tcoRangeMin / 10) * 10 }}</div>
                               </div>
                               <div class="slider-handle max-handle" 
                                    [style.left]="getMaxSliderPosition() + '%'"
                                    (mousedown)="startSliderDrag('max', $event)"
                                    (touchstart)="startSliderDrag('max', $event)">
-                                <div class="slider-value">€{{ tcoRangeMax }}</div>
+                                <div class="slider-value">€{{ Math.round(tcoRangeMax / 10) * 10 }}</div>
                               </div>
                             </div>
                           </div>
