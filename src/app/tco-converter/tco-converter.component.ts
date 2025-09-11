@@ -923,32 +923,49 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
 
     // Select cars from different segments with brand variety
     const availableBrands = Array.from(carsByBrand.keys());
-    console.log('Available brands:', availableBrands);
-    console.log('Total cars available:', sortedCars.length);
+    console.log('🔍 Available brands in database:', availableBrands);
+    console.log('📊 Brand distribution:', Array.from(carsByBrand.entries()).map(([brand, cars]) => `${brand}: ${cars.length} cars`));
+    console.log('📈 Total cars available:', sortedCars.length);
 
-    // Define price segments
-    const lowSegmentEnd = Math.floor(sortedCars.length * 0.33);
-    const midSegmentEnd = Math.floor(sortedCars.length * 0.66);
+    // Try a different approach: select from different brands first, then from different price ranges
+    const selectedCars = [];
+    const usedBrands = new Set<string>();
     
-    console.log('Segment boundaries:', { lowSegmentEnd, midSegmentEnd });
+    // Sort brands by number of cars (most cars first)
+    const brandsByCount = Array.from(carsByBrand.entries())
+      .sort((a, b) => b[1].length - a[1].length);
     
-    // Select one car from each segment, trying to get different brands
-    let finalLowCar, finalMidCar, finalHighCar;
+    console.log('🏆 Brands sorted by car count:', brandsByCount.map(([brand, cars]) => `${brand}: ${cars.length}`));
     
-    // Low segment (cheapest 33%)
-    const lowSegmentCars = sortedCars.slice(0, lowSegmentEnd);
-    console.log('Low segment cars:', lowSegmentCars.length);
-    finalLowCar = this.selectRandomCarFromSegment(lowSegmentCars, []);
+    // Try to select 3 different brands
+    for (let i = 0; i < Math.min(3, brandsByCount.length); i++) {
+      const [brand, cars] = brandsByCount[i];
+      if (!usedBrands.has(brand)) {
+        // Select a random car from this brand
+        const randomIndex = Math.floor(Math.random() * cars.length);
+        const selectedCar = cars[randomIndex];
+        selectedCars.push(selectedCar);
+        usedBrands.add(brand);
+        console.log(`✅ Selected from brand ${brand}:`, selectedCar.model, 'Price:', selectedCar.price);
+      }
+    }
     
-    // Mid segment (middle 33%)
-    const midSegmentCars = sortedCars.slice(lowSegmentEnd, midSegmentEnd);
-    console.log('Mid segment cars:', midSegmentCars.length);
-    finalMidCar = this.selectRandomCarFromSegment(midSegmentCars, [finalLowCar.brand]);
+    // If we don't have 3 different brands, fill with random cars from any brand
+    while (selectedCars.length < 3 && selectedCars.length < sortedCars.length) {
+      const randomIndex = Math.floor(Math.random() * sortedCars.length);
+      const randomCar = sortedCars[randomIndex];
+      if (!selectedCars.some(car => car.id === randomCar.id)) {
+        selectedCars.push(randomCar);
+        console.log(`🎲 Selected random car:`, randomCar.brand, randomCar.model, 'Price:', randomCar.price);
+      }
+    }
     
-    // High segment (most expensive 33%)
-    const highSegmentCars = sortedCars.slice(midSegmentEnd);
-    console.log('High segment cars:', highSegmentCars.length);
-    finalHighCar = this.selectRandomCarFromSegment(highSegmentCars, [finalLowCar.brand, finalMidCar.brand]);
+    // Sort selected cars by price to assign to segments
+    selectedCars.sort((a, b) => (a.price || 0) - (b.price || 0));
+    
+    const finalLowCar = selectedCars[0];
+    const finalMidCar = selectedCars[1] || selectedCars[0];
+    const finalHighCar = selectedCars[2] || selectedCars[1] || selectedCars[0];
     
     console.log('Selected cars for segments:');
     console.log('Low segment:', finalLowCar.brand, finalLowCar.model, 'Price:', finalLowCar.price);
@@ -1073,6 +1090,15 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
   private selectRandomCarFromSegment(segmentCars: any[], excludeBrands: string[]): any {
     console.log('Selecting from segment with', segmentCars.length, 'cars, excluding brands:', excludeBrands);
     
+    // Log all brands in this segment for debugging
+    const segmentBrands = segmentCars.map(car => car.brand || 'Unknown');
+    const uniqueSegmentBrands = [...new Set(segmentBrands)];
+    console.log('All brands in segment:', uniqueSegmentBrands);
+    console.log('Brand distribution:', segmentBrands.reduce((acc, brand) => {
+      acc[brand] = (acc[brand] || 0) + 1;
+      return acc;
+    }, {}));
+    
     // First try to find a car from a brand not in the exclude list
     const availableCars = segmentCars.filter(car => {
       const brand = car.brand || 'Unknown';
@@ -1080,18 +1106,19 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
     });
     
     console.log('Available cars after brand filtering:', availableCars.length);
+    console.log('Available brands after filtering:', [...new Set(availableCars.map(car => car.brand || 'Unknown'))]);
     
     if (availableCars.length > 0) {
       // Randomly select from available cars
       const randomIndex = Math.floor(Math.random() * availableCars.length);
       const selectedCar = availableCars[randomIndex];
-      console.log('Selected car from different brand:', selectedCar.brand, selectedCar.model);
+      console.log('✅ Selected car from different brand:', selectedCar.brand, selectedCar.model, 'ID:', selectedCar.id);
       return selectedCar;
     } else {
       // If no cars from different brands, just select randomly from the segment
       const randomIndex = Math.floor(Math.random() * segmentCars.length);
       const selectedCar = segmentCars[randomIndex];
-      console.log('Selected car from same brand (fallback):', selectedCar.brand, selectedCar.model);
+      console.log('⚠️ Selected car from same brand (fallback):', selectedCar.brand, selectedCar.model, 'ID:', selectedCar.id);
       return selectedCar;
     }
   }
