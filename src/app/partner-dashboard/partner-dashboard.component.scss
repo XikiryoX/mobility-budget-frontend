@@ -431,17 +431,17 @@
   font-weight: 600;
   color: white;
   min-width: 20px;
-  
-  &.completed {
-    background: #10B981;
-  }
-  
-  &.in-progress {
-    background: #3B82F6;
-  }
-  
+
   &.pending {
-    background: #F59E0B;
+    background: #6B7280;  // Grijs voor pending
+  }
+
+  &.in-progress {
+    background: #F59E0B;  // Oranje voor in-progress
+  }
+
+  &.completed {
+    background: #10B981;  // Groen voor completed
   }
 }
 

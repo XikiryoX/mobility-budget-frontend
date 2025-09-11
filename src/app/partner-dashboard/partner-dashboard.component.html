@@ -125,9 +125,9 @@
                 </div>
                 <div class="company-stats-row">
                   <div class="company-status-summary">
-                    <span class="status-dot completed" *ngIf="getCompletedSessions(company) > 0" [title]="getCompletedSessions(company) + ' ' + ((getCompletedSessions(company) === 1 ? 'completedPolicy' : 'completedPolicies') | i18n)">{{ getCompletedSessions(company) }}</span>
-                    <span class="status-dot in-progress" *ngIf="getInProgressSessions(company) > 0" [title]="getInProgressSessions(company) + ' ' + ((getInProgressSessions(company) === 1 ? 'inProgressPolicy' : 'inProgressPolicies') | i18n)">{{ getInProgressSessions(company) }}</span>
-                    <span class="status-dot pending" *ngIf="getPendingSessions(company) > 0" [title]="getPendingSessions(company) + ' ' + ((getPendingSessions(company) === 1 ? 'draftPolicy' : 'draftPolicies') | i18n)">{{ getPendingSessions(company) }}</span>
+                    <span class="status-dot pending" [title]="getPendingSessions(company) + ' ' + ((getPendingSessions(company) === 1 ? 'draftPolicy' : 'draftPolicies') | i18n)">{{ getPendingSessions(company) }}</span>
+                    <span class="status-dot in-progress" [title]="getInProgressSessions(company) + ' ' + ((getInProgressSessions(company) === 1 ? 'inProgressPolicy' : 'inProgressPolicies') | i18n)">{{ getInProgressSessions(company) }}</span>
+                    <span class="status-dot completed" [title]="getCompletedSessions(company) + ' ' + ((getCompletedSessions(company) === 1 ? 'completedPolicy' : 'completedPolicies') | i18n)">{{ getCompletedSessions(company) }}</span>
                   </div>
                   <div class="expand-icon" [class.expanded]="company.expanded">
                     <svg width="24" height="24" viewBox="0 0 20 20" fill="none">
