@@ -1486,6 +1486,13 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
       return;
     }
 
+    // If car filter is active, don't reload from backend - use local filtering
+    if (this.isCarFilterActive) {
+      console.log('Car filter is active, using local filtering instead of backend call');
+      this.applyLocalCarFilter();
+      return;
+    }
+
     this.isLoadingReferenceCars = true;
     
     // Map frontend fuel types to database values
@@ -1791,6 +1798,54 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
     }
   }
 
+  private applyLocalCarFilter(): void {
+    console.log('Applying local car filter with', this.selectedCarsInFilter.length, 'selected cars');
+    
+    if (this.selectedCarsInFilter.length > 0) {
+      // Get the selected cars from allReferenceCars
+      const selectedCars = this.allReferenceCars.filter((car: any) => 
+        this.selectedCarsInFilter.includes(car.id.toString())
+      );
+      
+      // For each selected car, find all variants (same brand + model)
+      const filteredCars: any[] = [];
+      
+      selectedCars.forEach((selectedCar: any) => {
+        // Find all cars with the same brand and model
+        const variants = this.allReferenceCars.filter((car: any) => 
+          car.brand === selectedCar.brand && car.model === selectedCar.model
+        );
+        
+        // Add all variants to the filtered list (avoid duplicates)
+        variants.forEach((variant: any) => {
+          if (!filteredCars.find(car => car.id === variant.id)) {
+            filteredCars.push(variant);
+          }
+        });
+      });
+      
+      // Apply pagination to filtered results
+      const startIndex = (this.currentPage - 1) * 10;
+      const endIndex = startIndex + 10;
+      this.referenceCars = filteredCars.slice(startIndex, endIndex);
+      
+      // Update pagination info for filtered results
+      this.totalCars = filteredCars.length;
+      this.totalPages = Math.ceil(this.totalCars / 10);
+      
+      console.log('Local filter applied:', {
+        totalFilteredCars: filteredCars.length,
+        currentPage: this.currentPage,
+        carsOnPage: this.referenceCars.length,
+        totalPages: this.totalPages
+      });
+    } else {
+      // No filter applied, restore original behavior
+      this.isCarFilterActive = false;
+      this.loadReferenceCars();
+    }
+  }
+
   // Sorting methods
   sortByTco(): void {
     if (this.tcoSortDirection === null || this.tcoSortDirection === 'desc') {
@@ -1981,7 +2036,13 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
   goToPage(page: number): void {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
-      this.loadReferenceCars();
+      
+      // If car filter is active, use local filtering instead of backend call
+      if (this.isCarFilterActive) {
+        this.applyLocalCarFilter();
+      } else {
+        this.loadReferenceCars();
+      }
     }
   }
 
