@@ -6,6 +6,7 @@ import { TranslationService, Language } from '../services/translation.service';
 import { I18nPipe } from '../pipes/i18n.pipe';
 import { UserSessionService } from '../services/user-session.service';
 import { SocialSecretaryService } from '../services/social-secretary.service';
+import { SignupService } from '../services/signup.service';
 
 interface CompanySessions {
   signup: any;
@@ -56,7 +57,8 @@ export class PartnerDashboardComponent implements OnInit {
     private router: Router,
     private translationService: TranslationService,
     private userSessionService: UserSessionService,
-    private socialSecretaryService: SocialSecretaryService
+    private socialSecretaryService: SocialSecretaryService,
+    private signupService: SignupService
   ) {}
 
   ngOnInit(): void {
@@ -438,14 +440,14 @@ export class PartnerDashboardComponent implements OnInit {
     console.log('Creating new client:', signupData);
 
     // Use the signup service to create the new client
-    this.socialSecretaryService.createSignup(signupData).subscribe({
+    this.signupService.create(signupData).subscribe({
       next: (newSignup: any) => {
         console.log('New client created successfully:', newSignup);
         alert(this.translate('clientCreatedSuccessfully'));
         
         // Close modal and refresh the company list
         this.closeNewClientModal();
-        this.loadCompanySessions();
+        this.loadPartnerSessions();
       },
       error: (error: any) => {
         console.error('Error creating new client:', error);
