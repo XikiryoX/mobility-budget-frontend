@@ -955,72 +955,113 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
     console.log('Mid segment:', finalMidCar.brand, finalMidCar.model, 'Price:', finalMidCar.price);
     console.log('High segment:', finalHighCar.brand, finalHighCar.model, 'Price:', finalHighCar.price);
 
-    // Create three categories with descriptive names
-    const categories = [
-      {
-        name: 'Budget Segment',
-        annualKilometers: yearlyKm.toString(),
-        leasingDuration: duration.toString(),
-        employeeContribution: { enabled: false, amount: 0 },
-        cleaningCost: { enabled: false, amount: 0 },
-        parkingCost: { enabled: false, amount: 0 },
-        fuelCard: { enabled: false, amount: 0 },
-        selectedFuelTypes: [finalLowCar.fuel_type?.toLowerCase() || 'petrol'],
-        selectedBrands: [finalLowCar.brand],
-        referenceCar: {
-          id: finalLowCar.id,
-          brand: finalLowCar.brand,
-          model: finalLowCar.model,
-          fuelType: finalLowCar.fuel_type
-        },
-        monthlyTco: null,
-        tcoBreakdown: null,
-        status: 'pending' // Red dot - needs TCO calculation
-      },
-      {
-        name: 'Mid-Range Segment',
-        annualKilometers: yearlyKm.toString(),
-        leasingDuration: duration.toString(),
-        employeeContribution: { enabled: false, amount: 0 },
-        cleaningCost: { enabled: false, amount: 0 },
-        parkingCost: { enabled: false, amount: 0 },
-        fuelCard: { enabled: false, amount: 0 },
-        selectedFuelTypes: [finalMidCar.fuel_type?.toLowerCase() || 'petrol'],
-        selectedBrands: [finalMidCar.brand],
-        referenceCar: {
-          id: finalMidCar.id,
-          brand: finalMidCar.brand,
-          model: finalMidCar.model,
-          fuelType: finalMidCar.fuel_type
-        },
-        monthlyTco: null,
-        tcoBreakdown: null,
-        status: 'pending' // Red dot - needs TCO calculation
-      },
-      {
-        name: 'Premium Segment',
-        annualKilometers: yearlyKm.toString(),
-        leasingDuration: duration.toString(),
-        employeeContribution: { enabled: false, amount: 0 },
-        cleaningCost: { enabled: false, amount: 0 },
-        parkingCost: { enabled: false, amount: 0 },
-        fuelCard: { enabled: false, amount: 0 },
-        selectedFuelTypes: [finalHighCar.fuel_type?.toLowerCase() || 'petrol'],
-        selectedBrands: [finalHighCar.brand],
-        referenceCar: {
-          id: finalHighCar.id,
-          brand: finalHighCar.brand,
-          model: finalHighCar.model,
-          fuelType: finalHighCar.fuel_type
-        },
-        monthlyTco: null,
-        tcoBreakdown: null,
-        status: 'pending' // Red dot - needs TCO calculation
-      }
-    ];
+    // Create three categories with descriptive names and calculate TCO for each
+    const selectedCars = [finalLowCar, finalMidCar, finalHighCar];
+    const categoryNames = ['Budget Segment', 'Mid-Range Segment', 'Premium Segment'];
+    
+    // Calculate TCO for each selected car
+    this.calculateTcoForInspireMeCars(selectedCars, categoryNames, yearlyKm, duration);
+  }
 
-    // Add all categories to the session
-    this.addInspireMeCategories(categories);
+  private calculateTcoForInspireMeCars(selectedCars: any[], categoryNames: string[], yearlyKm: number, duration: number): void {
+    console.log('Calculating TCO for inspire me cars:', selectedCars.length);
+    
+    // Calculate TCO for each car sequentially
+    this.calculateTcoForInspireMeCar(selectedCars, categoryNames, yearlyKm, duration, 0);
+  }
+
+  private calculateTcoForInspireMeCar(selectedCars: any[], categoryNames: string[], yearlyKm: number, duration: number, index: number): void {
+    if (index >= selectedCars.length) {
+      console.log('All inspire me TCO calculations completed');
+      return;
+    }
+
+    const car = selectedCars[index];
+    const categoryName = categoryNames[index];
+    
+    console.log(`Calculating TCO for ${categoryName}:`, car.brand, car.model);
+
+    // Call the TCO calculation API
+    this.vehiclesService.calculateVehicleTCO(car.id, yearlyKm, duration, [], []).subscribe({
+      next: (tcoResult) => {
+        console.log(`TCO calculated for ${categoryName}:`, tcoResult);
+        
+        // Create category with calculated TCO
+        const category = {
+          name: categoryName,
+          annualKilometers: yearlyKm.toString(),
+          leasingDuration: duration.toString(),
+          employeeContribution: { enabled: false, amount: 0 },
+          cleaningCost: { enabled: false, amount: 0 },
+          parkingCost: { enabled: false, amount: 0 },
+          fuelCard: { enabled: false, amount: 0 },
+          selectedFuelTypes: [car.fuel_type?.toLowerCase() || 'petrol'],
+          selectedBrands: [car.brand],
+          referenceCar: {
+            id: car.id,
+            brand: car.brand,
+            model: car.model,
+            fuelType: car.fuel_type
+          },
+          monthlyTco: tcoResult.totalMonthlyTCO,
+          tcoBreakdown: tcoResult.tcoBreakdown,
+          status: 'success' // Green dot - TCO calculated successfully
+        };
+
+        // Add this category to the session
+        this.addInspireMeCategory(category, () => {
+          // Continue with next car
+          this.calculateTcoForInspireMeCar(selectedCars, categoryNames, yearlyKm, duration, index + 1);
+        });
+      },
+      error: (error) => {
+        console.error(`Error calculating TCO for ${categoryName}:`, error);
+        
+        // Create category without TCO (fallback)
+        const category = {
+          name: categoryName,
+          annualKilometers: yearlyKm.toString(),
+          leasingDuration: duration.toString(),
+          employeeContribution: { enabled: false, amount: 0 },
+          cleaningCost: { enabled: false, amount: 0 },
+          parkingCost: { enabled: false, amount: 0 },
+          fuelCard: { enabled: false, amount: 0 },
+          selectedFuelTypes: [car.fuel_type?.toLowerCase() || 'petrol'],
+          selectedBrands: [car.brand],
+          referenceCar: {
+            id: car.id,
+            brand: car.brand,
+            model: car.model,
+            fuelType: car.fuel_type
+          },
+          monthlyTco: null,
+          tcoBreakdown: null,
+          status: 'pending' // Red dot - TCO calculation failed
+        };
+
+        // Add this category to the session
+        this.addInspireMeCategory(category, () => {
+          // Continue with next car
+          this.calculateTcoForInspireMeCar(selectedCars, categoryNames, yearlyKm, duration, index + 1);
+        });
+      }
+    });
+  }
+
+  private addInspireMeCategory(category: any, callback: () => void): void {
+    console.log('Adding inspire me category:', category.name, 'with TCO:', category.monthlyTco);
+    
+    this.userSessionService.addCarCategory(this.currentSessionId!, category).subscribe({
+      next: (updatedSession) => {
+        console.log(`Successfully added inspire me category:`, category.name);
+        this.carCategories = updatedSession.carCategories || [];
+        callback();
+      },
+      error: (error) => {
+        console.error(`Error adding inspire me category:`, error);
+        callback(); // Continue even if this one failed
+      }
+    });
   }
 
   private selectRandomCarFromSegment(segmentCars: any[], excludeBrands: string[]): any {
@@ -1049,38 +1090,6 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
     }
   }
 
-  private addInspireMeCategories(categories: any[]): void {
-    console.log('Starting to add inspire me categories:', categories.length);
-    
-    // Add categories sequentially to avoid race conditions
-    this.addCategorySequentially(categories, 0);
-  }
-
-  private addCategorySequentially(categories: any[], index: number): void {
-    if (index >= categories.length) {
-      console.log('All inspire me categories processed successfully');
-      return;
-    }
-
-    const category = categories[index];
-    console.log(`Adding category ${index + 1}:`, category.name, 'with car:', category.referenceCar);
-    
-    this.userSessionService.addCarCategory(this.currentSessionId!, category).subscribe({
-      next: (updatedSession) => {
-        console.log(`Successfully added inspire me category ${index + 1}:`, category.name);
-        this.carCategories = updatedSession.carCategories || [];
-        
-        // Add next category
-        this.addCategorySequentially(categories, index + 1);
-      },
-      error: (error) => {
-        console.error(`Error adding inspire me category ${index + 1}:`, error);
-        
-        // Continue with next category even if this one failed
-        this.addCategorySequentially(categories, index + 1);
-      }
-    });
-  }
 
   private saveTcoDocument(): void {
     if (!this.currentSessionId) {
