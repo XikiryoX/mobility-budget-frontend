@@ -766,9 +766,11 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
   inspireMe(): void {
     console.log('Inspire me button clicked');
     console.log('Current session ID:', this.currentSessionId);
+    console.log('Current session:', this.currentSession);
     
     if (!this.currentSessionId) {
       console.error('No session ID available for inspire me');
+      alert('No session available. Please start a new session first.');
       return;
     }
 
@@ -816,6 +818,7 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         console.error('Error loading parameter combinations:', error);
+        alert('Error loading car data. Please try again.');
       }
     });
   }
@@ -947,6 +950,7 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         console.error('Error loading electric cars for inspire me:', error);
+        alert('Error loading cars for the selected parameters. Please try again.');
       }
     });
   }
