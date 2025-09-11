@@ -35,7 +35,7 @@ export interface UploadProgress {
   providedIn: 'root'
 })
 export class FileUploadService {
-  private apiUrl = 'http://localhost:3000/file-upload';
+  private apiUrl = 'https://mobility-backend-750365875206.europe-west1.run.app/file-upload';
   private uploadProgressSubject = new BehaviorSubject<UploadProgress>({ progress: 0, loaded: 0, total: 0 });
 
   constructor(private http: HttpClient) {}

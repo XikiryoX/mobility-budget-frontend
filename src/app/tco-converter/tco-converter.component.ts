@@ -3040,7 +3040,12 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
         this.uploadedFiles = files;
       },
       error: (error) => {
-        console.error('Failed to load session files:', error);
+        // Don't log error for new sessions that don't have files yet
+        if (error.status !== 0 && error.status !== 404) {
+          console.error('Failed to load session files:', error);
+        }
+        // Initialize empty files array for new sessions
+        this.uploadedFiles = [];
       }
     });
   }
