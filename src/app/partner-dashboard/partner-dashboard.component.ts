@@ -7,7 +7,7 @@ import { I18nPipe } from '../pipes/i18n.pipe';
 import { UserSessionService } from '../services/user-session.service';
 import { SocialSecretaryService } from '../services/social-secretary.service';
 import { SignupService } from '../services/signup.service';
-import { ViesService } from '../services/vies.service';
+import { ViesFreeService } from '../services/vies-free.service';
 
 interface CompanySessions {
   signup: any;
@@ -60,7 +60,7 @@ export class PartnerDashboardComponent implements OnInit {
     private userSessionService: UserSessionService,
     private socialSecretaryService: SocialSecretaryService,
     private signupService: SignupService,
-    private viesService: ViesService
+    private viesService: ViesFreeService
   ) {}
 
   ngOnInit(): void {
@@ -451,14 +451,14 @@ export class PartnerDashboardComponent implements OnInit {
     }
 
     // Call VIES API to validate and get company info
-    this.viesService.validateVatNumber(cleanCompanyNumber).subscribe({
+    this.viesService.lookupCompany(cleanCompanyNumber).subscribe({
       next: (response: any) => {
-        if (response.valid && response.name) {
+        if (response.valid && response.traderName) {
           // Auto-fill company name if available
-          this.newClientData.companyName = response.name;
+          this.newClientData.companyName = response.traderName;
         }
       },
-      error: (error) => {
+      error: (error: any) => {
         console.log('VIES validation failed:', error);
         // Don't show error to user, just log it
       }
