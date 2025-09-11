@@ -2135,9 +2135,9 @@
 
   .setup-preview .save-button {
     padding: 20px 40px;
-    background: white;
-    color: #37403F;
-    border: 1px solid #E5E5E5;
+    background: #28A745;
+    color: white;
+    border: 1px solid #28A745;
     border-radius: 4px;
     font-size: 20px;
     font-weight: 600;
@@ -2157,8 +2157,8 @@
   }
 
   .setup-preview .save-button:hover:not(:disabled) {
-    background: #F8F9FA;
-    border-color: #37403F;
+    background: #218838;
+    border-color: #218838;
   }
 
   .preview-card {
