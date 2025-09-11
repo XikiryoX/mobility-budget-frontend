@@ -20,7 +20,7 @@ interface CompanySessions {
 @Component({
   selector: 'app-partner-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, I18nPipe],
   templateUrl: './partner-dashboard.component.html',
   styleUrls: ['./partner-dashboard.component.scss']
 })

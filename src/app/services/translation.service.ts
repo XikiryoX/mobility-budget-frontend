@@ -749,21 +749,6 @@ export class TranslationService {
         fr: 'Le secrétariat social est pré-rempli automatiquement',
         en: 'Social secretary is automatically pre-filled'
       },
-      'fullNameRequired': {
-        nl: 'Volledige naam is verplicht',
-        fr: 'Le nom complet est obligatoire',
-        en: 'Full name is required'
-      },
-      'fullNameMinLength': {
-        nl: 'Volledige naam moet minimaal 2 karakters bevatten',
-        fr: 'Le nom complet doit contenir au moins 2 caractères',
-        en: 'Full name must be at least 2 characters'
-      },
-      'emailRequired': {
-        nl: 'E-mail is verplicht',
-        fr: 'L\'e-mail est obligatoire',
-        en: 'Email is required'
-      },
       'emailInvalid': {
         nl: 'Ongeldig e-mailadres',
         fr: 'Adresse e-mail invalide',
@@ -788,11 +773,6 @@ export class TranslationService {
         nl: 'Ongeldig ondernemingsnummer (formaat: BE0123456789)',
         fr: 'Numéro d\'entreprise invalide (format: BE0123456789)',
         en: 'Invalid company number (format: BE0123456789)'
-      },
-      'companyNameRequired': {
-        nl: 'Bedrijfsnaam is verplicht',
-        fr: 'Le nom de l\'entreprise est obligatoire',
-        en: 'Company name is required'
       },
       'companyInformation': {
         nl: 'Bedrijfsinformatie',
@@ -1245,11 +1225,6 @@ export class TranslationService {
         nl: 'Filter op bedrijfsnaam...',
         fr: 'Filtrer par nom d\'entreprise...',
         en: 'Filter by company name...'
-      },
-      'clearFilter': {
-        nl: 'Filter wissen',
-        fr: 'Effacer le filtre',
-        en: 'Clear filter'
       },
       'unknownContact': {
         nl: 'Onbekend Contact',

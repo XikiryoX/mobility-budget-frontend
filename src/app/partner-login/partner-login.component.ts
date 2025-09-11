@@ -9,7 +9,7 @@ import { SocialSecretaryService } from '../services/social-secretary.service';
 @Component({
   selector: 'app-partner-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, I18nPipe],
   templateUrl: './partner-login.component.html',
   styleUrls: ['./partner-login.component.scss']
 })

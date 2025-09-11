@@ -12,7 +12,7 @@ import { SignupService } from '../services/signup.service';
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, I18nPipe],
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
