@@ -5,8 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { TcoConverterComponent } from './tco-converter/tco-converter.component';
-import { ViesServiceFactory } from './services/vies.service.factory';
-import { ViesBackendService } from './services/vies-backend.service';
+import { ViesFreeService } from './services/vies-free.service';
 
 @Component({
   selector: 'app-root',
@@ -20,8 +19,7 @@ import { ViesBackendService } from './services/vies-backend.service';
     TcoConverterComponent
   ],
   providers: [
-    ViesServiceFactory,
-    ViesBackendService
+    ViesFreeService
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss'

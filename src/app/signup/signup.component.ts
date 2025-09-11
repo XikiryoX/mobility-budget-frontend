@@ -5,8 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { TranslationService, Language } from '../services/translation.service';
 import { I18nPipe } from '../pipes/i18n.pipe';
-import { ViesServiceFactory, ViesServiceInterface } from '../services/vies.service.factory';
-import { ViesResponse } from '../services/vies.service';
+import { ViesFreeService, ViesResponse } from '../services/vies-free.service';
 import { SignupService } from '../services/signup.service';
 
 @Component({
@@ -50,17 +49,12 @@ export class SignupComponent implements OnInit, OnDestroy {
   private phoneRegex = /^[0-9+\-\s\(\)]{8,15}$/;
   private companyNumberRegex = /^(BE)?[0-9]{10}$/;
 
-  private viesService: ViesServiceInterface;
-
   constructor(
     private router: Router,
     private translationService: TranslationService,
-    private viesServiceFactory: ViesServiceFactory,
+    private viesService: ViesFreeService,
     private signupService: SignupService
-  ) {
-    this.viesService = this.viesServiceFactory.getViesService();
-    console.log('Using VIES service:', this.viesServiceFactory.getServiceName());
-  }
+  ) {}
 
   ngOnInit(): void {
     this.availableLanguages = this.translationService.getAvailableLanguages();
