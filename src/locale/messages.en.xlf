@@ -936,7 +936,7 @@
       </trans-unit>
       <trans-unit id="needHelpContactOurSupportTeam" datatype="html">
         <source>needHelpContactOurSupportTeam</source>
-        <target>Need help? Contact our support team at support&amp;#64;mobility.be</target>
+        <target>Need help? Contact our support team at support@mobility.be</target>
       </trans-unit>
       <trans-unit id="loggedInAs" datatype="html">
         <source>loggedInAs</source>

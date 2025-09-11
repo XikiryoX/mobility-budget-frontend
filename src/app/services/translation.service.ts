@@ -1190,9 +1190,9 @@ export class TranslationService {
         en: 'Logging in...'
       },
       'needHelpContactOurSupportTeam': {
-        nl: 'Hulp nodig? Neem contact op met ons support team op support&#64;mobility.be',
-        fr: 'Besoin d\'aide ? Contactez notre équipe de support à support&#64;mobility.be',
-        en: 'Need help? Contact our support team at support&#64;mobility.be'
+        nl: 'Hulp nodig? Neem contact op met ons support team op support@mobility.be',
+        fr: 'Besoin d\'aide ? Contactez notre équipe de support à support@mobility.be',
+        en: 'Need help? Contact our support team at support@mobility.be'
       },
       // Partner Dashboard translations
       'loggedInAs': {
