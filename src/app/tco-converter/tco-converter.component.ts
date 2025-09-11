@@ -1868,11 +1868,15 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
       this.tcoRangeMin = Math.min(value, this.tcoRangeMax - minGap);
       // Ensure min slider doesn't go below global minimum
       this.tcoRangeMin = Math.max(this.tcoRangeMin, minTco);
+      // Round to nearest 10
+      this.tcoRangeMin = Math.round(this.tcoRangeMin / 10) * 10;
     } else {
       // Max slider cannot go below min slider plus minimum gap
       this.tcoRangeMax = Math.max(value, this.tcoRangeMin + minGap);
       // Ensure max slider doesn't go above global maximum
       this.tcoRangeMax = Math.min(this.tcoRangeMax, maxTco);
+      // Round to nearest 10
+      this.tcoRangeMax = Math.round(this.tcoRangeMax / 10) * 10;
     }
     
     console.log(`Slider dragged: ${this.activeSlider} = €${this.activeSlider === 'min' ? this.tcoRangeMin : this.tcoRangeMax}`);
@@ -1933,13 +1937,13 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
     // Update the min slider value display
     const minValueElement = document.querySelector('.slider-value.min-value') as HTMLElement;
     if (minValueElement) {
-      minValueElement.textContent = `€${this.tcoRangeMin.toFixed(0)}`;
+      minValueElement.textContent = `€${Math.round(this.tcoRangeMin / 10) * 10}`;
     }
     
     // Update the max slider value display
     const maxValueElement = document.querySelector('.slider-value.max-value') as HTMLElement;
     if (maxValueElement) {
-      maxValueElement.textContent = `€${this.tcoRangeMax.toFixed(0)}`;
+      maxValueElement.textContent = `€${Math.round(this.tcoRangeMax / 10) * 10}`;
     }
   }
 
@@ -1950,8 +1954,8 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
       
       // Always initialize sliders to show the full range when distribution changes
       // This ensures the slider reflects the current filtered data
-      this.tcoRangeMin = newMin;
-      this.tcoRangeMax = newMax;
+      this.tcoRangeMin = Math.round(newMin / 10) * 10;
+      this.tcoRangeMax = Math.round(newMax / 10) * 10;
       
       console.log(`Initialized TCO range: €${newMin} - €${newMax}`);
     }
