@@ -22,6 +22,7 @@ export class PartnerLoginComponent {
   // Language
   selectedLanguage: Language = 'en';
   availableLanguages: { code: Language; name: string; flag: string }[] = [];
+  showLanguageMenu: boolean = false;
 
   constructor(
     private router: Router,
@@ -100,14 +101,19 @@ export class PartnerLoginComponent {
     this.router.navigate(['/login']);
   }
 
-  openLanguageDropdown(selectElement: HTMLSelectElement): void {
-    // Create and dispatch a mousedown event to open the dropdown
-    const event = new MouseEvent('mousedown', {
-      bubbles: true,
-      cancelable: true,
-      view: window
-    });
-    selectElement.dispatchEvent(event);
+  toggleLanguageMenu(): void {
+    this.showLanguageMenu = !this.showLanguageMenu;
+  }
+
+  getCurrentLanguageName(): string {
+    const currentLang = this.availableLanguages.find(lang => lang.code === this.selectedLanguage);
+    return currentLang ? currentLang.name : 'English';
+  }
+
+  selectLanguage(languageCode: Language): void {
+    this.selectedLanguage = languageCode;
+    this.onLanguageChange();
+    this.showLanguageMenu = false; // Close dropdown after selection
   }
 
   translate(key: string): string {

@@ -37,6 +37,7 @@ export class PartnerDashboardComponent implements OnInit {
   // Language
   selectedLanguage: Language = 'en';
   availableLanguages: { code: Language; name: string; flag: string }[] = [];
+  showLanguageMenu: boolean = false;
 
   constructor(
     private router: Router,
@@ -234,6 +235,21 @@ export class PartnerDashboardComponent implements OnInit {
     this.translationService.setLanguage(this.selectedLanguage);
   }
 
+  toggleLanguageMenu(): void {
+    this.showLanguageMenu = !this.showLanguageMenu;
+  }
+
+  getCurrentLanguageName(): string {
+    const currentLang = this.availableLanguages.find(lang => lang.code === this.selectedLanguage);
+    return currentLang ? currentLang.name : 'English';
+  }
+
+  selectLanguage(languageCode: Language): void {
+    this.selectedLanguage = languageCode;
+    this.onLanguageChange();
+    this.showLanguageMenu = false; // Close dropdown after selection
+  }
+
   signOut(): void {
     localStorage.removeItem('isPartner');
     localStorage.removeItem('partnerId');
@@ -332,14 +348,5 @@ export class PartnerDashboardComponent implements OnInit {
     }
   }
 
-  openLanguageDropdown(selectElement: HTMLSelectElement): void {
-    // Create and dispatch a mousedown event to open the dropdown
-    const event = new MouseEvent('mousedown', {
-      bubbles: true,
-      cancelable: true,
-      view: window
-    });
-    selectElement.dispatchEvent(event);
-  }
 }
 

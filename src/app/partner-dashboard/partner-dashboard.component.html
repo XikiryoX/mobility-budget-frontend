@@ -11,20 +11,17 @@
     
     <div class="header-actions">
       <!-- Language Selector -->
-      <div class="language-selector-container">
-        <div class="language-selector">
-          <select 
-            #languageSelect
-            [(ngModel)]="selectedLanguage" 
-            (change)="onLanguageChange()"
-            style="background: transparent !important; background-color: transparent !important; background-image: none !important; border: none !important; border-radius: 0 !important; outline: none !important; box-shadow: none !important; -webkit-appearance: none !important; -moz-appearance: none !important; appearance: none !important; padding: 0 !important; margin: 0 !important; min-width: 60px !important; font-size: 1rem !important; font-weight: 500 !important; color: #333 !important; cursor: pointer !important;">
-            <option *ngFor="let lang of availableLanguages" [value]="lang.code">
-              {{ lang.name }}
-            </option>
-          </select>
-          <svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" (click)="openLanguageDropdown(languageSelect)" style="cursor: pointer;">
-            <path d="M4 6L8 10L12 6" stroke="#666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <div class="language-menu">
+        <button class="language-button" (click)="toggleLanguageMenu()">
+          <span class="language-name">{{ getCurrentLanguageName() }}</span>
+          <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
+        </button>
+        <div class="language-dropdown" *ngIf="showLanguageMenu">
+          <button class="dropdown-item" *ngFor="let lang of availableLanguages" (click)="selectLanguage(lang.code)">
+            <span>{{ lang.name }}</span>
+          </button>
         </div>
       </div>
       
