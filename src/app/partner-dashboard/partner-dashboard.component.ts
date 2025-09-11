@@ -283,8 +283,8 @@ export class PartnerDashboardComponent implements OnInit {
     };
 
     // Create new session
-    this.userSessionService.createSession(newSessionData).subscribe({
-      next: (newSession) => {
+    this.userSessionService.create(newSessionData).subscribe({
+      next: (newSession: any) => {
         console.log('New session created:', newSession);
         // Navigate to the TCO converter with the new session
         this.router.navigate(['/tco-converter'], { 
@@ -298,7 +298,7 @@ export class PartnerDashboardComponent implements OnInit {
           }
         });
       },
-      error: (error) => {
+      error: (error: any) => {
         console.error('Error creating new session:', error);
         alert(this.translate('errorCreatingSession'));
       }

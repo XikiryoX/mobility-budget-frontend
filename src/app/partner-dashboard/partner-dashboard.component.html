@@ -114,12 +114,12 @@
               
               <div class="company-stats">
                 <div class="session-count">
-                  {{ getSessionCount(company) }} {{ getSessionCount(company) === 1 ? 'policy' | i18n : 'policies' | i18n }}
+                  {{ getSessionCount(company) }} {{ (getSessionCount(company) === 1 ? 'policy' : 'policies') | i18n }}
                 </div>
                 <div class="company-status-summary">
-                  <span class="status-dot completed" *ngIf="getCompletedSessions(company) > 0" [title]="getCompletedSessions(company) + ' ' + (getCompletedSessions(company) === 1 ? 'completedPolicy' | i18n : 'completedPolicies' | i18n)">{{ getCompletedSessions(company) }}</span>
-                  <span class="status-dot in-progress" *ngIf="getInProgressSessions(company) > 0" [title]="getInProgressSessions(company) + ' ' + (getInProgressSessions(company) === 1 ? 'inProgressPolicy' | i18n : 'inProgressPolicies' | i18n)">{{ getInProgressSessions(company) }}</span>
-                  <span class="status-dot pending" *ngIf="getPendingSessions(company) > 0" [title]="getPendingSessions(company) + ' ' + (getPendingSessions(company) === 1 ? 'draftPolicy' | i18n : 'draftPolicies' | i18n)">{{ getPendingSessions(company) }}</span>
+                  <span class="status-dot completed" *ngIf="getCompletedSessions(company) > 0" [title]="getCompletedSessions(company) + ' ' + ((getCompletedSessions(company) === 1 ? 'completedPolicy' : 'completedPolicies') | i18n)">{{ getCompletedSessions(company) }}</span>
+                  <span class="status-dot in-progress" *ngIf="getInProgressSessions(company) > 0" [title]="getInProgressSessions(company) + ' ' + ((getInProgressSessions(company) === 1 ? 'inProgressPolicy' : 'inProgressPolicies') | i18n)">{{ getInProgressSessions(company) }}</span>
+                  <span class="status-dot pending" *ngIf="getPendingSessions(company) > 0" [title]="getPendingSessions(company) + ' ' + ((getPendingSessions(company) === 1 ? 'draftPolicy' : 'draftPolicies') | i18n)">{{ getPendingSessions(company) }}</span>
                 </div>
                 <button class="new-policy-button" (click)="startNewPolicy(company, $event)" title="{{ 'startNewPolicy' | i18n }}">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
@@ -199,7 +199,7 @@
                               <path d="M2 4H3.33333H14M5.33333 4V2.66667C5.33333 2.31305 5.47381 1.97391 5.72386 1.72386C5.97391 1.47381 6.31305 1.33333 6.66667 1.33333H9.33333C9.68695 1.33333 10.0261 1.47381 10.2761 1.72386C10.5262 1.97391 10.6667 2.31305 10.6667 2.66667V4M12.6667 4V13.3333C12.6667 13.687 12.5262 14.0261 12.2761 14.2761C12.0261 14.5262 11.687 14.6667 11.3333 14.6667H4.66667C4.31305 14.6667 3.97391 14.5262 3.72386 14.2761C3.47381 14.0261 3.33333 13.687 3.33333 13.3333V4H12.6667Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                             <div *ngIf="isDeleting(session)" class="delete-spinner"></div>
-                            <span>{{ isDeleting(session) ? 'deleting' | i18n : 'delete' | i18n }}</span>
+                            <span>{{ (isDeleting(session) ? 'deleting' : 'delete') | i18n }}</span>
                           </button>
                         </div>
                       </td>
