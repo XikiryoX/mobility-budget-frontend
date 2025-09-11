@@ -1680,10 +1680,30 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
 
   applyCarFilter(): void {
     if (this.selectedCarsInFilter.length > 0) {
-      // Filter the reference cars to only show the selected ones
-      this.referenceCars = this.allReferenceCars.filter((car: any) => 
+      // Get the selected cars from allReferenceCars
+      const selectedCars = this.allReferenceCars.filter((car: any) => 
         this.selectedCarsInFilter.includes(car.id.toString())
       );
+      
+      // For each selected car, find all variants (same brand + model)
+      const filteredCars: any[] = [];
+      
+      selectedCars.forEach((selectedCar: any) => {
+        // Find all cars with the same brand and model
+        const variants = this.allReferenceCars.filter((car: any) => 
+          car.brand === selectedCar.brand && car.model === selectedCar.model
+        );
+        
+        // Add all variants to the filtered list (avoid duplicates)
+        variants.forEach((variant: any) => {
+          if (!filteredCars.find(car => car.id === variant.id)) {
+            filteredCars.push(variant);
+          }
+        });
+      });
+      
+      // Set the filtered reference cars
+      this.referenceCars = filteredCars;
       
       // Update pagination info for filtered results
       this.totalCars = this.referenceCars.length;
@@ -1691,7 +1711,7 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
       this.currentPage = 1; // Reset to first page
       
       // Select the first car from the filtered results
-      this.selectedReferenceCar = this.selectedCarsInFilter[0];
+      this.selectedReferenceCar = this.referenceCars[0]?.id?.toString() || '';
       
       // Mark filter as active
       this.isCarFilterActive = true;
