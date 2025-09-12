@@ -164,8 +164,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private checkExistingPolicies(signupId: string): void {
     // Check if user has existing policies
-    this.userSessionService.getBySignupId(signupId).subscribe({
-      next: (sessions) => {
+    this.userSessionService.findBySignupId(signupId).subscribe({
+      next: (sessions: any[]) => {
         if (sessions && sessions.length > 0) {
           // User has existing policies, navigate to user sessions
           console.log('User has existing policies, navigating to user sessions');
@@ -176,7 +176,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.router.navigate(['/tco-converter']);
         }
       },
-      error: (error) => {
+      error: (error: any) => {
         console.error('Error checking existing policies:', error);
         // On error, default to TCO converter
         this.router.navigate(['/tco-converter']);
