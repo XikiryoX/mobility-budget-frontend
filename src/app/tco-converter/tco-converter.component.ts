@@ -2409,14 +2409,11 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
     this.documentContent = this.editableDocumentContent;
     console.log(`💾 Updated document content length: ${this.documentContent?.length || 0} characters`);
     
-    // Update the cache for the current document language
+    // Update the cache for the current document language only
     this.languageContentCache[this.documentLanguage] = this.editableDocumentContent;
     console.log(`💾 Updated cache for language ${this.documentLanguage}: ${this.editableDocumentContent?.length || 0} characters`);
     
-    // Synchronize changes across all languages
-    this.synchronizeChangesAcrossLanguages(this.editableDocumentContent);
-    
-    // Save the updated document to storage
+    // Save the updated document to storage (only for the current language)
     this.saveUpdatedDocument();
     
     this.closeDocumentEditor();
@@ -2428,34 +2425,6 @@ export class TcoConverterComponent implements OnInit, OnDestroy {
     });
   }
 
-  // Synchronize changes across all available languages
-  private synchronizeChangesAcrossLanguages(updatedContent: string): void {
-    if (!this.documentUrls) return;
-    
-    // Get all available languages
-    const availableLanguages = Object.keys(this.documentUrls);
-    console.log(`🔄 Synchronizing changes across languages: ${availableLanguages.join(', ')}`);
-    console.log(`📝 Updated content length: ${updatedContent.length} characters`);
-    
-    // For each language, update the local content cache
-    availableLanguages.forEach(language => {
-      // Store the updated content for this language
-      if (!this.languageContentCache) {
-        this.languageContentCache = {};
-      }
-      this.languageContentCache[language] = updatedContent;
-      console.log(`✅ Updated cache for language ${language}: ${updatedContent.length} characters`);
-    });
-    
-    console.log('✅ Changes synchronized across all languages:', availableLanguages);
-    console.log('💾 All language versions now contain the updated content');
-    console.log(`📊 Cache now contains ${Object.keys(this.languageContentCache).length} languages`);
-    
-    // Debug: Show final cache status
-    Object.keys(this.languageContentCache).forEach(lang => {
-      console.log(`🔍 Final cache ${lang}: ${this.languageContentCache[lang]?.length || 0} characters`);
-    });
-  }
 
   // Handle editor input changes
   onEditorInput(event: Event): void {
