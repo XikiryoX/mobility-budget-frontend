@@ -81,13 +81,17 @@
                 <span class="detail-label">{{ 'currentStep' | i18n }}:</span>
                 <span class="detail-value">{{ session.currentStep }}/5</span>
               </div>
+              <div class="detail-item" *ngIf="session.createdAt">
+                <span class="detail-label">{{ 'created' | i18n }}:</span>
+                <span class="detail-value">{{ formatDate(session.createdAt) }}</span>
+              </div>
               <div class="detail-item">
-                <span class="detail-label">{{ 'lastActivity' | i18n }}:</span>
-                                    <span class="detail-value">{{ session.lastActivityAt ? formatDate(session.lastActivityAt) : '' }}</span>
+                <span class="detail-label">{{ 'lastUpdated' | i18n }}:</span>
+                <span class="detail-value">{{ session.lastActivityAt ? formatDate(session.lastActivityAt) : formatDate(session.createdAt) }}</span>
               </div>
               <div class="detail-item" *ngIf="session.submittedAt">
                 <span class="detail-label">{{ 'submitted' | i18n }}:</span>
-                                    <span class="detail-value">{{ session.submittedAt ? formatDate(session.submittedAt) : '' }}</span>
+                <span class="detail-value">{{ formatDate(session.submittedAt) }}</span>
               </div>
             </div>
 

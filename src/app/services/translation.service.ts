@@ -245,6 +245,16 @@ export class TranslationService {
         fr: 'Dernière activité',
         en: 'Last activity'
       },
+      'created': {
+        nl: 'Aangemaakt',
+        fr: 'Créé',
+        en: 'Created'
+      },
+      'lastUpdated': {
+        nl: 'Laatst bijgewerkt',
+        fr: 'Dernière mise à jour',
+        en: 'Last updated'
+      },
       'submitted': {
         nl: 'Ingediend',
         fr: 'Soumis',

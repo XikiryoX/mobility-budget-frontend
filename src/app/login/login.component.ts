@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TranslationService, Language } from '../services/translation.service';
 import { SignupService, Signup } from '../services/signup.service';
+import { UserSessionService } from '../services/user-session.service';
 import { environment } from '../../environments/environment';
 import { I18nPipe } from '../pipes/i18n.pipe';
 
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private translationService: TranslationService,
     private signupService: SignupService,
+    private userSessionService: UserSessionService,
     private router: Router
   ) {}
 
@@ -98,8 +100,8 @@ export class LoginComponent implements OnInit, OnDestroy {
             partnerCode: localStorage.getItem('partnerCode')
           });
           
-          // Navigate to TCO Converter after successful login
-          this.router.navigate(['/tco-converter']);
+          // Check if user has existing policies
+          this.checkExistingPolicies(signup.id);
         } else {
           // No signup found with this email
           console.log('No signup found for email:', this.email);
@@ -158,5 +160,27 @@ export class LoginComponent implements OnInit, OnDestroy {
       view: window
     });
     selectElement.dispatchEvent(event);
+  }
+
+  private checkExistingPolicies(signupId: string): void {
+    // Check if user has existing policies
+    this.userSessionService.getBySignupId(signupId).subscribe({
+      next: (sessions) => {
+        if (sessions && sessions.length > 0) {
+          // User has existing policies, navigate to user sessions
+          console.log('User has existing policies, navigating to user sessions');
+          this.router.navigate(['/user-sessions']);
+        } else {
+          // No existing policies, navigate to TCO converter to create new one
+          console.log('No existing policies, navigating to TCO converter');
+          this.router.navigate(['/tco-converter']);
+        }
+      },
+      error: (error) => {
+        console.error('Error checking existing policies:', error);
+        // On error, default to TCO converter
+        this.router.navigate(['/tco-converter']);
+      }
+    });
   }
 } 
